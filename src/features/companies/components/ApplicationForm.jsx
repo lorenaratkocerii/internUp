@@ -63,7 +63,7 @@ export function ApplicationForm({ position, useCases }) {
           Aplikimi u regjistrua
         </p>
         <p className="mt-2 text-sm leading-relaxed text-charcoal/80">
-          Ky është një demonstrim, ndaj aplikimi nuk i dërgohet asnjë kompanie.
+          Aplikimi ruhet vetëm në këtë pajisje për momentin.
         </p>
       </div>
     );
@@ -116,10 +116,10 @@ export function ApplicationForm({ position, useCases }) {
         disabled={isSubmitting}
         className={buttonClasses('charcoal', 'w-full cursor-pointer disabled:cursor-wait disabled:opacity-70')}
       >
-        {isSubmitting ? 'Duke dërguar...' : 'Apliko tani'}
+        {isSubmitting ? 'Duke dërguar...' : 'Apliko Tani'}
       </button>
       <p className="text-xs leading-relaxed text-charcoal/75">
-        Demonstrim: aplikimi nuk i dërgohet asnjë kompanie.
+        Aplikimi ruhet vetëm në këtë pajisje për momentin.
       </p>
     </form>
   );

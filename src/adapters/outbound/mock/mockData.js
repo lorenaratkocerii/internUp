@@ -15,7 +15,7 @@ const PART_TIME_FLEXIBLE = 'Part-time, 20 orë në javë, orar fleksibël';
 export const internshipRecords = [
   {
     id: 'frontend-developer',
-    title: 'Frontend Developer',
+    title: 'Zhvillues/e Frontend',
     companyId: 'kodra-labs',
     company: 'Kodra Labs',
     location: 'Lipjan',
@@ -38,7 +38,7 @@ export const internshipRecords = [
   },
   {
     id: 'mobile-developer',
-    title: 'Mobile Developer',
+    title: 'Zhvillues/e për aplikacione mobile',
     companyId: 'kodra-labs',
     company: 'Kodra Labs',
     location: 'Lipjan',
@@ -60,7 +60,7 @@ export const internshipRecords = [
   },
   {
     id: 'ui-ux-designer',
-    title: 'UI/UX Designer',
+    title: 'Dizajner/e UI/UX',
     companyId: 'vala-studio',
     company: 'Vala Studio',
     location: 'Prishtinë',
@@ -82,7 +82,7 @@ export const internshipRecords = [
   },
   {
     id: 'graphic-designer',
-    title: 'Graphic Designer',
+    title: 'Dizajner/e grafik/e',
     companyId: 'vala-studio',
     company: 'Vala Studio',
     location: 'Prizren',
@@ -104,7 +104,7 @@ export const internshipRecords = [
   },
   {
     id: 'digital-marketing',
-    title: 'Digital Marketing',
+    title: 'Marketing digjital',
     companyId: 'rrjeti-media',
     company: 'Rrjeti Media',
     location: 'Ferizaj',
@@ -126,7 +126,7 @@ export const internshipRecords = [
   },
   {
     id: 'content-marketing',
-    title: 'Content Marketing',
+    title: 'Marketing i përmbajtjes',
     companyId: 'rrjeti-media',
     company: 'Rrjeti Media',
     location: 'Prishtinë',
@@ -148,7 +148,7 @@ export const internshipRecords = [
   },
   {
     id: 'data-analyst',
-    title: 'Data Analyst',
+    title: 'Analist/e i/e të dhënave',
     companyId: 'datara',
     company: 'Datara',
     location: 'Prishtinë',
@@ -170,7 +170,7 @@ export const internshipRecords = [
   },
   {
     id: 'machine-learning-intern',
-    title: 'Machine Learning Intern',
+    title: 'Praktikant/e në mësimin makinerik',
     companyId: 'datara',
     company: 'Datara',
     location: 'Prishtinë',
@@ -192,7 +192,7 @@ export const internshipRecords = [
   },
   {
     id: 'backend-developer',
-    title: 'Backend Developer',
+    title: 'Zhvillues/e Backend',
     companyId: 'ura-systems',
     company: 'Ura Systems',
     location: 'Prishtinë',
@@ -214,7 +214,7 @@ export const internshipRecords = [
   },
   {
     id: 'devops-intern',
-    title: 'DevOps Intern',
+    title: 'Praktikant/e DevOps',
     companyId: 'ura-systems',
     company: 'Ura Systems',
     location: 'Prishtinë',
@@ -236,7 +236,7 @@ export const internshipRecords = [
   },
   {
     id: 'qa-tester',
-    title: 'QA Tester',
+    title: 'Testues/e i/e cilësisë (QA)',
     companyId: 'malesia-cloud',
     company: 'Malësia Cloud',
     location: 'Pejë',
@@ -258,7 +258,7 @@ export const internshipRecords = [
   },
   {
     id: 'cloud-support',
-    title: 'Cloud Support Intern',
+    title: 'Praktikant/e për mbështetje Cloud',
     companyId: 'malesia-cloud',
     company: 'Malësia Cloud',
     location: 'Pejë',
@@ -280,7 +280,7 @@ export const internshipRecords = [
   },
   {
     id: 'product-analyst',
-    title: 'Product Analyst',
+    title: 'Analist/e i/e produktit',
     companyId: 'dardan-pay',
     company: 'Dardan Pay',
     location: 'Prishtinë',
@@ -302,7 +302,7 @@ export const internshipRecords = [
   },
   {
     id: 'security-intern',
-    title: 'Security Intern',
+    title: 'Praktikant/e i/e sigurisë kibernetike',
     companyId: 'dardan-pay',
     company: 'Dardan Pay',
     location: 'Prishtinë',
@@ -324,7 +324,7 @@ export const internshipRecords = [
   },
   {
     id: 'energy-data',
-    title: 'Energy Data Intern',
+    title: 'Praktikant/e për të dhënat e energjisë',
     companyId: 'gjelber-energy',
     company: 'Gjelbër Energy',
     location: 'Prizren',
@@ -346,7 +346,7 @@ export const internshipRecords = [
   },
   {
     id: 'hr-intern',
-    title: 'HR Intern',
+    title: 'Praktikant/e i/e burimeve njerëzore',
     companyId: 'gjelber-energy',
     company: 'Gjelbër Energy',
     location: 'Prizren',
@@ -368,7 +368,7 @@ export const internshipRecords = [
   },
   {
     id: 'embedded-intern',
-    title: 'Embedded Systems Intern',
+    title: 'Praktikant/e për sistemet e integruara',
     companyId: 'qarku-tech',
     company: 'Qarku Tech',
     location: 'Gjilan',
@@ -390,7 +390,7 @@ export const internshipRecords = [
   },
   {
     id: 'hardware-testing-intern',
-    title: 'Hardware Testing Intern',
+    title: 'Praktikant/e për testimin e pajisjeve',
     companyId: 'qarku-tech',
     company: 'Qarku Tech',
     location: 'Gjilan',
@@ -412,7 +412,7 @@ export const internshipRecords = [
   },
   {
     id: 'fullstack-intern',
-    title: 'Full-Stack Developer Intern',
+    title: 'Praktikant/e për zhvillim Full-Stack',
     companyId: 'dija-soft',
     company: 'Dija Soft',
     location: 'Mitrovicë',
@@ -434,7 +434,7 @@ export const internshipRecords = [
   },
   {
     id: 'technical-writer-intern',
-    title: 'Technical Writer Intern',
+    title: 'Praktikant/e për shkrim teknik',
     companyId: 'dija-soft',
     company: 'Dija Soft',
     location: 'Mitrovicë',
@@ -456,7 +456,7 @@ export const internshipRecords = [
   },
   {
     id: 'ai-engineer-intern',
-    title: 'AI Engineer Intern',
+    title: 'Praktikant/e për inxhinieri të inteligjencës artificiale',
     companyId: 'mendja-ai',
     company: 'Mendja AI',
     location: 'Prishtinë',
@@ -478,7 +478,7 @@ export const internshipRecords = [
   },
   {
     id: 'data-labeling-intern',
-    title: 'Data Labeling Intern',
+    title: 'Praktikant/e për etiketimin e të dhënave',
     companyId: 'mendja-ai',
     company: 'Mendja AI',
     location: 'Prishtinë',
@@ -500,7 +500,7 @@ export const internshipRecords = [
   },
   {
     id: 'soc-analyst-intern',
-    title: 'SOC Analyst Intern',
+    title: 'Praktikant/e analist/e SOC',
     companyId: 'mburoja-security',
     company: 'Mburoja Security',
     location: 'Prishtinë',
@@ -522,7 +522,7 @@ export const internshipRecords = [
   },
   {
     id: 'penetration-testing-intern',
-    title: 'Penetration Testing Intern',
+    title: 'Praktikant/e për testimin e depërtimit',
     companyId: 'mburoja-security',
     company: 'Mburoja Security',
     location: 'Prishtinë',
@@ -544,7 +544,7 @@ export const internshipRecords = [
   },
   {
     id: 'java-developer-intern',
-    title: 'Java Developer Intern',
+    title: 'Praktikant/e për zhvillim në Java',
     companyId: 'hena-code',
     company: 'Hëna Code',
     location: 'Gjakovë',
@@ -566,7 +566,7 @@ export const internshipRecords = [
   },
   {
     id: 'database-intern',
-    title: 'Database Intern',
+    title: 'Praktikant/e për baza të të dhënave',
     companyId: 'hena-code',
     company: 'Hëna Code',
     location: 'Gjakovë',
@@ -588,7 +588,7 @@ export const internshipRecords = [
   },
   {
     id: 'ecommerce-developer-intern',
-    title: 'E-commerce Developer Intern',
+    title: 'Praktikant/e për zhvillim të tregtisë elektronike',
     companyId: 'shporta-commerce',
     company: 'Shporta Commerce',
     location: 'Pejë',
@@ -610,7 +610,7 @@ export const internshipRecords = [
   },
   {
     id: 'ecommerce-specialist-intern',
-    title: 'E-commerce Specialist Intern',
+    title: 'Praktikant/e specialist/e i/e tregtisë elektronike',
     companyId: 'shporta-commerce',
     company: 'Shporta Commerce',
     location: 'Pejë',
@@ -632,7 +632,7 @@ export const internshipRecords = [
   },
   {
     id: 'business-analyst-intern',
-    title: 'Business Analyst Intern',
+    title: 'Praktikant/e analist/e biznesi',
     companyId: 'busulla-consulting',
     company: 'Busulla Consulting',
     location: 'Prishtinë',
@@ -654,7 +654,7 @@ export const internshipRecords = [
   },
   {
     id: 'financial-analyst-intern',
-    title: 'Financial Analyst Intern',
+    title: 'Praktikant/e analist/e financash',
     companyId: 'busulla-consulting',
     company: 'Busulla Consulting',
     location: 'Prishtinë',
@@ -676,7 +676,7 @@ export const internshipRecords = [
   },
   {
     id: 'logistics-operations-intern',
-    title: 'Logistics Operations Intern',
+    title: 'Praktikant/e për operacione logjistike',
     companyId: 'rruga-logistics',
     company: 'Rruga Logistics',
     location: 'Ferizaj',
@@ -698,7 +698,7 @@ export const internshipRecords = [
   },
   {
     id: 'systems-analyst-intern',
-    title: 'Systems Analyst Intern',
+    title: 'Praktikant/e analist/e sistemesh',
     companyId: 'rruga-logistics',
     company: 'Rruga Logistics',
     location: 'Ferizaj',

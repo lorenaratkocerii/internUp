@@ -14,7 +14,7 @@ function SelectFilter({ id, label, value, options, onChange }) {
         <option value="">Të gjitha</option>
         {options.map((option) => (
           <option key={option} value={option}>
-            {option}
+            {id === 'filtri-menyra' ? ({ Remote: 'Në distancë', Hybrid: 'Hibrid', 'On-site': 'Në zyrë' })[option] ?? option : option}
           </option>
         ))}
       </select>
@@ -99,7 +99,7 @@ export function CompanyFilters({ filters, options, onChange, onReset, hasActiveF
           />
           <SelectFilter
             id="filtri-menyra"
-            label="Remote / Hybrid / On-site"
+            label="Mënyra e punës"
             value={filters.workMode}
             options={options.workModes}
             onChange={(value) => onChange('workMode', value)}

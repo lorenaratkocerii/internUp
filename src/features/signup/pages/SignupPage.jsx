@@ -11,10 +11,10 @@ export function SignupPage() {
     <Container className="py-16 lg:py-24">
       <p className="text-sm font-semibold tracking-[0.18em] text-cream/70 uppercase">Krijo llogari</p>
       <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.05] font-medium tracking-tight sm:text-6xl">
-        Si dëshironi të regjistroheni?
+        {'Si dëshironi të regjistroheni?'}
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream/75">
-        Zgjidhni llogarinë që ju përshtatet dhe vazhdoni te hapi tjetër.
+        {'Zgjidhni llogarinë që ju përshtatet dhe vazhdoni te hapi tjetër.'}
       </p>
 
       <ul className="mt-12 grid gap-5 md:grid-cols-3">

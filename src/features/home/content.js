@@ -1,5 +1,5 @@
 export const authLinks = {
-  login: '/#hyr',
+  login: '/hyr',
   signup: '/regjistrohu',
 };
 

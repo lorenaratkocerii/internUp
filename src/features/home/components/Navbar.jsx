@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { authLinks, navLinks } from '../content';
+import { getDemoUser, logoutDemoUser } from '../../login/demoAuth';
 import { ButtonLink } from './ui/Button';
 import { Container } from './ui/Container';
 import { Logo } from './ui/Logo';
@@ -11,11 +12,23 @@ const linkClasses =
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(() => getDemoUser());
   const toggleRef = useRef(null);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const currentProps = (href) =>
     (href === '/' ? pathname === '/' : pathname.startsWith(href)) ? { 'aria-current': 'page' } : {};
+
+  useEffect(() => {
+    const syncUser = () => setUser(getDemoUser());
+    window.addEventListener('internup:auth-change', syncUser);
+    window.addEventListener('storage', syncUser);
+    return () => {
+      window.removeEventListener('internup:auth-change', syncUser);
+      window.removeEventListener('storage', syncUser);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -31,6 +44,11 @@ export function Navbar() {
   }, [isOpen]);
 
   const close = () => setIsOpen(false);
+  const handleLogout = () => {
+    logoutDemoUser();
+    close();
+    navigate('/');
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-cream/10 bg-charcoal/90 backdrop-blur-md">
@@ -48,16 +66,35 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
+            {user?.role === 'student' && (
+              <>
+                <li><Link to="/student" className={linkClasses} {...currentProps('/student')}>Paneli</Link></li>
+                <li><Link to="/student/applications" className={linkClasses} {...currentProps('/student/applications')}>Aplikimet</Link></li>
+              </>
+            )}
+            {(
+              <li>
+                <Link to="/kompani/publiko-pozite" className={linkClasses} {...currentProps('/kompani/publiko-pozite')}>
+                  {'Publiko pozitë'}
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
 
         <div className="hidden items-center gap-6 md:flex">
-          <Link to={authLinks.login} className={linkClasses}>
-            Hyr
-          </Link>
-          <ButtonLink href={authLinks.signup} className="min-h-11 px-5 py-2">
-            Krijo llogari
-          </ButtonLink>
+          {user ? (
+            <>
+              <span className="text-sm text-cream/80">{user.title}</span>
+              <button type="button" onClick={handleLogout} className={linkClasses}>Dil</button>
+              {user.role === 'student' && <Link to="/profili" className={linkClasses} {...currentProps('/profili')}>Profili im</Link>}
+            </>
+          ) : (
+            <>
+              <Link to={authLinks.login} className={linkClasses}>Hyr</Link>
+              <ButtonLink href={authLinks.signup} className="min-h-11 px-5 py-2">Krijo llogari</ButtonLink>
+            </>
+          )}
         </div>
 
         <button
@@ -91,13 +128,29 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            {user?.role === 'student' && <><Link to="/student" onClick={close} className="py-3 font-display text-2xl text-cream" {...currentProps('/student')}>Paneli</Link><Link to="/student/applications" onClick={close} className="py-3 font-display text-2xl text-cream" {...currentProps('/student/applications')}>Aplikimet</Link></>}
+            {(
+              <Link
+                to="/kompani/publiko-pozite"
+                onClick={close}
+                className="py-3 font-display text-2xl text-cream"
+                {...currentProps('/kompani/publiko-pozite')}
+              >
+                {'Publiko pozitë'}
+              </Link>
+            )}
             <div className="mt-4 grid grid-cols-2 gap-3">
-              <ButtonLink href={authLinks.login} variant="ghost" onClick={close}>
-                Hyr
-              </ButtonLink>
-              <ButtonLink href={authLinks.signup} onClick={close}>
-                Krijo llogari
-              </ButtonLink>
+              {user ? (
+                <>
+                  <button type="button" onClick={handleLogout} className="min-h-11 border border-cream/40 px-4 py-2 text-cream">Dil</button>
+                  {user.role === 'student' && <Link to="/profili" onClick={close} className="min-h-11 border border-cream/40 px-4 py-2 text-center text-cream">Profili im</Link>}
+                </>
+              ) : (
+                <>
+                  <ButtonLink href={authLinks.login} variant="ghost" onClick={close}>Hyr</ButtonLink>
+                  <ButtonLink href={authLinks.signup} onClick={close}>Krijo llogari</ButtonLink>
+                </>
+              )}
             </div>
           </Container>
         </nav>

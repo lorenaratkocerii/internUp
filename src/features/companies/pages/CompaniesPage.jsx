@@ -130,7 +130,7 @@ export function CompaniesPage({ useCases }) {
         </div>
       </Container>
 
-      <CompanySignup useCases={useCases} />
+      <CompanySignup />
     </>
   );
 }

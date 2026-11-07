@@ -20,6 +20,15 @@ export function PositionCard({ position, companyId }) {
           ))}
         </ul>
 
+        {position.requirements?.length > 0 && (
+          <>
+            <h4 className="mt-6 text-sm font-semibold">Kriteret e studentit</h4>
+            <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-charcoal/80 marker:text-terracotta">
+              {position.requirements.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </>
+        )}
+
         <h4 className="mt-6 text-sm font-semibold">Aftësitë e kërkuara</h4>
         <ul className="mt-2 flex flex-wrap gap-2">
           {position.skills.map((skill) => (

@@ -154,7 +154,7 @@ export function SearchBar({ draft, options, filterOptions, onFieldChange, onSubm
         id="kerko-pozita"
         label="Pozita"
         icon={Search}
-        placeholder="p.sh. Frontend Developer"
+        placeholder="p.sh. Zhvillues frontend"
         options={options.positions}
         filterOptions={filterOptions}
         value={draft.position}

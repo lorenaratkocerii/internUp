@@ -8,7 +8,7 @@ export const signupRoles = [
     action: 'Vazhdo si kompani',
     icon: Building2,
     colorClass: 'bg-burgundy',
-    href: '/kompanite#regjistro-kompanine',
+    href: '/regjistrohu/kompani',
   },
   {
     id: 'student',

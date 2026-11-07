@@ -16,9 +16,9 @@ export function InternshipCard({ internship, index = 0 }) {
   const { id, title, companyId, company, location, workMode, durationMonths, paid, skills, canApply } = internship;
   const detailsHref = `/kompanite/${companyId}/pozitat/${id}`;
   const details = [
-    { icon: MapPin, text: `${location}, ${workMode}` },
+    { icon: MapPin, text: `${location}, ${({ Remote: 'Në distancë', Hybrid: 'Hibrid', 'On-site': 'Në zyrë' })[workMode] ?? workMode}` },
     { icon: CalendarDays, text: `${durationMonths} muaj` },
-    { icon: Wallet, text: paid ? 'Paid' : 'Unpaid' },
+    { icon: Wallet, text: paid ? 'Me pagesë' : 'Pa pagesë' },
   ];
 
   return (
@@ -64,7 +64,7 @@ export function InternshipCard({ internship, index = 0 }) {
           aria-label={canApply ? `Apliko për ${title} te ${company}` : `Shiko detajet për ${title} te ${company}`}
           className="flex items-center justify-between border-t border-cream/20 pt-5 font-semibold"
         >
-          {canApply ? 'Apliko' : 'Shiko detajet'}
+          {canApply ? 'Apliko Tani' : 'Shiko hollësitë'}
           <span className="grid size-10 place-items-center bg-cream text-charcoal transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
             <ArrowUpRight aria-hidden="true" className="size-5" />
           </span>

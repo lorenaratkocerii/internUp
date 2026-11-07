@@ -13,7 +13,7 @@ export function CompanyCard({ company }) {
     { icon: Factory, label: 'Industria', value: company.industry },
     { icon: CalendarDays, label: 'Themeluar', value: company.foundedYear },
     { icon: Users, label: 'Madhësia', value: company.size },
-    { icon: Laptop, label: 'Mënyra e punës', value: company.workMode },
+    { icon: Laptop, label: 'Mënyra e punës', value: ({ Remote: 'Në distancë', Hybrid: 'Hibrid', 'On-site': 'Në zyrë' })[company.workMode] ?? company.workMode },
     { icon: Briefcase, label: 'Pozitat', value: activePositionsLabel(company.activePositions) },
   ];
 

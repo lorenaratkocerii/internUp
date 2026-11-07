@@ -128,7 +128,7 @@ export function CompanyProfilePage({ useCases }) {
     { label: 'Website', value: company.website },
     { label: 'Industria', value: company.industry },
     { label: 'Madhësia e ekipit', value: company.size },
-    { label: 'Mënyra e punës', value: company.workMode },
+    { label: 'Mënyra e punës', value: ({ Remote: 'Në distancë', Hybrid: 'Hibrid', 'On-site': 'Në zyrë' })[company.workMode] ?? company.workMode },
   ];
 
   return (
