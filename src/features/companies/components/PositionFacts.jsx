@@ -35,7 +35,7 @@ export function PositionFacts({ position }) {
     { icon: Laptop, label: 'Mënyra e punës', value: ({ Remote: 'Në distancë', Hybrid: 'Hibrid', 'On-site': 'Në zyrë' })[position.workMode] ?? position.workMode },
     { icon: Hourglass, label: 'Kohëzgjatja', value: `${position.durationMonths} muaj` },
     { icon: Clock, label: 'Orari', value: position.schedule },
-    { icon: Wallet, label: 'Pagesa', value: position.paid ? 'Me pagesë' : 'Pa pagesë' },
+    { icon: Wallet, label: 'Pagesa', value: position.paid ? (position.stipend ? `${position.stipend} € / muaj` : 'Me pagesë') : 'Pa pagesë' },
     { icon: Users, label: 'Vende të lira', value: position.seats },
     { icon: CalendarCheck, label: 'Hapja e aplikimit', value: formatDate(position.opensAt) },
     { icon: CalendarX, label: 'Mbyllja e aplikimit', value: formatDate(position.closesAt) },

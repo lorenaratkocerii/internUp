@@ -1,0 +1,133 @@
+import { CandidateStatus } from '../../../domain/internship/candidateApplication';
+
+function daysAgo(days) {
+  const date = new Date();
+  date.setDate(date.getDate() - days);
+  date.setHours(10, 30, 0, 0);
+  return date.toISOString();
+}
+
+const ARTA = {
+  email: 'student@internup.test',
+  name: 'Arta Krasniqi',
+  university: 'Universiteti i Prishtinës',
+  major: 'Shkenca Kompjuterike',
+  city: 'Prishtinë',
+  skills: ['JavaScript', 'React', 'SQL', 'Figma'],
+};
+
+export const candidateApplicationRecords = [
+  {
+    id: 'app-1001',
+    internshipId: 'frontend-developer',
+    companyId: 'kodra-labs',
+    positionTitle: 'Zhvillues/e Frontend',
+    companyName: 'Kodra Labs',
+    student: ARTA,
+    cv: 'Arta_Krasniqi_CV.pdf',
+    message: 'Jam e entuziazmuar të kontribuoj në ekipin tuaj të produktit dhe të zhvilloj aftësitë e mia në React.',
+    status: CandidateStatus.UNDER_REVIEW,
+    submittedAt: daysAgo(9),
+  },
+  {
+    id: 'app-1002',
+    internshipId: 'ui-ux-designer',
+    companyId: 'vala-studio',
+    positionTitle: 'Dizajner/e UI/UX',
+    companyName: 'Vala Studio',
+    student: ARTA,
+    cv: 'Arta_Krasniqi_CV.pdf',
+    message: 'Më pëlqen ta kthej hulumtimin e përdoruesve në përvoja të thjeshta dhe të menduara mirë.',
+    status: CandidateStatus.SHORTLISTED,
+    submittedAt: daysAgo(17),
+  },
+  {
+    id: 'app-1003',
+    internshipId: 'data-analyst',
+    companyId: 'datara',
+    positionTitle: 'Analist/e i/e të dhënave',
+    companyName: 'Datara',
+    student: ARTA,
+    cv: 'Arta_Krasniqi_CV.pdf',
+    message: 'Do të doja të mësoja nga ekipi juaj i analizës së të dhënave.',
+    status: CandidateStatus.PENDING,
+    submittedAt: daysAgo(24),
+  },
+  {
+    id: 'app-1004',
+    internshipId: 'frontend-developer',
+    companyId: 'kodra-labs',
+    positionTitle: 'Zhvillues/e Frontend',
+    companyName: 'Kodra Labs',
+    student: {
+      email: 'leart.berisha@student.ubt-uni.net',
+      name: 'Leart Berisha',
+      university: 'Kolegji UBT',
+      major: 'Shkenca Kompjuterike dhe Inxhinieri',
+      city: 'Prishtinë',
+      skills: ['JavaScript', 'Vue', 'CSS', 'Git'],
+    },
+    cv: 'Leart_Berisha_CV.pdf',
+    coverLetter: 'Leart_Berisha_Leter_Motivimi.pdf',
+    message: 'Kam ndërtuar dy projekte personale në JavaScript dhe dua të punoj në një produkt real me përdorues.',
+    status: CandidateStatus.PENDING,
+    submittedAt: daysAgo(2),
+  },
+  {
+    id: 'app-1005',
+    internshipId: 'frontend-developer',
+    companyId: 'kodra-labs',
+    positionTitle: 'Zhvillues/e Frontend',
+    companyName: 'Kodra Labs',
+    student: {
+      email: 'elira.gashi@aab-edu.net',
+      name: 'Elira Gashi',
+      university: 'Kolegji AAB',
+      major: 'Dizajn Grafik',
+      city: 'Lipjan',
+      skills: ['React', 'Figma', 'Tailwind CSS'],
+    },
+    cv: 'Elira_Gashi_CV.pdf',
+    message: 'Jam në mes të dizajnit dhe kodit — më pëlqen të sjell dizajnet nga Figma në React.',
+    status: CandidateStatus.SHORTLISTED,
+    submittedAt: daysAgo(5),
+  },
+  {
+    id: 'app-1006',
+    internshipId: 'mobile-developer',
+    companyId: 'kodra-labs',
+    positionTitle: 'Zhvillues/e për aplikacione mobile',
+    companyName: 'Kodra Labs',
+    student: {
+      email: 'blend.morina@uni-pr.edu',
+      name: 'Blend Morina',
+      university: 'Universiteti i Prishtinës',
+      major: 'Inxhinieri Elektrike dhe Kompjuterike',
+      city: 'Prishtinë',
+      skills: ['React Native', 'TypeScript', 'Git'],
+    },
+    cv: 'Blend_Morina_CV.pdf',
+    message: 'Kam publikuar një aplikacion të vogël në Play Store për orarin e autobusëve në Prishtinë.',
+    status: CandidateStatus.ACCEPTED,
+    submittedAt: daysAgo(30),
+  },
+  {
+    id: 'app-1007',
+    internshipId: 'mobile-developer',
+    companyId: 'kodra-labs',
+    positionTitle: 'Zhvillues/e për aplikacione mobile',
+    companyName: 'Kodra Labs',
+    student: {
+      email: 'dren.hoxha@rit.edu',
+      name: 'Dren Hoxha',
+      university: 'RIT Kosovo (A.U.K)',
+      major: 'Applied Data Science',
+      city: 'Prishtinë',
+      skills: ['Python', 'Flutter'],
+    },
+    cv: 'Dren_Hoxha_CV.pdf',
+    message: 'Dua të provoj zhvillimin mobil krahas analizës së të dhënave.',
+    status: CandidateStatus.REJECTED,
+    submittedAt: daysAgo(33),
+  },
+];

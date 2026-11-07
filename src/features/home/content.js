@@ -6,6 +6,7 @@ export const authLinks = {
 export const navLinks = [
   { label: 'Homepage', href: '/' },
   { label: 'Kompanitë', href: '/kompanite' },
+  { label: 'Student Blog', href: '/blog' },
 ];
 
 export const contact = {

@@ -7,4 +7,6 @@ export const asInternshipRepository = (adapter) =>
     'findAll',
     'findById',
     'findByCompany',
+    'save',
+    'remove',
   ]);

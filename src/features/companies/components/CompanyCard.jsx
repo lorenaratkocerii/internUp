@@ -20,7 +20,7 @@ export function CompanyCard({ company }) {
   return (
     <article className="flex h-full flex-col bg-cream p-6 text-charcoal">
       <div className="flex items-center gap-4">
-        <CompanyLogo companyId={company.id} />
+        <CompanyLogo companyId={company.id} logo={company.logo} name={company.name} />
         <h2 className="font-display text-2xl leading-tight font-medium tracking-tight">{company.name}</h2>
       </div>
 

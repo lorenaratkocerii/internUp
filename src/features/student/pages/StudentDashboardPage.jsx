@@ -1,41 +1,42 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ArrowRight, ArrowUpRight, BriefcaseBusiness, CalendarDays, CircleDashed, FileText, MapPin, Sparkles } from 'lucide-react';
 import { Link } from 'react-router';
+import { CANDIDATE_STATUSES } from '../../../domain/internship/candidateApplication';
+import { CandidateStatusBadge } from '../../applications/components/CandidateStatusBadge';
+import { useCurrentActor } from '../../auth/useCurrentActor';
+import { formatDay } from '../../company-workspace/utils/format';
+import { useWorkspaceData } from '../../company-workspace/hooks/useWorkspaceData';
 import { getDemoUser } from '../../login/demoAuth';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { ApplicationModal } from '../components/ApplicationModal';
 import { StudentWorkspace } from '../components/StudentWorkspace';
-import { applicationStatuses, readApplications, readStudentProfile, saveApplications, recommendedInternships } from '../studentData';
+import { applicantDetails, readStudentProfile, recommendedInternships } from '../studentData';
 
-const statusStyles = {
-  Pending: ['bg-cream/20 text-charcoal', 'Në pritje'],
-  'Under Review': ['bg-navy/10 text-navy', 'Në shqyrtim'],
-  Shortlisted: ['bg-olive/15 text-olive', 'Në listën e ngushtë'],
-  Accepted: ['bg-olive/20 text-olive', 'Pranuar'],
-  Rejected: ['bg-terracotta/15 text-terracotta', 'Refuzuar'],
-};
+const NO_APPLICATIONS = [];
 
 function Status({ status }) {
-  const [style, label] = statusStyles[status] ?? statusStyles.Pending;
-  return <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${style}`}>{label}</span>;
+  return <CandidateStatusBadge status={status} tone="dark" />;
 }
 
-export function StudentDashboardPage() {
+export function StudentDashboardPage({ useCases }) {
   useDocumentTitle('Paneli i studentit');
   const user = getDemoUser();
+  const actor = useCurrentActor();
   const [profile] = useState(() => readStudentProfile(user));
-  const [applications, setApplications] = useState(() => readApplications(user));
+  const load = useCallback(() => useCases.listMyApplications(actor), [useCases, actor]);
+  const { data, reload } = useWorkspaceData(load);
+  const applications = data ?? NO_APPLICATIONS;
   const [selectedInternship, setSelectedInternship] = useState(null);
   const currentWeek = 3;
   const totalWeeks = 12;
   const progress = 25;
   const studentName = [profile.firstName, profile.lastName].filter(Boolean).join(' ') || 'Student';
-  const counts = Object.fromEntries(applicationStatuses.map((status) => [status, applications.filter((application) => application.status === status).length]));
+  const counts = Object.fromEntries(CANDIDATE_STATUSES.map((status) => [status, applications.filter((application) => application.status === status).length]));
+  const appliedIds = new Set(applications.map((application) => application.internshipId));
 
-  const addApplication = (application) => {
-    const next = [application, ...applications];
-    setApplications(next);
-    saveApplications(user, next);
+  const addApplication = async (details) => {
+    await useCases.applyToInternship(actor, { internshipId: selectedInternship.id, ...details, student: applicantDetails(profile) });
+    await reload();
   };
 
   return <StudentWorkspace title="Paneli i studentit" subtitle="Përmbledhje">
@@ -47,11 +48,11 @@ export function StudentDashboardPage() {
     </section>
 
     <section className="mt-9" aria-labelledby="recommended-title"><div className="flex flex-wrap items-end justify-between gap-3"><div><p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Mundësi të zgjedhura për ty</p><h2 id="recommended-title" className="mt-2 font-display text-3xl text-cream">Mundësi të rekomanduara</h2></div><Link to="/kompanite" className="inline-flex items-center gap-2 text-sm font-semibold text-cream/75 hover:text-cream">Shiko të gjitha <ArrowRight aria-hidden="true" className="size-4" /></Link></div>
-      <div className="mt-4 grid gap-4 xl:grid-cols-3">{recommendedInternships.map((internship) => <article key={internship.id} className="flex flex-col rounded-2xl border border-cream/15 bg-cream p-5 text-charcoal shadow-lg"><div className="flex items-start justify-between gap-3"><span className="grid size-11 place-items-center rounded-xl bg-charcoal text-cream"><BriefcaseBusiness aria-hidden="true" className="size-5" /></span><span className="rounded-full bg-olive/15 px-2.5 py-1 text-xs font-semibold text-olive">{internship.paid ? 'Me pagesë' : 'Pa pagesë'}</span></div><p className="mt-4 text-sm font-semibold text-charcoal/60">{internship.company}</p><h3 className="mt-1 font-display text-2xl">{internship.title}</h3><div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs text-charcoal/65"><span className="inline-flex items-center gap-1"><MapPin aria-hidden="true" className="size-3.5" />{internship.city}</span><span>{{ Hybrid: 'Hibrid', Remote: 'Në distancë', 'On-site': 'Në zyrë' }[internship.type]}</span><span>{internship.duration}</span></div><div className="mt-4 flex flex-wrap gap-1.5">{internship.skills.map((skill) => <span key={skill} className="rounded-full border border-charcoal/15 px-2.5 py-1 text-xs">{skill}</span>)}</div><div className="mt-auto flex items-center justify-between gap-3 pt-5"><span className="text-xs text-charcoal/55">{internship.posted}</span><button type="button" onClick={() => setSelectedInternship(internship)} className="min-h-10 rounded-lg bg-charcoal px-4 py-2 text-sm font-semibold text-cream hover:bg-navy">Apliko Tani</button></div></article>)}</div>
+      <div className="mt-4 grid gap-4 xl:grid-cols-3">{recommendedInternships.map((internship) => <article key={internship.id} className="flex flex-col rounded-2xl border border-cream/15 bg-cream p-5 text-charcoal shadow-lg"><div className="flex items-start justify-between gap-3"><span className="grid size-11 place-items-center rounded-xl bg-charcoal text-cream"><BriefcaseBusiness aria-hidden="true" className="size-5" /></span><span className="rounded-full bg-olive/15 px-2.5 py-1 text-xs font-semibold text-olive">{internship.paid ? 'Me pagesë' : 'Pa pagesë'}</span></div><p className="mt-4 text-sm font-semibold text-charcoal/60">{internship.company}</p><h3 className="mt-1 font-display text-2xl">{internship.title}</h3><div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs text-charcoal/65"><span className="inline-flex items-center gap-1"><MapPin aria-hidden="true" className="size-3.5" />{internship.city}</span><span>{{ Hybrid: 'Hibrid', Remote: 'Në distancë', 'On-site': 'Në zyrë' }[internship.type]}</span><span>{internship.duration}</span></div><div className="mt-4 flex flex-wrap gap-1.5">{internship.skills.map((skill) => <span key={skill} className="rounded-full border border-charcoal/15 px-2.5 py-1 text-xs">{skill}</span>)}</div><div className="mt-auto flex items-center justify-between gap-3 pt-5"><span className="text-xs text-charcoal/55">{internship.posted}</span>{appliedIds.has(internship.id) ? <Link to="/student/applications" className="inline-flex min-h-10 items-center rounded-lg border border-charcoal/20 px-4 py-2 text-sm font-semibold hover:bg-charcoal/5">Aplikuar ✓</Link> : <button type="button" onClick={() => setSelectedInternship(internship)} className="min-h-10 rounded-lg bg-charcoal px-4 py-2 text-sm font-semibold text-cream hover:bg-navy">Apliko Tani</button>}</div></article>)}</div>
     </section>
 
     <section className="mt-9" aria-labelledby="recent-applications-title"><div className="flex flex-wrap items-end justify-between gap-3"><div><p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Përditësimet e fundit</p><h2 id="recent-applications-title" className="mt-2 font-display text-3xl text-cream">Aplikimet e fundit</h2></div><Link to="/student/applications" className="inline-flex items-center gap-2 text-sm font-semibold text-cream/75 hover:text-cream">Shiko të gjitha <ArrowRight aria-hidden="true" className="size-4" /></Link></div>
-      <div className="mt-4 overflow-hidden rounded-2xl border border-cream/15 bg-charcoal/55">{applications.slice(0, 3).map((application, index) => <article key={application.id} className={`flex flex-wrap items-center justify-between gap-4 p-4 sm:px-5 ${index ? 'border-t border-cream/10' : ''}`}><div className="flex min-w-0 items-center gap-3"><span className="grid size-10 shrink-0 place-items-center rounded-xl bg-cream/10 text-cream"><FileText aria-hidden="true" className="size-4" /></span><div className="min-w-0"><h3 className="truncate font-semibold text-cream">{application.position}</h3><p className="mt-0.5 text-sm text-cream/55">{application.company}</p></div></div><div className="flex items-center gap-4"><span className="hidden items-center gap-1.5 text-xs text-cream/55 sm:flex"><CalendarDays aria-hidden="true" className="size-3.5" />{application.date}</span><Status status={application.status} /></div></article>)}{applications.length === 0 && <div className="p-6 text-center text-cream/65"><CircleDashed aria-hidden="true" className="mx-auto size-7" /><p className="mt-2">Aplikimet e tua do të shfaqen këtu.</p></div>}</div>
+      <div className="mt-4 overflow-hidden rounded-2xl border border-cream/15 bg-charcoal/55">{applications.slice(0, 3).map((application, index) => <article key={application.id} className={`flex flex-wrap items-center justify-between gap-4 p-4 sm:px-5 ${index ? 'border-t border-cream/10' : ''}`}><div className="flex min-w-0 items-center gap-3"><span className="grid size-10 shrink-0 place-items-center rounded-xl bg-cream/10 text-cream"><FileText aria-hidden="true" className="size-4" /></span><div className="min-w-0"><h3 className="truncate font-semibold text-cream">{application.positionTitle}</h3><p className="mt-0.5 text-sm text-cream/55">{application.companyName}</p></div></div><div className="flex items-center gap-4"><span className="hidden items-center gap-1.5 text-xs text-cream/55 sm:flex"><CalendarDays aria-hidden="true" className="size-3.5" />{formatDay(application.submittedAt)}</span><Status status={application.status} /></div></article>)}{applications.length === 0 && <div className="p-6 text-center text-cream/65"><CircleDashed aria-hidden="true" className="mx-auto size-7" /><p className="mt-2">Aplikimet e tua do të shfaqen këtu.</p></div>}</div>
     </section>
     {selectedInternship && <ApplicationModal internship={selectedInternship} studentName={studentName} cvName={profile.documents.cv} onClose={() => setSelectedInternship(null)} onSubmit={addApplication} />}
   </StudentWorkspace>;

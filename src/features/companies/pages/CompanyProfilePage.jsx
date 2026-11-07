@@ -144,6 +144,8 @@ export function CompanyProfilePage({ useCases }) {
             />
             <CompanyLogo
               companyId={company.id}
+              logo={company.logo}
+              name={company.name}
               className="absolute -bottom-5 left-5 size-16 border-4 border-charcoal sm:size-20"
               iconClassName="size-7 sm:size-9"
             />

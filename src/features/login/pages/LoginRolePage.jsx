@@ -1,6 +1,6 @@
 import { Eye, EyeOff, LockKeyhole, Mail } from 'lucide-react';
 import { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import { NotFoundMessage } from '../../companies/components/NotFoundMessage';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { Container } from '../../home/components/ui/Container';
@@ -10,6 +10,8 @@ import { loginRoles } from '../loginRoles';
 export function LoginRolePage() {
   const { role } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const nextPath = searchParams.get('next');
   const selectedRole = loginRoles.find((item) => item.id === role);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
@@ -47,9 +49,9 @@ export function LoginRolePage() {
       return;
     }
     setErrors({});
-    navigate(user.role === 'student' ? '/profili' : '/');
+    const safeNext = nextPath?.startsWith('/') && !nextPath.startsWith('//') ? nextPath : null;
+    navigate(safeNext ?? ({ student: '/profili', kompani: '/kompani' }[user.role] ?? '/'));
   };
-
 
   return (
     <Container className="pt-8 pb-16 lg:pt-10 lg:pb-24">
@@ -89,7 +91,6 @@ export function LoginRolePage() {
             Kyçu
           </button>
         </form>
-
 
         <p className="mt-7 text-center text-cream/75">
           Nuk keni llogari?{' '}

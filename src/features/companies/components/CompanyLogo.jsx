@@ -41,7 +41,14 @@ export function CompanyMark({ companyId, className = '' }) {
   return <Mark aria-hidden="true" strokeWidth={1.5} className={className} />;
 }
 
-export function CompanyLogo({ companyId, className = 'size-12', iconClassName = 'size-6' }) {
+export function CompanyLogo({ companyId, logo, name = '', className = 'size-12', iconClassName = 'size-6' }) {
+  if (logo) {
+    return (
+      <span className={`grid shrink-0 place-items-center overflow-hidden bg-white ${className}`}>
+        <img src={logo} alt={name ? `Logoja e ${name}` : ''} className="size-full object-contain" />
+      </span>
+    );
+  }
   return (
     <span className={`grid shrink-0 place-items-center bg-charcoal text-cream ${className}`}>
       <CompanyMark companyId={companyId} className={iconClassName} />

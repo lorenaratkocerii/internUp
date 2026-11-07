@@ -16,6 +16,7 @@ export function createCompany({
   coverImage,
   coverAlt,
   coverPosition = 'center',
+  logo = '',
 }) {
   if (!id || !name || !industry || !location) {
     throw new Error('Një kompani duhet të ketë id, emër, industri dhe lokacion.');
@@ -42,5 +43,6 @@ export function createCompany({
     coverImage,
     coverAlt,
     coverPosition,
+    logo,
   });
 }

@@ -11,12 +11,14 @@ import { StatusBadge } from '../components/StatusBadge';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { ApplicationModal } from '../../student/components/ApplicationModal';
 import { getDemoUser } from '../../login/demoAuth';
-import { readApplications, readStudentProfile, saveApplications } from '../../student/studentData';
+import { applicantDetails, readStudentProfile } from '../../student/studentData';
+import { useCurrentActor } from '../../auth/useCurrentActor';
 
-export function PositionPage({ useCases }) {
+export function PositionPage({ useCases, applicationUseCases }) {
   const [isApplyOpen, setIsApplyOpen] = useState(false);
   const [showStudentAccountPrompt, setShowStudentAccountPrompt] = useState(false);
   const user = getDemoUser();
+  const actor = useCurrentActor();
   const { companyId, positionId } = useParams();
   const load = useCallback(() => useCases.getPosition(companyId, positionId), [useCases, companyId, positionId]);
   const result = useAsyncData(load);
@@ -77,6 +79,8 @@ export function PositionPage({ useCases }) {
           <div className="flex items-center gap-3">
             <CompanyLogo
               companyId={company.id}
+              logo={company.logo}
+              name={company.name}
               className="size-11 border border-cream/25"
               iconClassName="size-5"
             />
@@ -138,8 +142,8 @@ export function PositionPage({ useCases }) {
           </section>
         </div>
       </div>
-      {showStudentAccountPrompt && <div className="fixed inset-0 z-[70] grid place-items-center bg-charcoal/75 p-4 backdrop-blur-sm" onMouseDown={(event) => { if (event.target === event.currentTarget) setShowStudentAccountPrompt(false); }}><section role="dialog" aria-modal="true" aria-labelledby="student-account-title" className="w-full max-w-md rounded-2xl border border-cream/15 bg-charcoal p-6 text-cream shadow-2xl sm:p-8"><p className="text-xs font-semibold tracking-[0.16em] text-cream/55 uppercase">Aplikimi për praktikë</p><h2 id="student-account-title" className="mt-2 font-display text-3xl">Apliko si student</h2><p className="mt-3 leading-relaxed text-cream/70">Për të aplikuar në këtë pozitë, duhet të kyçesh me llogari studenti.</p><div className="mt-6 grid gap-3 sm:grid-cols-2"><Link to="/hyr/student" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-cream px-4 py-3 text-center font-semibold text-charcoal hover:bg-cream/85">Kam llogari — Kyçu</Link><Link to="/regjistrohu/student" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-cream/25 px-4 py-3 text-center font-semibold hover:bg-cream/10">Regjistrohu si student</Link></div><button type="button" onClick={() => setShowStudentAccountPrompt(false)} className="mt-4 min-h-10 w-full text-sm font-medium text-cream/55 hover:text-cream">Mbyll</button></section></div>}
-      {isApplyOpen && <ApplicationModal internship={{ ...position, company: company.name }} studentName={[readStudentProfile(user).firstName, readStudentProfile(user).lastName].filter(Boolean).join(' ') || 'Student/e'} cvName={readStudentProfile(user).documents?.cv} onClose={() => setIsApplyOpen(false)} onSubmit={(application) => saveApplications(user, [application, ...readApplications(user)])} />}
+      {showStudentAccountPrompt && <div className="fixed inset-0 z-[70] grid place-items-center bg-charcoal/75 p-4 backdrop-blur-sm" onMouseDown={(event) => { if (event.target === event.currentTarget) setShowStudentAccountPrompt(false); }}><section role="dialog" aria-modal="true" aria-labelledby="student-account-title" className="w-full max-w-md rounded-2xl border border-cream/15 bg-charcoal p-6 text-cream shadow-2xl sm:p-8"><p className="text-xs font-semibold tracking-[0.16em] text-cream/55 uppercase">Aplikimi për praktikë</p><h2 id="student-account-title" className="mt-2 font-display text-3xl">Apliko si student</h2><p className="mt-3 leading-relaxed text-cream/70">Për të aplikuar në këtë pozitë, duhet të kyçesh me llogari studenti.</p><div className="mt-6 grid gap-3 sm:grid-cols-2"><Link to={`/hyr/student?next=${encodeURIComponent(`/kompanite/${companyId}/pozitat/${positionId}`)}`} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-cream px-4 py-3 text-center font-semibold text-charcoal hover:bg-cream/85">Kam llogari — Kyçu</Link><Link to="/regjistrohu/student" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-cream/25 px-4 py-3 text-center font-semibold hover:bg-cream/10">Regjistrohu si student</Link></div><button type="button" onClick={() => setShowStudentAccountPrompt(false)} className="mt-4 min-h-10 w-full text-sm font-medium text-cream/55 hover:text-cream">Mbyll</button></section></div>}
+      {isApplyOpen && <ApplicationModal internship={{ ...position, company: company.name }} studentName={[readStudentProfile(user).firstName, readStudentProfile(user).lastName].filter(Boolean).join(' ') || 'Student/e'} cvName={readStudentProfile(user).documents?.cv} onClose={() => setIsApplyOpen(false)} onSubmit={(details) => applicationUseCases.applyToInternship(actor, { internshipId: position.id, ...details, student: applicantDetails(readStudentProfile(user)) })} />}
     </Container>
   );
 }

@@ -16,6 +16,8 @@ const DEMO_ACCOUNTS = [
     title: 'Kompani',
     email: 'kompani@internup.test',
     password: 'Kompani123!',
+    name: 'Kodra Labs',
+    profile: { companyId: 'kodra-labs', name: 'Kodra Labs' },
   },
 ];
 

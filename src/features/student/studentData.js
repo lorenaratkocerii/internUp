@@ -1,5 +1,4 @@
 export const STUDENT_KEY = 'internup:student-profile';
-export const APPLICATIONS_KEY = 'internup:student-applications';
 
 export const seedProfile = {
   firstName: 'Arta',
@@ -31,16 +30,20 @@ export const seedProfile = {
 };
 
 export const recommendedInternships = [
-  { id: 'frontend-developer', title: 'Praktikant/e në Zhvillimin Frontend', company: 'Kodra Labs', city: 'Prishtinë', type: 'Hybrid', duration: '3 muaj', paid: true, skills: ['React', 'JavaScript'], posted: 'Para 2 ditësh' },
-  { id: 'product-design', title: 'Praktikant/e në Dizajn të Produktit', company: 'Vala Studio', city: 'Prishtinë', type: 'On-site', duration: '4 muaj', paid: true, skills: ['Figma', 'Prototyping'], posted: 'Para 4 ditësh' },
-  { id: 'data-analyst', title: 'Praktikant/e në Analizë të të Dhënave', company: 'Datara', city: 'Prishtinë', type: 'Remote', duration: '6 muaj', paid: true, skills: ['SQL', 'Python'], posted: 'Para 1 jave' },
+  { id: 'backend-developer', title: 'Zhvillues/e Backend', company: 'Ura Systems', city: 'Prishtinë', type: 'Hybrid', duration: '6 muaj', paid: true, skills: ['Node.js', 'PostgreSQL'], posted: 'Para 2 ditësh' },
+  { id: 'fullstack-intern', title: 'Praktikant/e për zhvillim Full-Stack', company: 'Dija Soft', city: 'Mitrovicë', type: 'Hybrid', duration: '4 muaj', paid: true, skills: ['Vue.js', 'MySQL'], posted: 'Para 4 ditësh' },
+  { id: 'product-analyst', title: 'Analist/e i/e produktit', company: 'Dardan Pay', city: 'Prishtinë', type: 'Hybrid', duration: '5 muaj', paid: true, skills: ['SQL', 'Excel'], posted: 'Para 1 jave' },
 ];
 
-export const seedApplications = [
-  { id: 'app-1001', position: 'Praktikant/e në Zhvillimin Frontend', company: 'Kodra Labs', date: '2026-10-29', status: 'Under Review', message: 'Jam e entuziazmuar të kontribuoj në ekipin tuaj të produktit dhe të zhvilloj aftësitë e mia në React.' },
-  { id: 'app-1002', position: 'Praktikant/e në Dizajn të Produktit', company: 'Vala Studio', date: '2026-10-21', status: 'Shortlisted', message: 'Më pëlqen ta kthej hulumtimin e përdoruesve në përvoja të thjeshta dhe të menduara mirë.' },
-  { id: 'app-1003', position: 'Praktikant/e në Analizë të të Dhënave', company: 'Datara', date: '2026-10-14', status: 'Pending', message: 'Do të doja të mësoja nga ekipi juaj i analizës së të dhënave.' },
-];
+export function applicantDetails(profile) {
+  return {
+    name: [profile.firstName, profile.lastName].filter(Boolean).join(' ') || 'Student/e',
+    university: profile.university ?? '',
+    major: profile.major ?? '',
+    city: profile.city ?? '',
+    skills: profile.technicalSkills ?? [],
+  };
+}
 
 export function readStudentProfile(user) {
   const key = `${STUDENT_KEY}:${user?.email ?? 'guest'}`;
@@ -68,30 +71,6 @@ export function saveStudentProfile(user, profile) {
   const key = `${STUDENT_KEY}:${user?.email ?? 'guest'}`;
   window.localStorage.setItem(key, JSON.stringify(profile));
 }
-
-export function readApplications(user) {
-  const key = `${APPLICATIONS_KEY}:${user?.email ?? 'guest'}`;
-  try {
-    const saved = JSON.parse(window.localStorage.getItem(key) ?? 'null');
-    return saved ?? (user?.email === 'student@internup.test' ? seedApplications : []);
-  } catch {
-    return user?.email === 'student@internup.test' ? seedApplications : [];
-  }
-}
-
-export function saveApplications(user, applications) {
-  const key = `${APPLICATIONS_KEY}:${user?.email ?? 'guest'}`;
-  window.localStorage.setItem(key, JSON.stringify(applications));
-}
-
-export const applicationStatuses = ['Pending', 'Under Review', 'Shortlisted', 'Accepted', 'Rejected'];
-export const applicationStatusLabels = {
-  Pending: 'Në pritje',
-  'Under Review': 'Në shqyrtim',
-  Shortlisted: 'Në listën e ngushtë',
-  Accepted: 'Pranuar',
-  Rejected: 'Refuzuar',
-};
 
 export const languageOptions = [
   'Afrikansisht', 'Akanisht', 'Alandisht', 'Amharisht', 'Arabisht', 'Aragonezisht', 'Armenisht', 'Asamezisht', 'Azerisht', 'Bambara', 'Baskisht', 'Bengalisht', 'Birmane', 'Bislama', 'Boshnjakisht', 'Bretonisht', 'Bullgarisht', 'Katalanisht', 'Cebuano', 'Kinezisht', 'Korsikisht', 'Kroatisht', 'Çekisht', 'Danisht', 'Divehi', 'Holandisht', 'Dzongkha', 'Anglisht', 'Esperanto', 'Estonisht', 'Ewe', 'Faroisht', 'Fixhianisht', 'Finlandisht', 'Frëngjisht', 'Frizisht', 'Galicianisht', 'Gjeorgjisht', 'Gjermanisht', 'Greqisht', 'Guarani', 'Guxharatisht', 'Haitianisht', 'Hausisht', 'Hebraisht', 'Hindisht', 'Hungarisht', 'Islandisht', 'Igbo', 'Indonezisht', 'Irlandisht', 'Italisht', 'Japonisht', 'Javaneze', 'Kazakisht', 'Kmerisht', 'Kikongo', 'Koreanisht', 'Kurdishte', 'Kirgizisht', 'Laosisht', 'Latinisht', 'Letonisht', 'Lingala', 'Lituanisht', 'Luksemburgisht', 'Maqedonisht', 'Malagasisht', 'Malajisht', 'Malayalam', 'Maltezisht', 'Maorisht', 'Maratisht', 'Mongolisht', 'Nepalisht', 'Norvegjisht', 'Odia', 'Oromisht', 'Pashto', 'Persisht', 'Polonisht', 'Portugalisht', 'Punjabisht', 'Rumanisht', 'Rusisht', 'Samoanisht', 'Sanskritisht', 'Serbisht', 'Shqip', 'Sinhaleze', 'Sllovakisht', 'Sllovenisht', 'Somalisht', 'Spanjisht', 'Suahilisht', 'Suedisht', 'Tagalog', 'Taxhikisht', 'Tamilisht', 'Tatarisht', 'Teluguisht', 'Thai', 'Tibetisht', 'Tigrinja', 'Turqisht', 'Turkmenisht', 'Ukrainisht', 'Urdu', 'Uzbekisht', 'Vietnamisht', 'Uellsisht', 'Jorubisht', 'Zulu',

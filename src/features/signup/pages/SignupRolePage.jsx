@@ -167,7 +167,7 @@ export function SignupRolePage() {
       setSubmitError(result.error);
       return;
     }
-    navigate(role === 'student' ? '/profili' : '/');
+    navigate({ student: '/profili', kompani: '/kompani' }[role] ?? '/');
   };
 
   const renderField = (field) => {

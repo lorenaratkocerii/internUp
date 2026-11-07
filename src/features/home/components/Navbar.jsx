@@ -17,8 +17,17 @@ export function Navbar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const currentProps = (href) =>
-    (href === '/' ? pathname === '/' : pathname.startsWith(href)) ? { 'aria-current': 'page' } : {};
+  const currentProps = (href, exact = href === '/') =>
+    (exact ? pathname === href : pathname === href || pathname.startsWith(`${href}/`)) ? { 'aria-current': 'page' } : {};
+
+  const roleLinks = {
+    student: [
+      { href: '/student', label: 'Paneli', exact: true },
+      { href: '/student/applications', label: 'Aplikimet' },
+    ],
+    kompani: [{ href: '/kompani', label: 'Paneli' }],
+  }[user?.role] ?? [];
+  const profileLink = { student: { href: '/profili', label: 'Profili im' }, kompani: { href: '/kompani/profili', label: 'Profili i kompanisë' } }[user?.role];
 
   useEffect(() => {
     const syncUser = () => setUser(getDemoUser());
@@ -66,19 +75,11 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
-            {user?.role === 'student' && (
-              <>
-                <li><Link to="/student" className={linkClasses} {...currentProps('/student')}>Paneli</Link></li>
-                <li><Link to="/student/applications" className={linkClasses} {...currentProps('/student/applications')}>Aplikimet</Link></li>
-              </>
-            )}
-            {(
-              <li>
-                <Link to="/kompani/publiko-pozite" className={linkClasses} {...currentProps('/kompani/publiko-pozite')}>
-                  {'Publiko pozitë'}
-                </Link>
+            {roleLinks.map((link) => (
+              <li key={link.href}>
+                <Link to={link.href} className={linkClasses} {...currentProps(link.href, link.exact)}>{link.label}</Link>
               </li>
-            )}
+            ))}
           </ul>
         </nav>
 
@@ -87,7 +88,7 @@ export function Navbar() {
             <>
               <span className="text-sm text-cream/80">{user.title}</span>
               <button type="button" onClick={handleLogout} className={linkClasses}>Dil</button>
-              {user.role === 'student' && <Link to="/profili" className={linkClasses} {...currentProps('/profili')}>Profili im</Link>}
+              {profileLink && <Link to={profileLink.href} className={linkClasses} {...currentProps(profileLink.href)}>{profileLink.label}</Link>}
             </>
           ) : (
             <>
@@ -128,22 +129,16 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            {user?.role === 'student' && <><Link to="/student" onClick={close} className="py-3 font-display text-2xl text-cream" {...currentProps('/student')}>Paneli</Link><Link to="/student/applications" onClick={close} className="py-3 font-display text-2xl text-cream" {...currentProps('/student/applications')}>Aplikimet</Link></>}
-            {(
-              <Link
-                to="/kompani/publiko-pozite"
-                onClick={close}
-                className="py-3 font-display text-2xl text-cream"
-                {...currentProps('/kompani/publiko-pozite')}
-              >
-                {'Publiko pozitë'}
+            {roleLinks.map((link) => (
+              <Link key={link.href} to={link.href} onClick={close} className="py-3 font-display text-2xl text-cream" {...currentProps(link.href, link.exact)}>
+                {link.label}
               </Link>
-            )}
+            ))}
             <div className="mt-4 grid grid-cols-2 gap-3">
               {user ? (
                 <>
                   <button type="button" onClick={handleLogout} className="min-h-11 border border-cream/40 px-4 py-2 text-cream">Dil</button>
-                  {user.role === 'student' && <Link to="/profili" onClick={close} className="min-h-11 border border-cream/40 px-4 py-2 text-center text-cream">Profili im</Link>}
+                  {profileLink && <Link to={profileLink.href} onClick={close} className="min-h-11 border border-cream/40 px-4 py-2 text-center text-cream">{profileLink.label}</Link>}
                 </>
               ) : (
                 <>
