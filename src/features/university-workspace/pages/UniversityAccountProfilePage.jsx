@@ -63,8 +63,8 @@ function ProfileForm({ university, useCases, actor, onSaved }) {
           <div><dt className="text-xs text-charcoal/55">Qyteti</dt><dd className="mt-0.5 font-semibold">{university.city}</dd></div>
         </dl>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field id="universiteti-description" label="Përshkrimi" required wide error={errors.description} hint="Shfaqet te “Rreth universitetit” në profilin publik.">
-            <textarea rows={4} {...bind('description')} aria-describedby={describedBy('universiteti-description', { error: errors.description, hint: true })} className={`${inputClass} resize-y`} />
+          <Field id="universiteti-description" label="Përshkrimi" required wide error={errors.description} hint="Shfaqet në profilin publik. Lër një rresht bosh për të filluar paragraf të ri.">
+            <textarea rows={8} {...bind('description')} aria-describedby={describedBy('universiteti-description', { error: errors.description, hint: true })} className={`${inputClass} resize-y`} />
           </Field>
           <Field id="universiteti-website" label="Website" error={errors.website}>
             <input type="url" placeholder="https://" {...bind('website')} aria-describedby={describedBy('universiteti-website', { error: errors.website })} className={inputClass} />

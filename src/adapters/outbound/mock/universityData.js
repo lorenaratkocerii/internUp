@@ -44,7 +44,7 @@ export const universityRecords = [
     emailDomains: ['uni-pr.edu', 'student.uni-pr.edu'],
     aliases: ['UP', 'Universiteti i Prishtinës', 'Universiteti i Prishtines'],
     description:
-      'Universiteti më i madh publik në Kosovë, i themeluar më 1970. Studentët e tij vijnë nga fakultete të shumta, nga inxhinieria dhe shkencat natyrore deri te ekonomia, juridiku dhe mjekësia.',
+      'Universiteti më i madh publik në Kosovë, i themeluar më 1970, me fakultete që shtrihen nga inxhinieria dhe shkencat natyrore deri te ekonomia, juridiku, filologjia dhe mjekësia.\n\nNë InternUp vijnë studentë nga pothuajse çdo fushë. Inxhinierët e elektrikës dhe kompjuterikës kërkojnë praktika në kompani teknologjike, ekonomistët në banka dhe auditim, ndërsa juristët në zyra ligjore dhe institucione. Shumica e tyre kanë kaluar nëpër projekte grupore dhe punë laboratorike që në vitet e para.',
     representative: { name: 'Mimoza Berisha', title: 'Zyra për Karrierë dhe Alumni', email: 'karriera.up@internup.test' },
   },
   {
@@ -57,7 +57,7 @@ export const universityRecords = [
     website: 'https://www.uni-prizren.com',
     emailDomains: ['uni-prizren.com'],
     aliases: ['Universiteti “Ukshin Hoti” Prizren', 'Universiteti i Prizrenit'],
-    description: 'Universitet publik në Prizren që i lidh studentët e rajonit me praktika në kompani të qytetit dhe më gjerë.',
+    description: 'Universitet publik në Prizren, me fakultete në ekonomi, juridik, edukim, filologji dhe shkenca kompjuterike. Disa programe zhvillohen edhe në gjuhën turke dhe boshnjake, gjë që e bën ambientin e studimit më të larmishëm.\n\nStudentët e Prizrenit shpesh flasin më shumë se dy gjuhë, që është përparësi për kompanitë që punojnë me klientë nga rajoni. Shumë prej tyre kërkojnë praktika në qytet, por gjithnjë e më shumë edhe në Prishtinë dhe në punë në distancë.',
     representative: { name: 'Arben Krasniqi', title: 'Koordinator për praktika', email: 'praktika.prizren@internup.test' },
   },
   {
@@ -70,7 +70,7 @@ export const universityRecords = [
     website: 'https://www.unhz.eu',
     emailDomains: ['unhz.eu'],
     aliases: ['Universiteti “Haxhi Zeka” Pejë', 'Universiteti Haxhi Zeka'],
-    description: 'Universitet publik në Pejë, me studentë në biznes, turizëm dhe shkenca kompjuterike.',
+    description: 'Universitet publik në Pejë, me programe në biznes, menaxhment të turizmit dhe hotelerisë, agrobiznes dhe shkenca kompjuterike.\n\nPeja dhe Rugova kanë ekonomi të fortë turistike, prandaj studentët e këtij universiteti e njohin nga afër punën në hoteleri, gastronomi dhe organizim udhëtimesh. Studentët e shkencave kompjuterike kërkojnë kryesisht praktika në zhvillim softueri dhe mbështetje teknike.',
     representative: { name: 'Teuta Gashi', title: 'Zyra për Karrierë', email: 'karriera.peje@internup.test' },
   },
   {
@@ -83,7 +83,7 @@ export const universityRecords = [
     website: 'https://www.uni-gjilan.net',
     emailDomains: ['uni-gjilan.net'],
     aliases: ['Universiteti “Kadri Zeka” Gjilan', 'Universiteti i Gjilanit'],
-    description: 'Universitet publik në Gjilan, i hapur ndaj bashkëpunimit me kompanitë e Anamoravës për praktika studentore.',
+    description: 'Universitet publik në Gjilan, me fakultete në ekonomi, juridik, edukim dhe shkenca kompjuterike, që shërben si qendra kryesore e studimeve për rajonin e Anamoravës.\n\nShumë studentë punojnë që gjatë studimeve në biznese familjare ose lokale, kështu që vijnë në praktikë me përvojë reale me klientët dhe financat e përditshme. Kompanitë e rajonit i kërkojnë sidomos për kontabilitet, shitje dhe administratë.',
     representative: { name: 'Fitore Rexhepi', title: 'Koordinatore për praktika', email: 'praktika.gjilan@internup.test' },
   },
   {
@@ -96,7 +96,7 @@ export const universityRecords = [
     website: 'https://www.umib.net',
     emailDomains: ['umib.net'],
     aliases: ['Universiteti “Isa Boletini” Mitrovicë', 'Universiteti i Mitrovicës'],
-    description: 'Universitet publik në Mitrovicë, me tradicion në inxhinieri, gjeoshkenca dhe teknologji.',
+    description: 'Universitet publik në Mitrovicë, me tradicion të gjatë në inxhinieri mekanike, gjeoshkenca, minierë dhe metalurgji, të lidhura me historinë industriale të qytetit. Ka edhe fakultete në ekonomi, juridik dhe edukim.\n\nStudentët e inxhinierisë këtu mësojnë shumë në terren dhe në laborator, prandaj përshtaten shpejt në fabrika, kompani ndërtimi dhe energjetikë. Janë ndër kandidatët më të kërkuar për praktika teknike jashtë sektorit të IT-së.',
     representative: { name: 'Driton Hajdari', title: 'Zyra për Karrierë', email: 'karriera.mitrovice@internup.test' },
   },
   {
@@ -109,7 +109,7 @@ export const universityRecords = [
     website: 'https://www.uni-gjk.org',
     emailDomains: ['uni-gjk.org'],
     aliases: ['Universiteti “Fehmi Agani” Gjakovë', 'Universiteti i Gjakovës'],
-    description: 'Universitet publik në Gjakovë, me studentë në edukim, filologji, shkenca kompjuterike dhe shëndetësi.',
+    description: 'Universitet publik në Gjakovë, me programe në edukim, filologji, shkenca shoqërore dhe shëndetësi.\n\nNjë pjesë e madhe e studentëve përgatiten për mësimdhënie dhe punë me njerëz, ndërsa studentët e shëndetësisë bëjnë praktikë klinike gjatë studimeve. Në InternUp kërkojnë praktika në arsim, organizata joqeveritare, përkthim dhe komunikim.',
     representative: { name: 'Blerta Kryeziu', title: 'Koordinatore për praktika', email: 'praktika.gjakove@internup.test' },
   },
   {
@@ -121,7 +121,7 @@ export const universityRecords = [
     logo: logo('UniversitetiFerizaj.jpg'),
     emailDomains: [],
     aliases: ['UShAF'],
-    description: 'Universitet publik i fokusuar te shkencat e aplikuara, ku praktika në industri është pjesë e rëndësishme e studimeve.',
+    description: 'Universitet publik në Ferizaj, i ndërtuar rreth shkencave të aplikuara. Programet janë teknike dhe praktike, dhe orët në punëtori e laborator zënë po aq vend sa ligjëratat.\n\nPraktika në industri është pjesë e rregullt e studimeve këtu, jo diçka shtesë. Studentët vijnë të gatshëm për role teknike në prodhim, ndërtim, mirëmbajtje dhe logjistikë, ku mund të punojnë që në javën e parë.',
     representative: { name: 'Valon Shala', title: 'Zyra për bashkëpunim me industrinë', email: 'industria.ferizaj@internup.test' },
   },
   {
@@ -133,7 +133,7 @@ export const universityRecords = [
     logo: logo('Akademia.jpg'),
     emailDomains: [],
     aliases: ['AKSP'],
-    description: 'Institucion publik i arsimit të lartë për siguri publike, që përgatit kuadro për policinë, doganat dhe shërbimet emergjente.',
+    description: 'Institucion publik i arsimit të lartë në Vushtrri, që përgatit kuadro për policinë, doganat, shërbimin korrektues dhe shërbimet emergjente.\n\nStudentët e Akademisë kalojnë trajnime të rrepta dhe mësojnë të punojnë me procedura, disiplinë dhe në situata me presion. Kjo i bën kandidatë të mirë për praktika në siguri, menaxhim emergjencash dhe institucione publike.',
     representative: { name: 'Besnik Morina', title: 'Zyra për studime', email: 'studime.aksp@internup.test' },
   },
 
@@ -147,7 +147,7 @@ export const universityRecords = [
     website: 'https://www.ubt-uni.net',
     emailDomains: ['ubt-uni.net', 'student.ubt-uni.net'],
     aliases: ['UBT', 'Kolegji UBT', 'UBT College'],
-    description: 'Institucion privat me fokus te teknologjia, inxhinieria dhe biznesi, me një rrjet të gjerë partnerësh në industri.',
+    description: 'Ndër institucionet më të mëdha private në Kosovë, me programe në shkenca kompjuterike, inxhinieri, arkitekturë, media, energji dhe menaxhment.\n\nUBT ka lidhje të ngushta me kompanitë teknologjike dhe shumë studentë punojnë në projekte reale që gjatë studimeve. Në InternUp kërkojnë kryesisht praktika në zhvillim softueri, dizajn, rrjeta dhe inxhinieri ndërtimi.',
     representative: { name: 'Erëza Hoxha', title: 'Qendra për Karrierë', email: 'karriera.ubt@internup.test' },
   },
   {
@@ -160,7 +160,7 @@ export const universityRecords = [
     website: 'https://universitetiaab.com',
     emailDomains: ['aab-edu.net', 'universitetiaab.com'],
     aliases: ['AAB', 'Kolegji AAB', 'Universiteti AAB'],
-    description: 'Institucion privat me programe në media, arte, ekonomi, juridik dhe shkenca kompjuterike.',
+    description: 'Një nga institucionet më të mëdha private në Kosovë, me kampus në Prishtinë dhe programe në media, arte, ekonomi, juridik, psikologji dhe shkenca kompjuterike.\n\nStudentët e gazetarisë dhe komunikimit masiv punojnë shpesh me studion dhe mediat e kolegjit, prandaj vijnë me portofol të gatshëm. Kompanitë i kërkojnë sidomos për marketing, prodhim videosh, marrëdhënie me publikun dhe punë juridike.',
     representative: { name: 'Lirije Kastrati', title: 'Zyra për Karrierë', email: 'karriera.aab@internup.test' },
   },
   {
@@ -173,7 +173,7 @@ export const universityRecords = [
     website: 'https://www.rit.edu/kosovo',
     emailDomains: ['rit.edu', 'auk.org'],
     aliases: ['RIT Kosovo', 'A.U.K', 'AUK'],
-    description: 'Kampus i Rochester Institute of Technology në Kosovë, me programe në anglisht në IT, shkenca të të dhënave dhe menaxhment.',
+    description: 'Kampusi i Rochester Institute of Technology në Kosovë, i njohur më parë si American University in Kosovo. Studentët diplomohen me diplomë amerikane të RIT-it, në programe si teknologjia informative, ekonomia, menaxhmenti dhe politikat publike.\n\nMësimi zhvillohet tërësisht në anglisht dhe praktika profesionale është kusht për diplomim. Prandaj studentët e RIT Kosovo kërkojnë praktika që në vitet e para, shpesh në kompani ndërkombëtare dhe organizata që punojnë në anglisht.',
     representative: { name: 'Dardan Sylejmani', title: 'Career Services', email: 'careers.rit@internup.test' },
   },
   {
@@ -186,7 +186,7 @@ export const universityRecords = [
     website: 'https://www.riinvest.net',
     emailDomains: ['riinvest.net'],
     aliases: ['Riinvest'],
-    description: 'Kolegj privat i njohur për studimet në biznes, menaxhment dhe informatikë.',
+    description: 'Kolegj privat në Prishtinë, i lindur nga Instituti Riinvest për kërkime ekonomike. Njihet për studimet në biznes, menaxhment, bankë e financa dhe informatikë.\n\nLidhja me kërkimin ekonomik ndihet në mësim: studentët punojnë shpesh me të dhëna reale për tregun dhe bizneset e Kosovës. Kërkojnë praktika në banka, kompani konsulence, auditim dhe departamente financiare.',
     representative: { name: 'Shpresa Limani', title: 'Zyra për Karrierë', email: 'karriera.riinvest@internup.test' },
   },
   {
@@ -198,7 +198,7 @@ export const universityRecords = [
     logo: logo('universum.png'),
     emailDomains: [],
     aliases: ['Universum'],
-    description: 'Kolegj privat me programe bachelor dhe master në disa fusha studimi.',
+    description: 'Kolegj privat me qendër në Prishtinë, me programe bachelor dhe master në menaxhment, juridik, shkenca kompjuterike dhe fusha të tjera të aplikuara.\n\nShumë studentë të Universum-it studiojnë dhe punojnë njëkohësisht, prandaj kërkojnë praktika me orar fleksibël ose me pjesë në distancë. Vijnë me përvojë pune dhe e dinë si ta organizojnë kohën.',
     representative: { name: 'Granit Bytyqi', title: 'Koordinator për praktika', email: 'praktika.universum@internup.test' },
   },
   {
@@ -210,7 +210,7 @@ export const universityRecords = [
     logo: logo('dardania.jpg'),
     emailDomains: [],
     aliases: ['Dardania'],
-    description: 'Kolegj privat në Prishtinë me programe në shkenca shoqërore dhe të aplikuara.',
+    description: 'Kolegj privat në Prishtinë, me programe në shkenca shoqërore dhe të aplikuara, si menaxhmenti, shkencat politike dhe administrata.\n\nStudentët e Dardanisë kërkojnë praktika në administratë, burime njerëzore dhe organizata të shoqërisë civile, ku mund ta përdorin njohurinë për institucionet dhe për mënyrën si funksionon shteti.',
     representative: { name: 'Albana Musliu', title: 'Zyra për studentë', email: 'studentet.dardania@internup.test' },
   },
   {
@@ -222,7 +222,7 @@ export const universityRecords = [
     logo: logo('kolegjiBiznesi.jpg'),
     emailDomains: [],
     aliases: [],
-    description: 'Kolegj privat i specializuar në biznes, financa dhe administrim.',
+    description: 'Kolegj privat në Prishtinë, i specializuar vetëm në biznes. Programet mbulojnë menaxhmentin, financat, kontabilitetin dhe administrimin e biznesit.\n\nMeqë fokusi është i ngushtë, studentët dalin me bazë të fortë në numra dhe raporte financiare. Janë kandidatë të mirë për praktika në kontabilitet, shitje dhe zyra financiare të kompanive të vogla e të mesme.',
     representative: { name: 'Kushtrim Zeqiri', title: 'Koordinator për praktika', email: 'praktika.biznesi@internup.test' },
   },
   {
@@ -234,7 +234,7 @@ export const universityRecords = [
     logo: logo('kolegjiIliria.jpg'),
     emailDomains: [],
     aliases: ['Iliria', 'Universiteti Iliria'],
-    description: 'Ndër institucionet e para private të arsimit të lartë në Kosovë, me programe në juridik, biznes dhe teknologji.',
+    description: 'Ndër institucionet e para private të arsimit të lartë në Kosovë, me programe në juridik, biznes, menaxhment dhe teknologji informative.\n\nPas shumë vitesh, Iliria ka një rrjet të gjerë të diplomuarish që punojnë në gjykata, zyra ligjore dhe kompani. Studentët e saj kërkojnë praktika sidomos në fushën juridike dhe në administrimin e biznesit.',
     representative: { name: 'Merita Thaçi', title: 'Zyra për Karrierë', email: 'karriera.iliria@internup.test' },
   },
   {
@@ -246,7 +246,7 @@ export const universityRecords = [
     logo: logo('PjeterBudi.png'),
     emailDomains: [],
     aliases: ['Pjetër Budi', 'Kolegji Pjetër Budi'],
-    description: 'Kolegj privat në Prishtinë me programe në shkenca shoqërore dhe juridike.',
+    description: 'Kolegj privat në Prishtinë, që mban emrin e shkrimtarit Pjetër Budi, me programe në shkenca juridike dhe shoqërore.\n\nStudentët e tij përgatiten kryesisht për punë në drejtësi, administratë dhe institucione publike. Në InternUp kërkojnë praktika në zyra ligjore, noteri, komuna dhe organizata që merren me të drejtat e njeriut.',
     representative: { name: 'Adea Ramadani', title: 'Zyra për studentë', email: 'studentet.pjeterbudi@internup.test' },
   },
   {
@@ -258,7 +258,7 @@ export const universityRecords = [
     logo: logo('heimerer.png'),
     emailDomains: [],
     aliases: ['Heimerer'],
-    description: 'Kolegj privat i shkencave shëndetësore, ku praktika klinike është pjesë e çdo programi.',
+    description: 'Kolegj privat në Prishtinë, i specializuar në shkencat shëndetësore, si infermieria, fizioterapia dhe mamia.\n\nPraktika klinike në spitale dhe qendra shëndetësore është pjesë e çdo programi, prandaj studentët vijnë të mësuar me punën me pacientë dhe me ndërrime të gjata. Kërkojnë praktika në klinika private, qendra rehabilitimi dhe barnatore.',
     representative: { name: 'Vjosa Hasani', title: 'Koordinatore e praktikës klinike', email: 'praktika.heimerer@internup.test' },
   },
   {
@@ -270,7 +270,7 @@ export const universityRecords = [
     logo: logo('ueks.png'),
     emailDomains: [],
     aliases: [],
-    description: 'Kolegj privat me programe të orientuara drejt standardeve evropiane të studimit.',
+    description: 'Kolegj privat në Prishtinë, me programe të ndërtuara sipas standardeve evropiane të studimit dhe me sistem kreditesh që lehtëson vazhdimin e studimeve jashtë vendit.\n\nShumë studentë synojnë karrierë që lidhet me Evropën, në kompani ndërkombëtare, projekte të financuara nga BE-ja ose studime master jashtë. Praktika në InternUp u jep përvojën e parë profesionale para këtij hapi.',
     representative: { name: 'Ilir Osmani', title: 'Zyra për Karrierë', email: 'karriera.kek@internup.test' },
   },
   {
@@ -282,7 +282,7 @@ export const universityRecords = [
     logo: logo('ispe.png'),
     emailDomains: [],
     aliases: ['ISPE'],
-    description: 'Kolegj privat në Prishtinë me programe në ekonomi dhe shkenca shoqërore.',
+    description: 'Kolegj privat në Prishtinë, me programe në ekonomi, administratë publike dhe shkenca shoqërore.\n\nStudentët e ISPE-së kërkojnë praktika në administratë, ekonomi dhe projekte zhvillimore, ku teoria e auditorit kthehet në punë të përditshme me dokumente, buxhete dhe palë të ndryshme.',
     representative: { name: 'Rina Bajrami', title: 'Zyra për studentë', email: 'studentet.ispe@internup.test' },
   },
   {
@@ -294,7 +294,7 @@ export const universityRecords = [
     logo: logo('globus.png'),
     emailDomains: [],
     aliases: ['Globus', 'Kolegji Globus'],
-    description: 'Kolegj privat i fokusuar te menaxhmenti dhe biznesi ndërkombëtar.',
+    description: 'Kolegj privat në Prishtinë, i fokusuar te menaxhmenti dhe biznesi ndërkombëtar.\n\nProgramet trajtojnë tregtinë, marketingun dhe menaxhimin e kompanive që punojnë përtej Kosovës. Studentët e Globus-it kërkojnë praktika në import-eksport, marketing dhe kompani me partnerë jashtë vendit.',
     representative: { name: 'Endrit Gjoka', title: 'Koordinator për praktika', email: 'praktika.globus@internup.test' },
   },
 ].map(withPhoto);

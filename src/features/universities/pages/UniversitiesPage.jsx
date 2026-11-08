@@ -123,13 +123,10 @@ export function UniversitiesPage({ useCases }) {
   return (
     <>
       <header className="border-b border-cream/10 pt-12 pb-10 lg:pt-16 lg:pb-14">
-        <Container className="flex flex-wrap items-start justify-between gap-x-10 gap-y-4">
-          <h1 className="font-display text-4xl font-medium tracking-tight sm:text-6xl">Universitetet</h1>
-          <div className="max-w-md lg:pt-2 lg:text-right">
-            <p className="text-lg leading-relaxed text-cream/75">
-              Universitetet dhe kolegjet e Kosovës në InternUp.
-            </p>
-          </div>
+        <Container>
+          <h1 className="mx-auto max-w-3xl text-center font-display text-3xl leading-[1.08] font-medium tracking-tight sm:text-5xl">
+            Universitetet dhe kolegjet e Kosovës në InternUp.
+          </h1>
         </Container>
 
         {directory.status !== 'error' && (

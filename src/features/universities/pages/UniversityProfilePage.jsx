@@ -13,42 +13,42 @@ import { verifiedLabel } from '../components/UniversityCard';
 import { FadeImage } from '../components/FadeImage';
 import { UniversityLogo } from '../components/UniversityLogo';
 
-const displayUrl = (url) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+const splitParagraphs = (text = '') =>
+  text
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
+const displayUrl =(url) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 
 function Hero({ university }) {
   const [hasPhoto, setHasPhoto] = useState(Boolean(university.photo));
   const subtitle = `${UNIVERSITY_TYPE_LABELS[university.type]} · ${university.city}`;
 
-  if (!hasPhoto) {
-    return (
-      <div className="flex flex-col gap-6 rounded-3xl bg-cream p-8 text-charcoal sm:flex-row sm:items-center sm:p-12">
-        <UniversityLogo university={university} className="size-28" bare />
+  return (
+    <div
+      className={`grid overflow-hidden rounded-xl bg-cream text-charcoal ${
+        hasPhoto ? 'lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]' : ''
+      }`}
+    >
+      <div className="flex flex-col justify-between gap-10 p-7 sm:p-10 lg:min-h-[28rem] lg:p-12">
+        <UniversityLogo university={university} className="size-24 sm:size-28 lg:size-32" bare />
         <div>
           <p className="text-charcoal/60">{subtitle}</p>
-          <h1 className="mt-2 font-display text-4xl leading-[1.08] font-medium tracking-tight sm:text-5xl">{university.name}</h1>
+          <h1 className="mt-3 font-display text-4xl leading-[1.04] font-medium tracking-tight sm:text-5xl lg:text-6xl">{university.name}</h1>
         </div>
       </div>
-    );
-  }
 
-  return (
-    <div className="relative overflow-hidden rounded-3xl bg-cream/[0.06]">
-      <FadeImage
-        src={university.photo}
-        alt={`Kampusi i ${university.shortName}`}
-        onError={() => setHasPhoto(false)}
-        className="aspect-[4/3] w-full object-cover sm:aspect-[21/9]"
-      />
-      <div aria-hidden="true" className="absolute inset-0 bg-linear-to-t from-charcoal via-charcoal/40 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 flex items-end gap-5 p-6 sm:p-10">
-        <UniversityLogo university={university} className="hidden size-24 rounded-2xl sm:grid" padding="p-2" />
-        <div className="min-w-0">
-          <p className="text-cream/75">{subtitle}</p>
-          <h1 className="mt-1 font-display text-3xl leading-[1.08] font-medium tracking-tight text-cream sm:text-5xl">
-            {university.name}
-          </h1>
+      {hasPhoto && (
+        <div className="relative aspect-[4/3] overflow-hidden bg-charcoal/[0.08] lg:aspect-auto">
+          <FadeImage
+            src={university.photo}
+            alt={`Kampusi i ${university.shortName}`}
+            onError={() => setHasPhoto(false)}
+            className="absolute inset-0 size-full object-cover"
+          />
         </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -83,6 +83,7 @@ export function UniversityProfilePage({ useCases }) {
 
   const { students, stories, verifiedCount, canSeeStudents } = profile.data;
   const representative = university.representative;
+  const [lead, ...details] = splitParagraphs(university.description);
 
   return (
     <Container className="pt-6 pb-16 lg:pt-8 lg:pb-24">
@@ -100,11 +101,14 @@ export function UniversityProfilePage({ useCases }) {
 
       <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-8">
-          {university.description && (
-            <p className="max-w-3xl font-display text-2xl leading-snug text-cream/90 sm:text-[1.75rem]">
-              {university.description}
-            </p>
+          {lead && (
+            <p className="max-w-3xl font-display text-2xl leading-snug text-cream/90 sm:text-[1.75rem]">{lead}</p>
           )}
+          {details.map((paragraph) => (
+            <p key={paragraph} className="mt-5 max-w-2xl text-lg leading-relaxed text-cream/75">
+              {paragraph}
+            </p>
+          ))}
 
           <section aria-labelledby="studentet-titull" className="mt-14">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
@@ -171,7 +175,7 @@ export function UniversityProfilePage({ useCases }) {
         </div>
 
         <aside className="self-start lg:sticky lg:top-24 lg:col-span-4">
-          <div className="rounded-3xl bg-cream p-7 text-charcoal">
+          <div className="rounded-xl bg-cream p-7 text-charcoal">
             {representative?.name && (
               <>
                 <p className="text-sm text-charcoal/55">Përfaqësuesi në InternUp</p>
@@ -197,7 +201,7 @@ export function UniversityProfilePage({ useCases }) {
           {actor?.role === Role.STUDENT && (
             <Link
               to="/student#verifikimi"
-              className="mt-4 flex items-center justify-between gap-3 rounded-3xl bg-navy px-7 py-5 font-semibold transition-colors hover:bg-navy/80"
+              className="mt-4 flex items-center justify-between gap-3 rounded-xl bg-navy px-7 py-5 font-semibold transition-colors hover:bg-navy/80"
             >
               Studion këtu? Kërko verifikimin
               <ArrowUpRight aria-hidden="true" className="size-5 shrink-0" />

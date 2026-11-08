@@ -36,3 +36,18 @@ me qet e keni http://localhost:5173/ (i boni npm run dev ne terminal)
 
 Llogaria demo e kompanisë: `kompani@internup.test` / `Kompani123!` (menaxhon Kodra Labs).
 Kompanitë e reja krijojnë profilin automatikisht pas regjistrimit. Çdo use case kontrollon rolin dhe pronësinë, jo vetëm UI.
+
+08.11.26 edhe 09.11.26 kom punu te universitetet
+### Universitetet (`/universitetet`) edhe paneli i universitetit (`/universitet`)
+| Shtresa | Skedarët |
+| `src/domain/university` | `University.js`, `studentVerification.js`, `universityFilters.js` |
+| `src/application` | `universityUseCases.js`, `universityWorkspaceUseCases.js`, portet `UniversityRepository` edhe `StudentVerificationRepository` |
+| `src/adapters/outbound/mock` | `MockUniversityRepository`, `MockStudentVerificationRepository`, `universityData.js` (krejt universitetet) |
+| `src/features/universities` | faqja e universiteteve edhe profili i secilit |
+| `src/features/university-workspace` | paneli, verifikimi, studentet, profili |
+
+Llogaria demo: `universitet@internup.test` / `Universitet123!` (osht e UP-se).
+Studenti e kerkon verifikimin prej dashboardit, perfaqesuesi e pranon ose e refuzon prej panelit. Emrat e studenteve i sheh veq perfaqesuesi.
+Per universitet tjeter regjistrohu me email te atij universiteti (psh `@ubt-uni.net`), me gmail nuk t'lejon.
+Logot edhe fotot jon te `public/images/universities/`.
+Kur te bojm backend i bojm `HttpUniversityRepository` edhe `HttpStudentVerificationRepository` edhe i ndrrojm te `container.js`.
