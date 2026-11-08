@@ -10,6 +10,8 @@ const DEMO_ACCOUNTS = [
     title: 'Universitet',
     email: 'universitet@internup.test',
     password: 'Universitet123!',
+    name: 'Universiteti i Prishtinës',
+    profile: { universityId: 'up', name: 'Universiteti i Prishtinës' },
   },
   {
     role: 'kompani',

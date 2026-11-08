@@ -6,12 +6,13 @@ import { HowItWorks } from '../components/HowItWorks';
 import { OurStory } from '../components/OurStory';
 import { SearchResults } from '../components/SearchResults';
 import { Statistics } from '../components/Statistics';
+import { Universities } from '../components/Universities';
 import { useAsyncData } from '../hooks/useAsyncData';
 import { useInternshipSearch } from '../hooks/useInternshipSearch';
 
 const NO_OPTIONS = { positions: [], locations: [] };
 
-export function HomePage({ useCases }) {
+export function HomePage({ useCases, universityUseCases }) {
   const stats = useAsyncData(useCases.getPlatformStats);
   const companies = useAsyncData(useCases.getPartnerCompanies);
   const searchOptions = useAsyncData(useCases.getSearchOptions);
@@ -51,6 +52,7 @@ export function HomePage({ useCases }) {
       <HowItWorks />
       <OurStory />
       <Companies companies={companies} />
+      <Universities useCases={universityUseCases} />
       <CallToAction />
     </>
   );

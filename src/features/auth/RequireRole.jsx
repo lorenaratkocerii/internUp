@@ -9,6 +9,7 @@ import { useCurrentActor } from './useCurrentActor';
 const HOME_BY_ROLE = {
   [Role.STUDENT]: { href: '/student', label: 'Shko te paneli i studentit' },
   [Role.COMPANY]: { href: '/kompani', label: 'Shko te paneli i kompanisë' },
+  [Role.UNIVERSITY]: { href: '/universitet', label: 'Shko te paneli i universitetit' },
 };
 
 const ROLE_NAMES = {

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { FileText, Pencil, Plus, Save, Trash2, Upload, UserRound } from 'lucide-react';
 import { getDemoUser } from '../../login/demoAuth';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
+import { useUniversityOptions } from '../../universities/hooks/useUniversityDirectory';
 import { StudentWorkspace } from '../components/StudentWorkspace';
 import { languageOptions, readStudentProfile, saveStudentProfile } from '../studentData';
 
@@ -25,10 +26,13 @@ function SkillEditor({ title, skills, onChange, placeholder, disabled }) {
   return <div><p className="text-sm font-semibold">{title}</p><div className="mt-2 flex flex-wrap gap-2">{skills.map((skill) => <span key={skill} className="inline-flex items-center gap-2 rounded-full border border-charcoal/15 bg-white/50 px-3 py-1.5 text-sm">{skill}<button type="button" disabled={disabled} onClick={() => onChange(skills.filter((item) => item !== skill))} aria-label={`Hiq ${skill}`} className="text-charcoal/55 hover:text-terracotta disabled:hidden">×</button></span>)}</div>{!disabled && <div className="mt-3 flex gap-2"><input value={value} onChange={(event) => setValue(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter') { event.preventDefault(); add(); } }} placeholder={placeholder} className="min-h-10 min-w-0 flex-1 rounded-lg border border-charcoal/15 bg-white/60 px-3 text-sm" /><button type="button" onClick={add} className="inline-flex min-h-10 items-center gap-1.5 rounded-lg bg-charcoal px-3 text-sm font-semibold text-cream"><Plus aria-hidden="true" className="size-4" />Shto</button></div>}</div>;
 }
 
-export function StudentProfilePage() {
+const FALLBACK_UNIVERSITIES = ['Universiteti i Prishtinës', 'Universiteti i Prizrenit', 'Universiteti i Gjilanit', 'UBT', 'RIT Kosovo', 'Tjetër'];
+
+export function StudentProfilePage({ universityUseCases }) {
   useDocumentTitle('Profili im');
   const user = getDemoUser();
   const [profile, setProfile] = useState(() => readStudentProfile(user));
+  const universityOptions = useUniversityOptions(universityUseCases, FALLBACK_UNIVERSITIES, profile.university);
   const originalProfile = useRef(profile);
   const [isEditing, setIsEditing] = useState(false);
   const [errors, setErrors] = useState({});
@@ -102,7 +106,7 @@ export function StudentProfilePage() {
         </SectionCard>
 
         <SectionCard id="academic" number="02" title="Të dhënat akademike" description="Studimet e tua aktuale dhe viti i pritshëm i diplomimit.">
-          <div className="grid gap-4 sm:grid-cols-2"><Field label="Universiteti" name="university" value={profile.university} onChange={update} options={['Universiteti i Prishtinës', 'Universiteti i Prizrenit', 'Universiteti i Gjilanit', 'UBT', 'RIT Kosovo', 'Tjetër']} required disabled={!isEditing} error={errors.university} /><Field label="Fakulteti" name="faculty" value={profile.faculty} onChange={update} placeholder="Fakulteti ose shkolla" required disabled={!isEditing} error={errors.faculty} /><Field label="Drejtimi i studimeve" name="major" value={profile.major} onChange={update} placeholder="p.sh. Shkenca Kompjuterike" required disabled={!isEditing} error={errors.major} /><Field label="Viti aktual i studimeve" name="studyYear" value={profile.studyYear} onChange={update} options={['Viti i parë', 'Viti i dytë', 'Viti i tretë', 'Viti i katërt', 'Master']} required disabled={!isEditing} error={errors.studyYear} /><Field label="Viti i pritshëm i diplomimit" name="graduationYear" value={profile.graduationYear} onChange={update} options={['2026', '2027', '2028', '2029', '2030', '2031']} required disabled={!isEditing} error={errors.graduationYear} /><Field label="Mesatarja e notave" name="gpa" value={profile.gpa} onChange={update} placeholder="p.sh. 9.1 / 10" required disabled={!isEditing} error={errors.gpa} /></div>
+          <div className="grid gap-4 sm:grid-cols-2"><Field label="Universiteti" name="university" value={profile.university} onChange={update} options={universityOptions} required disabled={!isEditing} error={errors.university} /><Field label="Fakulteti" name="faculty" value={profile.faculty} onChange={update} placeholder="Fakulteti ose shkolla" required disabled={!isEditing} error={errors.faculty} /><Field label="Drejtimi i studimeve" name="major" value={profile.major} onChange={update} placeholder="p.sh. Shkenca Kompjuterike" required disabled={!isEditing} error={errors.major} /><Field label="Viti aktual i studimeve" name="studyYear" value={profile.studyYear} onChange={update} options={['Viti i parë', 'Viti i dytë', 'Viti i tretë', 'Viti i katërt', 'Master']} required disabled={!isEditing} error={errors.studyYear} /><Field label="Viti i pritshëm i diplomimit" name="graduationYear" value={profile.graduationYear} onChange={update} options={['2026', '2027', '2028', '2029', '2030', '2031']} required disabled={!isEditing} error={errors.graduationYear} /><Field label="Mesatarja e notave" name="gpa" value={profile.gpa} onChange={update} placeholder="p.sh. 9.1 / 10" required disabled={!isEditing} error={errors.gpa} /></div>
         </SectionCard>
 
         <SectionCard id="skills" number="03" title="Aftësitë dhe kualifikimet" description="Shto aftësitë që përputhen me punën që dëshiron të bësh."><div className="space-y-6"><SkillEditor title="Aftësitë teknike" skills={profile.technicalSkills ?? []} onChange={(technicalSkills) => setProfile((current) => ({ ...current, technicalSkills }))} placeholder="Shto një aftësi teknike" disabled={!isEditing} /><SkillEditor title="Aftësitë ndërpersonale" skills={profile.softSkills ?? []} onChange={(softSkills) => setProfile((current) => ({ ...current, softSkills }))} placeholder="Shto një aftësi ndërpersonale" disabled={!isEditing} /></div></SectionCard>

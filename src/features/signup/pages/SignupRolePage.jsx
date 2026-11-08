@@ -5,6 +5,10 @@ import { NotFoundMessage } from '../../companies/components/NotFoundMessage';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { Container } from '../../home/components/ui/Container';
 import { registerDemoAccount } from '../../login/demoAuth';
+import { RepresentativeEmailCheck } from '../../../application/universityUseCases';
+import { createActor } from '../../../domain/auth/accessControl';
+import { UniversityLogo } from '../../universities/components/UniversityLogo';
+import { useUniversityDirectory, useUniversityOptions } from '../../universities/hooks/useUniversityDirectory';
 import { signupRoles } from '../roles';
 
 const STUDY_PROGRAMS = [
@@ -57,11 +61,10 @@ const roleFields = {
     { name: 'password', label: 'Fjalëkalimi', type: 'password', autoComplete: 'new-password' },
   ],
   universitet: [
-    { name: 'name', label: 'Emri i universitetit', autoComplete: 'organization' },
-    { name: 'email', label: 'Email', type: 'email', autoComplete: 'email' },
-    { name: 'website', label: 'Website', type: 'url', placeholder: 'https://example.edu' },
-    { name: 'country', label: 'Shteti', autoComplete: 'country-name' },
-    { name: 'city', label: 'Qyteti', autoComplete: 'address-level2' },
+    { name: 'name', label: 'Universiteti', autoComplete: 'organization' },
+    { name: 'representativeName', label: 'Emri dhe mbiemri', autoComplete: 'name' },
+    { name: 'representativeTitle', label: 'Roli në universitet', placeholder: 'p.sh. Zyra për Karrierë' },
+    { name: 'email', label: 'Email-i zyrtar', type: 'email', autoComplete: 'email' },
     { name: 'phone', label: 'Numri i telefonit', type: 'tel', autoComplete: 'tel' },
     { name: 'password', label: 'Fjalëkalimi', type: 'password', autoComplete: 'new-password' },
   ],
@@ -86,6 +89,21 @@ const STUDENT_GROUPS = [
   { title: 'Siguria e llogarisë', description: 'Krijo një fjalëkalim të sigurt për llogarinë tënde.', icon: ShieldCheck, fields: ['password'] },
 ];
 
+const UNIVERSITY_GROUPS = [
+  {
+    title: 'Universiteti',
+    description: 'Zgjidh universitetin ku punon.',
+    fields: ['name'],
+    wide: ['name'],
+  },
+  {
+    title: 'Përfaqësuesi',
+    description: 'Studentët do të të shohin si kontakt në faqen e universitetit.',
+    fields: ['representativeName', 'representativeTitle', 'email', 'phone', 'password'],
+    wide: ['password'],
+  },
+];
+
 function validate(fields, values) {
   const errors = {};
   for (const field of fields) {
@@ -104,12 +122,22 @@ function validate(fields, values) {
   return errors;
 }
 
-export function SignupRolePage() {
+export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases }) {
   const { role } = useParams();
   const navigate = useNavigate();
   const selectedRole = signupRoles.find((item) => item.id === role);
-  const fields = roleFields[role];
   const [values, setValues] = useState({});
+  const universityOptions = useUniversityOptions(universityUseCases, UNIVERSITIES, values.university);
+  const { universities, findByName } = useUniversityDirectory(universityUseCases);
+  const fields = roleFields[role]?.map((field) => {
+    if (field.name === 'university') return { ...field, options: universityOptions };
+    if (role === 'universitet' && field.name === 'name' && universities.length) {
+      return { ...field, options: universities.map((university) => university.name) };
+    }
+    return field;
+  });
+  const chosenUniversity = role === 'universitet' ? findByName(values.name) : null;
+  const staffDomain = chosenUniversity ? universityUseCases.staffDomains(chosenUniversity)[0] : null;
   const [errors, setErrors] = useState({});
   const [submitError, setSubmitError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -137,6 +165,11 @@ export function SignupRolePage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const nextErrors = validate(fields, values);
+    const emailCheck =
+      chosenUniversity && values.email ? universityUseCases.checkRepresentativeEmail(chosenUniversity, values.email) : null;
+    if (!nextErrors.email && emailCheck === RepresentativeEmailCheck.MISMATCH) {
+      nextErrors.email = `Përdor email-in zyrtar të universitetit (@${staffDomain}).`;
+    }
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) return;
 
@@ -155,6 +188,11 @@ export function SignupRolePage() {
         }
       : Object.fromEntries(Object.entries(values).filter(([key]) => key !== 'password'));
 
+    if (chosenUniversity) {
+      profile.universityId = chosenUniversity.id;
+      profile.approved = emailCheck === RepresentativeEmailCheck.MATCH;
+    }
+
     const result = registerDemoAccount({
       role,
       title: selectedRole.title,
@@ -167,7 +205,15 @@ export function SignupRolePage() {
       setSubmitError(result.error);
       return;
     }
-    navigate({ student: '/profili', kompani: '/kompani' }[role] ?? '/');
+    const destination = { student: '/profili', kompani: '/kompani', universitet: '/universitet' }[role] ?? '/';
+    if (role === 'universitet' && chosenUniversity && universityWorkspaceUseCases) {
+      universityWorkspaceUseCases
+        .registerRepresentative(createActor(result.user))
+        .catch(() => null)
+        .finally(() => navigate(destination));
+      return;
+    }
+    navigate(destination);
   };
 
   const renderField = (field) => {
@@ -228,12 +274,20 @@ export function SignupRolePage() {
               </section>;
             })}
           </div>}
-          {role !== 'student' && <div className="grid grid-cols-1 gap-y-4">
-            {fields.map((field) => {
+          {role !== 'student' && (role === 'universitet' ? UNIVERSITY_GROUPS : [{ fields: fields.map((field) => field.name) }]).map((group) => (
+          <section key={group.title ?? 'fushat'} className={group.title ? 'mb-5 rounded-2xl border border-cream/15 bg-white/[0.035] p-5 sm:p-6' : ''}>
+            {group.title && (
+              <div className="mb-5">
+                <h2 className="text-lg font-semibold">{group.title}</h2>
+                {group.description && <p className="mt-1 text-sm text-cream/60">{group.description}</p>}
+              </div>
+            )}
+            <div className={`grid grid-cols-1 gap-y-4 ${group.title ? 'gap-x-5 md:grid-cols-2' : ''}`}>
+            {fields.filter((field) => group.fields.includes(field.name)).map((field) => {
               const fieldId = `regjistro-${role}-${field.name}`;
               const errorId = `${fieldId}-gabim`;
               return (
-                <div key={field.name}>
+                <div key={field.name} className={group.wide?.includes(field.name) ? 'md:col-span-2' : ''}>
                   <label htmlFor={fieldId} className="text-sm font-semibold">{field.label}</label>
                   {field.options ? (
                     <select
@@ -285,10 +339,28 @@ export function SignupRolePage() {
                     />
                   )}
                   {errors[field.name] && <p id={errorId} role="alert" className="mt-1.5 text-sm font-semibold">{errors[field.name]}</p>}
+                  {role === 'universitet' && field.name === 'name' && chosenUniversity && (
+                    <div className="mt-3 flex items-center gap-3 rounded-xl bg-charcoal/30 p-3">
+                      <UniversityLogo university={chosenUniversity} className="size-11 rounded-lg" padding="p-1" />
+                      <p className="text-sm text-cream/80">
+                        {chosenUniversity.city}
+                        {chosenUniversity.website && ` · ${chosenUniversity.website.replace(/^https?:\/\/(www\.)?/, '')}`}
+                      </p>
+                    </div>
+                  )}
+                  {role === 'universitet' && field.name === 'email' && chosenUniversity && !errors.email && (
+                    <p className="mt-1.5 text-sm text-cream/70">
+                      {staffDomain
+                        ? `Duhet të përfundojë me @${staffDomain}.`
+                        : 'Ky universitet nuk ka domen të regjistruar. Llogaria aktivizohet pasi InternUp ta konfirmojë.'}
+                    </p>
+                  )}
                 </div>
               );
             })}
-          </div>}
+            </div>
+          </section>
+          ))}
           {submitError && <p role="alert" className="mt-4 text-sm font-semibold">{submitError}</p>}
           <button type="submit" className="mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-cream px-6 py-3 font-semibold text-charcoal transition-colors hover:bg-cream/85">
             Regjistrohu {role === 'student' && <ArrowUpRight aria-hidden="true" className="size-4" />}

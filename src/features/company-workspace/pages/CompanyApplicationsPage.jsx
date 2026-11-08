@@ -1,4 +1,4 @@
-import { CalendarDays, FileText, GraduationCap, Mail, MapPin, Search, UserRound, X } from 'lucide-react';
+import { BadgeCheck, CalendarDays, FileText, GraduationCap, Mail, MapPin, Search, UserRound, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import {
@@ -15,6 +15,19 @@ import { ConfirmDialog } from '../components/FormControls';
 import { Flash, WorkspaceError, WorkspaceLoading } from '../components/WorkspaceStatus';
 import { useWorkspaceData } from '../hooks/useWorkspaceData';
 import { formatDay } from '../utils/format';
+
+function UniversityVerifiedBadge({ university }) {
+  if (!university) return null;
+  return (
+    <span
+      title={`${university} konfirmoi që ky student studion aty`}
+      className="ml-2 inline-flex items-center gap-1 rounded-full bg-olive/15 px-2 py-0.5 align-middle text-xs font-semibold text-olive"
+    >
+      <BadgeCheck aria-hidden="true" className="size-3.5" />
+      Student i verifikuar
+    </span>
+  );
+}
 
 const ACTION_LABELS = {
   [CandidateStatus.UNDER_REVIEW]: 'Shëno në shqyrtim',
@@ -205,7 +218,10 @@ export function CompanyApplicationsPage({ useCases }) {
                       <UserRound aria-hidden="true" className="size-5" />
                     </span>
                     <div className="min-w-0">
-                      <h3 className="font-display text-xl sm:text-2xl">{application.student.name}</h3>
+                      <h3 className="font-display text-xl sm:text-2xl">
+                        {application.student.name}
+                        <UniversityVerifiedBadge university={application.verifiedBy} />
+                      </h3>
                       <p className="mt-0.5 text-sm text-charcoal/65">
                         {[application.student.major, application.student.university].filter(Boolean).join(' · ')}
                       </p>
@@ -262,7 +278,7 @@ export function CompanyApplicationsPage({ useCases }) {
             </div>
 
             <div className="mt-6 grid gap-4 rounded-xl bg-white/45 p-4 sm:grid-cols-2">
-              <div className="flex items-start gap-2"><GraduationCap aria-hidden="true" className="mt-0.5 size-4 text-terracotta" /><div><p className="text-xs text-charcoal/55">Universiteti</p><p className="font-semibold">{selected.student.university || '—'}</p><p className="text-sm text-charcoal/65">{selected.student.major}</p></div></div>
+              <div className="flex items-start gap-2"><GraduationCap aria-hidden="true" className="mt-0.5 size-4 text-terracotta" /><div><p className="text-xs text-charcoal/55">Universiteti</p><p className="font-semibold">{selected.student.university || '—'}</p>{selected.verifiedBy && <p className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-olive"><BadgeCheck aria-hidden="true" className="size-3.5" />Verifikuar nga {selected.verifiedBy}</p>}<p className="text-sm text-charcoal/65">{selected.student.major}</p></div></div>
               <div className="flex items-start gap-2"><Mail aria-hidden="true" className="mt-0.5 size-4 text-terracotta" /><div className="min-w-0"><p className="text-xs text-charcoal/55">Email</p><a href={`mailto:${selected.student.email}`} className="block truncate font-semibold underline underline-offset-2">{selected.student.email}</a></div></div>
               {selected.student.city && <div className="flex items-start gap-2"><MapPin aria-hidden="true" className="mt-0.5 size-4 text-terracotta" /><div><p className="text-xs text-charcoal/55">Qyteti</p><p className="font-semibold">{selected.student.city}</p></div></div>}
               <div><p className="text-xs text-charcoal/55">Statusi aktual</p><CandidateStatusBadge status={selected.status} className="mt-1" /></div>

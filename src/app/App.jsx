@@ -22,32 +22,51 @@ import { SignupRolePage } from '../features/signup/pages/SignupRolePage';
 import { StudentProfilePage } from '../features/student/pages/StudentProfilePage';
 import { StudentDashboardPage } from '../features/student/pages/StudentDashboardPage';
 import { StudentApplicationsPage } from '../features/student/pages/StudentApplicationsPage';
+import { UniversitiesPage } from '../features/universities/pages/UniversitiesPage';
+import { UniversityProfilePage } from '../features/universities/pages/UniversityProfilePage';
+import { UniversityAccountProfilePage } from '../features/university-workspace/pages/UniversityAccountProfilePage';
+import { UniversityDashboardPage } from '../features/university-workspace/pages/UniversityDashboardPage';
+import { UniversityStudentsPage } from '../features/university-workspace/pages/UniversityStudentsPage';
+import { VerifyStudentsPage } from '../features/university-workspace/pages/VerifyStudentsPage';
 import { AppLayout } from './AppLayout';
 
 export function App({ container }) {
-  const { homeUseCases, companyUseCases, blogUseCases, companyWorkspaceUseCases, studentApplicationUseCases } = container;
+  const {
+    homeUseCases,
+    companyUseCases,
+    blogUseCases,
+    companyWorkspaceUseCases,
+    studentApplicationUseCases,
+    universityUseCases,
+    universityWorkspaceUseCases,
+  } = container;
 
   return (
     <Routes>
       <Route element={<AppLayout />}>
-        <Route index element={<HomePage useCases={homeUseCases} />} />
+        <Route index element={<HomePage useCases={homeUseCases} universityUseCases={universityUseCases} />} />
         <Route path="kompanite" element={<CompaniesPage useCases={companyUseCases} />} />
         <Route path="kompanite/:companyId" element={<CompanyProfilePage useCases={companyUseCases} />} />
         <Route
           path="kompanite/:companyId/pozitat/:positionId"
           element={<PositionPage useCases={companyUseCases} applicationUseCases={studentApplicationUseCases} />}
         />
+        <Route path="universitetet" element={<UniversitiesPage useCases={universityUseCases} />} />
+        <Route path="universitetet/:universityId" element={<UniversityProfilePage useCases={universityUseCases} />} />
         <Route path="blog" element={<BlogPage useCases={blogUseCases} />} />
         <Route path="blog/shkruaj" element={<ShareStoryPage useCases={blogUseCases} />} />
-        <Route path="blog/:storyId" element={<StoryDetailsPage useCases={blogUseCases} />} />
+        <Route path="blog/:storyId" element={<StoryDetailsPage useCases={blogUseCases} universityUseCases={universityUseCases} />} />
         <Route path="regjistrohu" element={<SignupPage />} />
-        <Route path="regjistrohu/:role" element={<SignupRolePage />} />
+        <Route path="regjistrohu/:role" element={<SignupRolePage universityUseCases={universityUseCases} universityWorkspaceUseCases={universityWorkspaceUseCases} />} />
         <Route path="hyr" element={<LoginPage />} />
         <Route path="hyr/:role" element={<LoginRolePage />} />
 
         <Route element={<RequireRole role={Role.STUDENT} />}>
-          <Route path="profili" element={<StudentProfilePage />} />
-          <Route path="student" element={<StudentDashboardPage useCases={studentApplicationUseCases} />} />
+          <Route path="profili" element={<StudentProfilePage universityUseCases={universityUseCases} />} />
+          <Route
+            path="student"
+            element={<StudentDashboardPage useCases={studentApplicationUseCases} verificationUseCases={universityUseCases} />}
+          />
           <Route path="student/applications" element={<StudentApplicationsPage useCases={studentApplicationUseCases} />} />
         </Route>
 
@@ -59,6 +78,13 @@ export function App({ container }) {
           <Route path="kompani/pozitat/:internshipId/ndrysho" element={<InternshipEditorPage useCases={companyWorkspaceUseCases} />} />
           <Route path="kompani/aplikimet" element={<CompanyApplicationsPage useCases={companyWorkspaceUseCases} />} />
           <Route path="kompani/verifikimi" element={<VerifyInternsPage useCases={companyWorkspaceUseCases} />} />
+        </Route>
+
+        <Route element={<RequireRole role={Role.UNIVERSITY} />}>
+          <Route path="universitet" element={<UniversityDashboardPage useCases={universityWorkspaceUseCases} />} />
+          <Route path="universitet/verifikimi" element={<VerifyStudentsPage useCases={universityWorkspaceUseCases} />} />
+          <Route path="universitet/studentet" element={<UniversityStudentsPage useCases={universityWorkspaceUseCases} />} />
+          <Route path="universitet/profili" element={<UniversityAccountProfilePage useCases={universityWorkspaceUseCases} />} />
         </Route>
 
         <Route

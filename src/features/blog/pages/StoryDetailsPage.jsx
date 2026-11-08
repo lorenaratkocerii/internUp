@@ -22,15 +22,16 @@ import { Container } from '../../home/components/ui/Container';
 import { Reveal } from '../../home/components/ui/Reveal';
 import { StatusMessage } from '../../home/components/ui/StatusMessage';
 import { useAsyncData } from '../../home/hooks/useAsyncData';
+import { useUniversityDirectory } from '../../universities/hooks/useUniversityDirectory';
 import { AuthorAvatar, CategoryBadge, VerifiedBadge } from '../components/StoryBadges';
 import { StoryCard } from '../components/StoryCard';
 import { StoryCover } from '../components/StoryCover';
 import { durationLabel, formatDate, readingTimeLabel } from '../utils/format';
 
-function FactList({ story }) {
+function FactList({ story, universityHref }) {
   const facts = [
     { icon: UserRound, label: 'Studenti', value: story.author.name },
-    { icon: GraduationCap, label: 'Universiteti', value: story.author.university },
+    { icon: GraduationCap, label: 'Universiteti', value: story.author.university, href: universityHref },
     { icon: Building2, label: 'Kompania', value: story.companyName, href: story.companyId ? `/kompanite/${story.companyId}` : null },
     { icon: BriefcaseBusiness, label: 'Pozita', value: story.position },
     { icon: Timer, label: 'Kohëzgjatja', value: durationLabel(story.durationMonths) },
@@ -62,7 +63,7 @@ function FactList({ story }) {
   );
 }
 
-export function StoryDetailsPage({ useCases }) {
+export function StoryDetailsPage({ useCases, universityUseCases }) {
   const { storyId } = useParams();
   const { state } = useLocation();
 
@@ -70,6 +71,9 @@ export function StoryDetailsPage({ useCases }) {
   const result = useAsyncData(load);
 
   const story = result.data?.story;
+  const { findByName } = useUniversityDirectory(universityUseCases);
+  const university = findByName(story?.author.university);
+  const universityHref = university ? `/universitetet/${university.id}` : null;
   useDocumentTitle(story?.title ?? (result.status === 'loading' ? 'Historia' : 'Historia nuk u gjet'));
 
   if (result.status === 'loading' && !result.data) {
@@ -218,7 +222,7 @@ export function StoryDetailsPage({ useCases }) {
             <div className="bg-cream p-6 text-charcoal lg:sticky lg:top-24">
               <h2 className="font-display text-xl font-medium">Detajet e praktikës</h2>
               <div className="mt-2">
-                <FactList story={story} />
+                <FactList story={story} universityHref={universityHref} />
               </div>
               <div className="mt-4 border-t border-charcoal/15 pt-4">
                 <VerifiedBadge verified={story.verified} className={story.verified ? '' : 'text-charcoal'} />

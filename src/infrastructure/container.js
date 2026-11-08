@@ -5,17 +5,23 @@ import { createMockCompanyRepository } from '../adapters/outbound/mock/MockCompa
 import { createMockInternshipRepository } from '../adapters/outbound/mock/MockInternshipRepository';
 import { createMockStatsRepository } from '../adapters/outbound/mock/MockStatsRepository';
 import { createMockStoryRepository } from '../adapters/outbound/mock/MockStoryRepository';
+import { createMockStudentVerificationRepository } from '../adapters/outbound/mock/MockStudentVerificationRepository';
+import { createMockUniversityRepository } from '../adapters/outbound/mock/MockUniversityRepository';
 import { createBlogUseCases } from '../application/blogUseCases';
 import { createCompanyUseCases } from '../application/companyUseCases';
 import { createCompanyWorkspaceUseCases } from '../application/companyWorkspaceUseCases';
 import { createHomeUseCases } from '../application/homeUseCases';
 import { createStudentApplicationUseCases } from '../application/studentApplicationUseCases';
+import { createUniversityUseCases } from '../application/universityUseCases';
+import { createUniversityWorkspaceUseCases } from '../application/universityWorkspaceUseCases';
 
 export function createContainer() {
   const internshipRepository = createMockInternshipRepository();
   const companyRepository = createMockCompanyRepository();
   const candidateApplicationRepository = createMockCandidateApplicationRepository();
   const storyRepository = createMockStoryRepository();
+  const universityRepository = createMockUniversityRepository();
+  const studentVerificationRepository = createMockStudentVerificationRepository();
 
   return {
     homeUseCases: createHomeUseCases({
@@ -38,10 +44,22 @@ export function createContainer() {
       internshipRepository,
       candidateApplicationRepository,
       storyRepository,
+      studentVerificationRepository,
+      universityRepository,
     }),
     studentApplicationUseCases: createStudentApplicationUseCases({
       internshipRepository,
       companyRepository,
+      candidateApplicationRepository,
+    }),
+    universityUseCases: createUniversityUseCases({
+      universityRepository,
+      studentVerificationRepository,
+      storyRepository,
+    }),
+    universityWorkspaceUseCases: createUniversityWorkspaceUseCases({
+      universityRepository,
+      studentVerificationRepository,
       candidateApplicationRepository,
     }),
   };

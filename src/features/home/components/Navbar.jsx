@@ -26,8 +26,13 @@ export function Navbar() {
       { href: '/student/applications', label: 'Aplikimet' },
     ],
     kompani: [{ href: '/kompani', label: 'Paneli' }],
+    universitet: [{ href: '/universitet', label: 'Paneli' }],
   }[user?.role] ?? [];
-  const profileLink = { student: { href: '/profili', label: 'Profili im' }, kompani: { href: '/kompani/profili', label: 'Profili i kompanisë' } }[user?.role];
+  const profileLink = {
+    student: { href: '/profili', label: 'Profili im' },
+    kompani: { href: '/kompani/profili', label: 'Profili i kompanisë' },
+    universitet: { href: '/universitet/profili', label: 'Profili i universitetit' },
+  }[user?.role];
 
   useEffect(() => {
     const syncUser = () => setUser(getDemoUser());

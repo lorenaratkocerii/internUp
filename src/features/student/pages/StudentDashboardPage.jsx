@@ -10,6 +10,7 @@ import { getDemoUser } from '../../login/demoAuth';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { ApplicationModal } from '../components/ApplicationModal';
 import { StudentWorkspace } from '../components/StudentWorkspace';
+import { UniversityVerificationCard } from '../components/UniversityVerificationCard';
 import { applicantDetails, readStudentProfile, recommendedInternships } from '../studentData';
 
 const NO_APPLICATIONS = [];
@@ -18,7 +19,7 @@ function Status({ status }) {
   return <CandidateStatusBadge status={status} tone="dark" />;
 }
 
-export function StudentDashboardPage({ useCases }) {
+export function StudentDashboardPage({ useCases, verificationUseCases }) {
   useDocumentTitle('Paneli i studentit');
   const user = getDemoUser();
   const actor = useCurrentActor();
@@ -41,6 +42,8 @@ export function StudentDashboardPage({ useCases }) {
 
   return <StudentWorkspace title="Paneli i studentit" subtitle="Përmbledhje">
     <div className="flex flex-wrap items-end justify-between gap-4"><div><p className="text-sm text-cream/55">{new Intl.DateTimeFormat('sq-AL', { dateStyle: 'full' }).format(new Date())}</p><h2 className="mt-2 font-display text-4xl font-medium text-cream sm:text-5xl">Mirë se u ktheve, {profile.firstName || 'Arta'}!</h2><p className="mt-2 text-cream/65">Ja çfarë po ndodh me rrugëtimin tënd profesional.</p></div><Link to="/profili" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-cream px-4 py-2.5 font-semibold text-charcoal hover:bg-cream/90">Ndrysho profilin <ArrowUpRight aria-hidden="true" className="size-4" /></Link></div>
+
+    {verificationUseCases && <UniversityVerificationCard useCases={verificationUseCases} actor={actor} profile={profile} />}
 
     <section aria-label="Progresi i praktikës dhe aktiviteti i aplikimeve" className="mt-7 grid gap-5 xl:grid-cols-[1.25fr_0.75fr]">
       <article className="rounded-2xl border border-cream/15 bg-navy p-6 text-cream shadow-lg sm:p-7"><div className="flex flex-wrap items-start justify-between gap-4"><div><p className="text-sm text-cream/65">Progresi i Praktikës</p><p className="mt-2 font-display text-3xl">Java {currentWeek} <span className="font-sans text-base text-cream/60">nga {totalWeeks} javë</span></p></div><span className="grid size-11 place-items-center rounded-xl bg-cream/15"><Sparkles aria-hidden="true" className="size-5" /></span></div><div className="mt-5 flex items-center justify-between text-sm"><span className="text-cream/65">Progresi yt</span><span className="font-semibold">{progress}%</span></div><div className="mt-2 h-2.5 overflow-hidden rounded-full bg-charcoal/40"><div className="h-full rounded-full bg-cream transition-[width]" style={{ width: `${progress}%` }} /></div><p className="mt-4 text-sm text-cream/75">Po ecën shumë mirë, vazhdo kështu!</p></article>

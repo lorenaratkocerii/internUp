@@ -50,7 +50,7 @@ export function LoginRolePage() {
     }
     setErrors({});
     const safeNext = nextPath?.startsWith('/') && !nextPath.startsWith('//') ? nextPath : null;
-    navigate(safeNext ?? ({ student: '/profili', kompani: '/kompani' }[user.role] ?? '/'));
+    navigate(safeNext ?? ({ student: '/profili', kompani: '/kompani', universitet: '/universitet' }[user.role] ?? '/'));
   };
 
   return (

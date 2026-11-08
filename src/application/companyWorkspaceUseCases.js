@@ -14,6 +14,7 @@ import { asCompanyRepository } from './ports/CompanyRepository';
 import { asInternshipRepository } from './ports/InternshipRepository';
 import { asStoryRepository } from './ports/StoryRepository';
 import { withVerification } from '../domain/blog/Story';
+import { VerificationStatus } from '../domain/university/studentVerification';
 
 export class WorkspaceValidationError extends Error {
   constructor(fieldErrors, message = 'Kontrollo fushat e shënuara.') {
@@ -45,12 +46,29 @@ export function createCompanyWorkspaceUseCases({
   internshipRepository,
   candidateApplicationRepository,
   storyRepository,
+  studentVerificationRepository = null,
+  universityRepository = null,
   now = () => new Date(),
 }) {
   const companies = asCompanyRepository(companyRepository);
   const internships = asInternshipRepository(internshipRepository);
   const applications = asCandidateApplicationRepository(candidateApplicationRepository);
   const stories = asStoryRepository(storyRepository);
+
+  const verifiedUniversities = async () => {
+    if (!studentVerificationRepository || !universityRepository) return new Map();
+    try {
+      const [requests, all] = await Promise.all([studentVerificationRepository.findAll(), universityRepository.findAll()]);
+      const names = new Map(all.map((university) => [university.id, university.shortName]));
+      return new Map(
+        requests
+          .filter((request) => request.status === VerificationStatus.VERIFIED)
+          .map((request) => [request.student.email, names.get(request.universityId) ?? '']),
+      );
+    } catch {
+      return new Map();
+    }
+  };
 
   const listInternStories = async (actor) => {
     assertCan(actor, Permission.VERIFY_INTERNS);
@@ -217,13 +235,15 @@ export function createCompanyWorkspaceUseCases({
 
     listApplications: async (actor) => {
       assertCan(actor, Permission.REVIEW_APPLICATIONS);
-      const [received, own] = await Promise.all([
+      const [received, own, verified] = await Promise.all([
         applications.findByCompany(actor.companyId),
         internships.findByCompany(actor.companyId),
+        verifiedUniversities(),
       ]);
       return received.map((application) => ({
         ...application,
         positionExists: own.some((internship) => internship.id === application.internshipId),
+        verifiedBy: verified.get(application.student.email) ?? null,
       }));
     },
 
