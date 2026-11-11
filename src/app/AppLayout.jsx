@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Outlet, useLocation, useNavigationType } from 'react-router';
+import { FaqPanel } from '../features/faq/components/FaqPanel';
 import { Footer } from '../features/home/components/Footer';
 import { Navbar } from '../features/home/components/Navbar';
 
@@ -58,6 +59,7 @@ export function AppLayout() {
         <Outlet />
       </main>
       <Footer />
+      <FaqPanel />
     </>
   );
 }
