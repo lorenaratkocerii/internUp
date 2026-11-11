@@ -6,6 +6,8 @@ import { CompaniesPage } from '../features/companies/pages/CompaniesPage';
 import { CompanyProfilePage } from '../features/companies/pages/CompanyProfilePage';
 import { PositionPage } from '../features/companies/pages/PositionPage';
 import { BlogPage } from '../features/blog/pages/BlogPage';
+import { CareerFieldPage } from '../features/career-paths/pages/CareerFieldPage';
+import { CareerFieldsPage } from '../features/career-paths/pages/CareerFieldsPage';
 import { ShareStoryPage } from '../features/blog/pages/ShareStoryPage';
 import { StoryDetailsPage } from '../features/blog/pages/StoryDetailsPage';
 import { CompanyAccountProfilePage } from '../features/company-workspace/pages/CompanyAccountProfilePage';
@@ -35,6 +37,7 @@ export function App({ container }) {
     homeUseCases,
     companyUseCases,
     blogUseCases,
+    careerPathUseCases,
     companyWorkspaceUseCases,
     studentApplicationUseCases,
     universityUseCases,
@@ -55,7 +58,9 @@ export function App({ container }) {
         <Route path="universitetet/:universityId" element={<UniversityProfilePage useCases={universityUseCases} />} />
         <Route path="blog" element={<BlogPage useCases={blogUseCases} />} />
         <Route path="blog/shkruaj" element={<ShareStoryPage useCases={blogUseCases} />} />
-        <Route path="blog/:storyId" element={<StoryDetailsPage useCases={blogUseCases} universityUseCases={universityUseCases} />} />
+        <Route path="fushat" element={<CareerFieldsPage useCases={careerPathUseCases} />} />
+        <Route path="fushat/:fieldId" element={<CareerFieldPage useCases={careerPathUseCases} />} />
+        <Route path="blog/:storyId"element={<StoryDetailsPage useCases={blogUseCases} universityUseCases={universityUseCases} />} />
         <Route path="regjistrohu" element={<SignupPage />} />
         <Route path="regjistrohu/:role" element={<SignupRolePage universityUseCases={universityUseCases} universityWorkspaceUseCases={universityWorkspaceUseCases} />} />
         <Route path="hyr" element={<LoginPage />} />

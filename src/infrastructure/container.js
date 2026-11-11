@@ -8,6 +8,7 @@ import { createMockStoryRepository } from '../adapters/outbound/mock/MockStoryRe
 import { createMockStudentVerificationRepository } from '../adapters/outbound/mock/MockStudentVerificationRepository';
 import { createMockUniversityRepository } from '../adapters/outbound/mock/MockUniversityRepository';
 import { createBlogUseCases } from '../application/blogUseCases';
+import { createCareerPathUseCases } from '../application/careerPathUseCases';
 import { createCompanyUseCases } from '../application/companyUseCases';
 import { createCompanyWorkspaceUseCases } from '../application/companyWorkspaceUseCases';
 import { createHomeUseCases } from '../application/homeUseCases';
@@ -38,6 +39,11 @@ export function createContainer() {
     blogUseCases: createBlogUseCases({
       storyRepository,
       companyRepository,
+    }),
+    careerPathUseCases: createCareerPathUseCases({
+      companyRepository,
+      internshipRepository,
+      storyRepository,
     }),
     companyWorkspaceUseCases: createCompanyWorkspaceUseCases({
       companyRepository,

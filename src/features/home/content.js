@@ -8,6 +8,7 @@ export const navLinks = [
   { label: 'Kompanitë', href: '/kompanite' },
   { label: 'Universitetet', href: '/universitetet' },
   { label: 'Student Blog', href: '/blog' },
+  { label: 'Fushat', href: '/fushat' },
 ];
 
 export const contact = {

@@ -59,14 +59,13 @@ export function CompaniesPage({ useCases }) {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-linear-to-r from-charcoal via-charcoal/90 to-charcoal/55"
+          className="absolute inset-0 -z-10 bg-charcoal/80"
         />
-        <Container>
-          <p className="text-sm font-semibold tracking-[0.18em] text-cream/70 uppercase">Kompanitë</p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.05] font-medium tracking-tight sm:text-6xl">
+        <Container className="text-center">
+          <h1 className="mx-auto max-w-3xl font-display text-4xl leading-[1.05] font-medium tracking-tight sm:text-6xl">
             Gjej kompaninë ku do të fillosh.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream/75">
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-cream/75">
             Krahaso kompanitë sipas industrisë, lokacionit dhe mënyrës së punës, pastaj shiko pozitat që kanë të hapura.
           </p>
         </Container>
