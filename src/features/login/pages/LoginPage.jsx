@@ -13,10 +13,6 @@ export function LoginPage() {
       <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.05] font-medium tracking-tight sm:text-6xl">
         Si dëshironi të kyçeni?
       </h1>
-      <p className="mt-5 max-w-2xl text-lg leading-relaxed text-cream/75">
-        Zgjidhni llojin e llogarisë për të vazhduar me emailin dhe fjalëkalimin tuaj.
-      </p>
-
       <ul className="mt-12 grid gap-5 md:grid-cols-3">
         {loginRoles.map(({ id, title, description, icon: Icon, colorClass }) => (
           <li key={id}>

@@ -35,6 +35,17 @@ export function StudentDashboardPage({ useCases, verificationUseCases }) {
   const counts = Object.fromEntries(CANDIDATE_STATUSES.map((status) => [status, applications.filter((application) => application.status === status).length]));
   const appliedIds = new Set(applications.map((application) => application.internshipId));
 
+  if (actor?.profile?.approved === false) {
+    return <StudentWorkspace title="Verifikimi i llogarisë" subtitle="Verifikimi i studentit">
+      <div className="rounded-2xl border border-cream/15 bg-charcoal/60 p-6 text-cream sm:p-8">
+        <p className="text-xs font-semibold tracking-[0.16em] text-cream/55 uppercase">Llogaria në pritje</p>
+        <h2 className="mt-2 font-display text-3xl">Konfirmo statusin tënd studentor</h2>
+        <p className="mt-3 max-w-2xl leading-7 text-cream/70">Dërgo të dhënat e universitetit për shqyrtim. Mundësitë, aplikimet dhe pjesët e tjera të panelit hapen pas aprovimit.</p>
+      </div>
+      {verificationUseCases && <UniversityVerificationCard useCases={verificationUseCases} actor={actor} profile={profile} />}
+    </StudentWorkspace>;
+  }
+
   const addApplication = async (details) => {
     await useCases.applyToInternship(actor, { internshipId: selectedInternship.id, ...details, student: applicantDetails(profile) });
     await reload();

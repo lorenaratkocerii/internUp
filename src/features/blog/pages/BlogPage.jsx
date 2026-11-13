@@ -1,7 +1,7 @@
 import { ArrowDownUp, PenLine, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { DATE_ORDER_OPTIONS } from '../../../application/blogUseCases';
-import { categoryLabel, STORY_CATEGORIES } from '../../../domain/blog/storyTaxonomy';
+import { categoryLabel } from '../../../domain/blog/storyTaxonomy';
 import { Pagination } from '../../companies/components/Pagination';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { usePagination } from '../../companies/hooks/usePagination';
@@ -128,11 +128,6 @@ export function BlogPage({ useCases }) {
             id="eksploro-titull"
             eyebrow="Explore Stories"
             title={browse.category ? categoryLabel(browse.category) : 'Eksploro të gjitha përvojat.'}
-            description={
-              browse.category
-                ? STORY_CATEGORIES.find((category) => category.id === browse.category)?.description
-                : 'Zgjidh një kategori më lart ose shfleto të gjitha historitë e studentëve.'
-            }
             className="mb-8"
           />
 

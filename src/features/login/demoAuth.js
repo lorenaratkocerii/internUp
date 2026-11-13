@@ -25,6 +25,7 @@ const DEMO_ACCOUNTS = [
 
 const SESSION_KEY = 'internup:demo-user';
 const REGISTERED_KEY = 'internup:registered-users';
+const STUDENT_APPROVALS_KEY = 'internup:student-approvals';
 
 function getRegisteredAccounts() {
   try {
@@ -35,12 +36,17 @@ function getRegisteredAccounts() {
 }
 
 function setDemoUser(account) {
+  let approvals = {};
+  try { approvals = JSON.parse(window.localStorage.getItem(STUDENT_APPROVALS_KEY) ?? '{}'); } catch { approvals = {}; }
+  const profile = account.role === 'student'
+    ? { ...(account.profile ?? {}), approved: approvals[account.email] ?? account.profile?.approved ?? false }
+    : account.profile ?? {};
   const user = {
     role: account.role,
     title: account.title,
     email: account.email,
     name: account.name ?? '',
-    profile: account.profile ?? {},
+    profile,
   };
   window.localStorage.setItem(SESSION_KEY, JSON.stringify(user));
   window.dispatchEvent(new Event('internup:auth-change'));
@@ -76,6 +82,24 @@ export function getDemoUser() {
     return value ? JSON.parse(value) : null;
   } catch {
     return null;
+  }
+}
+
+export function setStudentApproval(email, approved) {
+  const normalizedEmail = String(email ?? '').trim().toLowerCase();
+  let approvals = {};
+  try { approvals = JSON.parse(window.localStorage.getItem(STUDENT_APPROVALS_KEY) ?? '{}'); } catch { approvals = {}; }
+  window.localStorage.setItem(STUDENT_APPROVALS_KEY, JSON.stringify({ ...approvals, [normalizedEmail]: approved }));
+  const accounts = getRegisteredAccounts();
+  const updated = accounts.map((account) => account.role === 'student' && account.email === normalizedEmail
+    ? { ...account, profile: { ...account.profile, approved } }
+    : account);
+  window.localStorage.setItem(REGISTERED_KEY, JSON.stringify(updated));
+  const current = getDemoUser();
+  if (current?.role === 'student' && current.email === normalizedEmail) {
+    const next = { ...current, profile: { ...current.profile, approved } };
+    window.localStorage.setItem(SESSION_KEY, JSON.stringify(next));
+    window.dispatchEvent(new Event('internup:auth-change'));
   }
 }
 

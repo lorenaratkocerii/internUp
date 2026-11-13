@@ -47,7 +47,7 @@ export function App({ container }) {
   return (
     <Routes>
       <Route element={<AppLayout />}>
-        <Route index element={<HomePage useCases={homeUseCases} universityUseCases={universityUseCases} />} />
+        <Route index element={<HomePage useCases={homeUseCases} universityUseCases={universityUseCases} blogUseCases={blogUseCases} />} />
         <Route path="kompanite" element={<CompaniesPage useCases={companyUseCases} />} />
         <Route path="kompanite/:companyId" element={<CompanyProfilePage useCases={companyUseCases} />} />
         <Route

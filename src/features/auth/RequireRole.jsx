@@ -50,5 +50,8 @@ export function RequireRole({ role }) {
     return <Navigate to={`/hyr/${role}?next=${next}`} replace />;
   }
   if (actor.role !== role) return <AccessDenied role={role} actor={actor} />;
+  if (role === Role.STUDENT && actor.profile?.approved === false && !['/profili', '/student'].includes(pathname)) {
+    return <Navigate to="/profili" replace />;
+  }
   return <Outlet />;
 }

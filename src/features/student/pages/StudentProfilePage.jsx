@@ -31,6 +31,7 @@ const FALLBACK_UNIVERSITIES = ['Universiteti i Prishtinës', 'Universiteti i Pri
 export function StudentProfilePage({ universityUseCases }) {
   useDocumentTitle('Profili im');
   const user = getDemoUser();
+  const pendingVerification = user?.profile?.approved === false;
   const [profile, setProfile] = useState(() => readStudentProfile(user));
   const universityOptions = useUniversityOptions(universityUseCases, FALLBACK_UNIVERSITIES, profile.university);
   const originalProfile = useRef(profile);
@@ -97,6 +98,7 @@ export function StudentProfilePage({ universityUseCases }) {
   const name = [profile.firstName, profile.lastName].filter(Boolean).join(' ') || 'Profili yt';
 
   return <StudentWorkspace title="Profili im" subtitle="Përditësimi i profilit">
+    {pendingVerification && <section role="status" className="mb-6 rounded-2xl border border-amber-200/25 bg-amber-200/10 p-5 text-cream"><p className="text-sm font-semibold tracking-wide text-amber-100">Llogaria në pritje të verifikimit</p><p className="mt-2 max-w-2xl text-sm leading-6 text-cream/70">Universiteti duhet të konfirmojë statusin tënd si student. Paneli dhe aplikimet do të hapen pasi të aprovohet llogaria.</p></section>}
     <div className="flex flex-wrap items-end justify-between gap-4"><div><p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Të dhënat e tua</p><h2 className="mt-2 font-display text-4xl text-cream">Profili im</h2><p className="mt-2 text-cream/65">Mbaji të përditësuara të dhënat që kompanitë të të njohin më mirë.</p>{saved && <p role="status" className="mt-2 text-sm font-medium text-cream">Ndryshimet u ruajtën me sukses.</p>}</div><div className="flex flex-wrap gap-2">{isEditing && <button type="button" onClick={cancelEdit} className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-cream/25 px-4 py-2.5 font-semibold text-cream hover:bg-cream/10">Anulo</button>}{isEditing ? hasChanges && <button type="submit" form="student-profile-form" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-cream px-4 py-2.5 font-semibold text-charcoal hover:bg-cream/90"><Save aria-hidden="true" className="size-4" />Ruaj ndryshimet</button> : <button type="button" onClick={() => { setIsEditing(true); setSaved(false); }} className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-cream px-4 py-2.5 font-semibold text-charcoal hover:bg-cream/90"><Pencil aria-hidden="true" className="size-4" />Ndrysho profilin</button>}</div></div>
     <div className="mt-6">
       <form id="student-profile-form" onSubmit={save} className="min-w-0 space-y-5">

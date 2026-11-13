@@ -38,7 +38,7 @@ const GRADUATION_YEARS = ['2026', '2027', '2028', '2029', '2030', '2031', '2032'
 const UNIVERSITIES = ['Universiteti i Prishtinës', 'Universiteti i Prizrenit', 'Universiteti i Gjilanit', 'UBT', 'RIT Kosovo', 'Tjetër'];
 const COMPANY_SIZES = ['1-10', '11-50', '51-200', '201-500', '500+'];
 const inputClasses =
-  'mt-1.5 min-h-12 w-full rounded-xl border border-cream/25 bg-charcoal/35 px-3 text-base text-cream outline-none transition-colors placeholder:text-cream/35 focus:border-cream/80 focus:ring-2 focus:ring-cream/10 aria-invalid:border-2 aria-invalid:border-cream';
+  'mt-1.5 min-h-12 w-full rounded-2xl border border-cream/25 bg-charcoal/35 px-4 text-base text-cream outline-none transition-colors placeholder:text-cream/35 focus:border-cream/80 focus:ring-2 focus:ring-cream/10 aria-invalid:border-2 aria-invalid:border-cream';
 
 const roleFields = {
   student: [
@@ -102,6 +102,11 @@ const UNIVERSITY_GROUPS = [
     fields: ['representativeName', 'representativeTitle', 'email', 'phone', 'password'],
     wide: ['password'],
   },
+];
+
+const COMPANY_GROUPS = [
+  { title: 'Të dhënat e kompanisë', description: 'Informacioni bazë i organizatës.', fields: ['name', 'email', 'website', 'industry', 'size', 'country', 'city', 'address'] },
+  { title: 'Siguria e llogarisë', description: 'Krijo fjalëkalimin për hyrje.', fields: ['password'] },
 ];
 
 function validate(fields, values) {
@@ -188,6 +193,8 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
         }
       : Object.fromEntries(Object.entries(values).filter(([key]) => key !== 'password'));
 
+    if (role === 'student') profile.approved = false;
+
     if (chosenUniversity) {
       profile.universityId = chosenUniversity.id;
       profile.approved = emailCheck === RepresentativeEmailCheck.MATCH;
@@ -225,7 +232,7 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
       <div key={field.name} className={field.fullWidth ? 'md:col-span-2' : ''}>
         <label htmlFor={fieldId} className="text-sm font-semibold">{field.label}{field.optional && <span className="ml-1 font-normal text-cream/55">(opsionale)</span>}</label>
         {field.type === 'file' ? (
-          <div className="mt-1.5 rounded-xl border border-dashed border-cream/30 bg-charcoal/20 p-3">
+          <div className="mt-1.5 rounded-2xl border border-dashed border-cream/30 bg-charcoal/20 p-3">
             <input key={values[field.name] ? field.name : `${field.name}-empty`} id={fieldId} name={field.name} type="file" accept={field.accept} onChange={update(field.name)} className="block w-full text-sm text-cream/70 file:mr-3 file:rounded-lg file:border-0 file:bg-cream file:px-3 file:py-2 file:font-semibold file:text-charcoal hover:file:bg-cream/85" aria-invalid={Boolean(errors[field.name])} aria-describedby={describedBy} />
             {values[field.name] && <p className="mt-2 flex items-center justify-between gap-3 text-sm"><span className="truncate">{values[field.name]}</span><button type="button" onClick={() => setValues((current) => ({ ...current, [field.name]: '' }))} className="shrink-0 font-semibold text-cream underline underline-offset-2">Hiqe</button></p>}
           </div>
@@ -235,7 +242,7 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
             {field.options.map((option) => <option key={option} value={option} className="bg-charcoal">{option}</option>)}
           </select>
         ) : field.name === 'password' ? (
-          <div className="mt-1.5 flex min-h-12 items-center border border-cream/30 bg-charcoal/30 transition-colors focus-within:border-cream">
+          <div className="mt-1.5 flex min-h-12 items-center rounded-2xl border border-cream/30 bg-charcoal/30 transition-colors focus-within:border-cream focus-within:ring-2 focus-within:ring-cream/10">
             <input id={fieldId} name={field.name} type={showPassword ? 'text' : 'password'} autoComplete={field.autoComplete} value={values[field.name] ?? ''} onChange={update(field.name)} className="min-w-0 flex-1 bg-transparent px-3 py-3 outline-none" aria-invalid={Boolean(errors[field.name])} aria-describedby={describedBy} />
             <button type="button" onClick={() => setShowPassword((visible) => !visible)} className="grid size-12 shrink-0 place-items-center text-cream/75 hover:text-cream" aria-label={showPassword ? 'Fshih fjalëkalimin' : 'Shfaq fjalëkalimin'}>{showPassword ? <EyeOff aria-hidden="true" className="size-5" /> : <Eye aria-hidden="true" className="size-5" />}</button>
           </div>
@@ -252,30 +259,28 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
 
   return (
     <Container className="pt-8 pb-16 lg:pt-10 lg:pb-24">
-      <section className={`mx-auto border border-cream/20 p-6 text-cream shadow-2xl sm:p-10 ${role === 'student' ? 'max-w-5xl rounded-3xl bg-charcoal' : `max-w-3xl ${selectedRole.colorClass}`}`}>
+      <section className={`mx-auto max-w-5xl rounded-[2rem] border border-cream/20 p-6 text-cream shadow-2xl shadow-black/20 sm:p-10 ${role === 'student' ? 'bg-charcoal' : selectedRole.colorClass}`}>
         <div className="flex items-center gap-4">
           <span className="grid size-14 place-items-center rounded-2xl bg-cream text-charcoal shadow-lg shadow-black/10">
             {role === 'student' ? <GraduationCap aria-hidden="true" className="size-7" strokeWidth={1.5} /> : <Icon aria-hidden="true" className="size-7" strokeWidth={1.5} />}
           </span>
           <div>
-            <p className="text-sm font-semibold tracking-[0.16em] text-cream/70 uppercase">{role === 'student' ? 'Nis rrugëtimin profesional' : 'Krijo llogari'}</p>
+            <p className="text-sm font-semibold tracking-[0.16em] text-cream/70 uppercase">Krijo llogari</p>
             <h1 className="font-display text-3xl font-medium">{role === 'student' ? 'Regjistrohu si student' : selectedRole.title}</h1>
           </div>
         </div>
 
-        {role === 'student' && <p className="mt-5 max-w-2xl text-sm leading-6 text-cream/70">Plotëso të dhënat që profili yt të jetë gati për mundësi praktike. Aftësitë dhe gjuhët mund t’i shtosh edhe më vonë.</p>}
         <form className="mt-8" onSubmit={handleSubmit} noValidate>
           {role === 'student' && <div className="mb-6 space-y-5">
-            {STUDENT_GROUPS.map((group, index) => {
-              const GroupIcon = group.icon;
-              return <section key={group.title} className="rounded-2xl border border-cream/15 bg-white/[0.035] p-5 sm:p-6">
-                <div className="mb-5 flex items-start gap-3"><span className="grid size-10 shrink-0 place-items-center rounded-xl bg-cream/10 text-cream"><GroupIcon className="size-5" aria-hidden="true" /></span><div><div className="flex items-center gap-2"><span className="text-xs font-bold tracking-widest text-cream/50">0{index + 1}</span><h2 className="text-lg font-semibold">{group.title}</h2></div><p className="mt-1 text-sm text-cream/60">{group.description}</p></div></div>
+            {STUDENT_GROUPS.map((group) => {
+              return <section key={group.title} className="rounded-3xl border border-cream/15 bg-white/[0.035] p-5 sm:p-6">
+                <div className="mb-5"><h2 className="text-lg font-semibold">{group.title}</h2><p className="mt-1 text-sm text-cream/60">{group.description}</p></div>
                 <div className="grid grid-cols-1 gap-x-5 gap-y-4 md:grid-cols-2">{group.fields.map((name) => renderField(fields.find((field) => field.name === name)))}</div>
               </section>;
             })}
           </div>}
-          {role !== 'student' && (role === 'universitet' ? UNIVERSITY_GROUPS : [{ fields: fields.map((field) => field.name) }]).map((group) => (
-          <section key={group.title ?? 'fushat'} className={group.title ? 'mb-5 rounded-2xl border border-cream/15 bg-white/[0.035] p-5 sm:p-6' : ''}>
+          {role !== 'student' && (role === 'universitet' ? UNIVERSITY_GROUPS : COMPANY_GROUPS).map((group) => (
+          <section key={group.title ?? 'fushat'} className={group.title ? 'mb-5 rounded-3xl border border-cream/15 bg-white/[0.035] p-5 sm:p-6' : ''}>
             {group.title && (
               <div className="mb-5">
                 <h2 className="text-lg font-semibold">{group.title}</h2>
@@ -303,7 +308,7 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
                       {field.options.map((option) => <option key={option} value={option} className="bg-charcoal">{option}</option>)}
                     </select>
                   ) : field.name === 'password' ? (
-                    <div className="mt-1.5 flex min-h-12 items-center border border-cream/40 bg-charcoal/25 focus-within:border-cream">
+                    <div className="mt-1.5 flex min-h-12 items-center rounded-2xl border border-cream/40 bg-charcoal/25 transition focus-within:border-cream focus-within:ring-2 focus-within:ring-cream/10">
                       <input
                         id={fieldId}
                         name={field.name}
@@ -362,7 +367,7 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
           </section>
           ))}
           {submitError && <p role="alert" className="mt-4 text-sm font-semibold">{submitError}</p>}
-          <button type="submit" className="mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-cream px-6 py-3 font-semibold text-charcoal transition-colors hover:bg-cream/85">
+          <button type="submit" className="mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-cream px-6 py-3 font-semibold text-charcoal shadow-lg shadow-black/15 transition hover:-translate-y-0.5 hover:bg-cream/85">
             Regjistrohu {role === 'student' && <ArrowUpRight aria-hidden="true" className="size-4" />}
           </button>
         </form>

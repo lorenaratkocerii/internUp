@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { authLinks, navLinks } from '../content';
-import { getDemoUser, logoutDemoUser } from '../../login/demoAuth';
+import { getDemoUser } from '../../login/demoAuth';
 import { ButtonLink } from './ui/Button';
 import { Container } from './ui/Container';
 import { Logo } from './ui/Logo';
@@ -15,16 +15,12 @@ export function Navbar() {
   const [user, setUser] = useState(() => getDemoUser());
   const toggleRef = useRef(null);
   const { pathname } = useLocation();
-  const navigate = useNavigate();
 
   const currentProps = (href, exact = href === '/') =>
     (exact ? pathname === href : pathname === href || pathname.startsWith(`${href}/`)) ? { 'aria-current': 'page' } : {};
 
   const roleLinks = {
-    student: [
-      { href: '/student', label: 'Paneli', exact: true },
-      { href: '/student/applications', label: 'Aplikimet' },
-    ],
+    student: [],
     kompani: [{ href: '/kompani', label: 'Paneli' }],
     universitet: [{ href: '/universitet', label: 'Paneli' }],
   }[user?.role] ?? [];
@@ -58,12 +54,6 @@ export function Navbar() {
   }, [isOpen]);
 
   const close = () => setIsOpen(false);
-  const handleLogout = () => {
-    logoutDemoUser();
-    close();
-    navigate('/');
-  };
-
   return (
     <header className="sticky top-0 z-50 border-b border-cream/10 bg-charcoal/90 backdrop-blur-md">
       <Container className="flex h-18 items-center justify-between gap-6">
@@ -92,7 +82,6 @@ export function Navbar() {
           {user ? (
             <>
               <span className="text-sm text-cream/80">{user.title}</span>
-              <button type="button" onClick={handleLogout} className={linkClasses}>Dil</button>
               {profileLink && <Link to={profileLink.href} className={linkClasses} {...currentProps(profileLink.href)}>{profileLink.label}</Link>}
             </>
           ) : (
@@ -142,7 +131,6 @@ export function Navbar() {
             <div className="mt-4 grid grid-cols-2 gap-3">
               {user ? (
                 <>
-                  <button type="button" onClick={handleLogout} className="min-h-11 border border-cream/40 px-4 py-2 text-cream">Dil</button>
                   {profileLink && <Link to={profileLink.href} onClick={close} className="min-h-11 border border-cream/40 px-4 py-2 text-center text-cream">{profileLink.label}</Link>}
                 </>
               ) : (

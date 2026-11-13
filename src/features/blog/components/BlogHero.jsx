@@ -1,12 +1,10 @@
-import { ArrowDown, GraduationCap, PenLine, Quote } from 'lucide-react';
+import { ArrowDown, PenLine, Quote } from 'lucide-react';
 import { ButtonLink } from '../../home/components/ui/Button';
 import { Container } from '../../home/components/ui/Container';
 
 export const SHARE_STORY_PATH = '/blog/shkruaj';
 
 export function BlogHero({ stats, viewer, highlight }) {
-  const isStudent = viewer.role === 'student';
-
   return (
     <section aria-labelledby="blog-titull" className="relative isolate overflow-hidden border-b border-cream/10">
       <div
@@ -38,11 +36,6 @@ export function BlogHero({ stats, viewer, highlight }) {
               Eksploro historitë
             </ButtonLink>
           </div>
-          <p className="mt-4 inline-flex items-center gap-2 text-sm text-cream/60">
-            <GraduationCap aria-hidden="true" className="size-4" />
-            {isStudent ? 'Je kyçur si student — mund të publikosh historinë tënde.' : 'Publikimi është i hapur vetëm për studentët e kyçur.'}
-          </p>
-
           <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-cream/15 pt-6">
             {stats.map((stat) => (
               <div key={stat.label}>

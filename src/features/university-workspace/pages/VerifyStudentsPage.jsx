@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BadgeCheck, CircleAlert, CircleCheck, Hash, Mail, ShieldCheck } from 'lucide-react';
 import { isPendingRepresentative } from '../../../domain/auth/accessControl';
 import { VerificationStatus } from '../../../domain/university/studentVerification';
+import { setStudentApproval } from '../../login/demoAuth';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { Flash, WorkspaceError, WorkspaceLoading } from '../../company-workspace/components/WorkspaceStatus';
 import { formatDay } from '../../company-workspace/utils/format';
@@ -184,6 +185,9 @@ export function VerifyStudentsPage({ useCases }) {
     setDialogError('');
     try {
       const updated = await useCases.decide(actor, pending.request.id, { status: pending.status, note });
+      if (updated.status === VerificationStatus.VERIFIED || updated.status === VerificationStatus.REJECTED) {
+        setStudentApproval(updated.student.email, updated.status === VerificationStatus.VERIFIED);
+      }
       await reload();
       setFlash({
         message:
