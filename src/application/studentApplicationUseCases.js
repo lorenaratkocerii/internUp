@@ -5,6 +5,7 @@ import {
   createCandidateApplication,
 } from '../domain/internship/candidateApplication';
 import { acceptsApplications } from '../domain/internship/applicationStatus';
+import { VerificationStatus } from '../domain/university/studentVerification';
 import { asCandidateApplicationRepository } from './ports/CandidateApplicationRepository';
 import { asCompanyRepository } from './ports/CompanyRepository';
 import { asInternshipRepository } from './ports/InternshipRepository';
@@ -13,6 +14,7 @@ export function createStudentApplicationUseCases({
   internshipRepository,
   companyRepository,
   candidateApplicationRepository,
+  studentVerificationRepository = null,
   now = () => new Date(),
 }) {
   const internships = asInternshipRepository(internshipRepository);
@@ -27,6 +29,12 @@ export function createStudentApplicationUseCases({
 
     applyToInternship: async (actor, { internshipId, cv, coverLetter, message, student = {} }) => {
       assertCan(actor, Permission.APPLY_TO_INTERNSHIPS);
+      if (studentVerificationRepository) {
+        const [latest] = await studentVerificationRepository.findByStudent(actor.email);
+        if (latest?.status !== VerificationStatus.VERIFIED) {
+          throw new CandidateApplicationError('Duhet të verifikohesh si student para se të aplikosh.');
+        }
+      }
       const internship = await internships.findById(internshipId);
       if (!internship) throw new CandidateApplicationError('Kjo pozitë nuk ekziston më.');
       if (!acceptsApplications(internship, now())) {

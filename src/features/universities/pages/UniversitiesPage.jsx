@@ -7,7 +7,7 @@ import { ButtonLink } from '../../home/components/ui/Button';
 import { Container } from '../../home/components/ui/Container';
 import { StatusMessage } from '../../home/components/ui/StatusMessage';
 import { useAsyncData } from '../../home/hooks/useAsyncData';
-import { CampusStrip } from '../components/CampusStrip';
+import { LogoWall } from '../components/LogoWall';
 import { UniversityCard } from '../components/UniversityCard';
 
 const NO_UNIVERSITIES = [];
@@ -26,7 +26,7 @@ const GROUPS = [
 const VERIFICATION_TEXT =
   'Studenti zgjedh universitetin nga paneli i vet dhe shkruan numrin e indeksit dhe email-in universitar. ' +
   'Përfaqësuesi i universitetit i kontrollon në regjistër dhe e pranon ose e refuzon kërkesën. ' +
-  'Pasi pranohet, studenti del në faqen e universitetit.';
+  'Faqja e universitetit tregon vetëm sa studentë janë verifikuar; emrat i sheh vetëm përfaqësuesi.';
 
 const fieldClasses =
   'min-h-12 w-full rounded-xl border border-cream/30 bg-charcoal px-4 text-base text-cream transition-colors duration-200 hover:border-cream/60';
@@ -66,7 +66,7 @@ function Toolbar({ filters, update, reset, hasActiveFilters, cities }) {
           type="search"
           value={filters.query}
           onChange={(event) => update('query', event.target.value)}
-          placeholder="Kërko me emër, p.sh. UBT ose Hasan Prishtina"
+          placeholder="Kërko universitet, p.sh. UBT"
           autoComplete="off"
           className={`${fieldClasses} pl-9 placeholder:text-cream/50`}
         />
@@ -122,18 +122,26 @@ export function UniversitiesPage({ useCases }) {
 
   return (
     <>
-      <header className="border-b border-cream/10 pt-12 pb-10 lg:pt-16 lg:pb-14">
+      <header className="relative isolate overflow-hidden border-b border-cream/10 py-12 lg:py-16">
+        <img
+          src="/images/universities/BannerperUniversitet.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 size-full object-cover object-[50%_35%] opacity-35 grayscale"
+        />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-b from-charcoal/40 via-charcoal/60 via-40% to-charcoal" />
+
         <Container>
-          <h1 className="mx-auto max-w-3xl text-center font-display text-3xl leading-[1.08] font-medium tracking-tight sm:text-5xl">
+          <h1 className="mx-auto max-w-3xl text-center font-hero text-4xl leading-[1] font-bold tracking-tight sm:text-6xl">
             Universitetet dhe kolegjet e Kosovës në InternUp.
           </h1>
-        </Container>
 
-        {directory.status !== 'error' && (
-          <div className="mt-10">
-            <CampusStrip universities={universities} loading={!directory.data} />
-          </div>
-        )}
+          {directory.status !== 'error' && (
+            <div className="mx-auto mt-10 max-w-5xl lg:mt-12">
+              <LogoWall universities={universities} loading={!directory.data} />
+            </div>
+          )}
+        </Container>
       </header>
 
       <Container className="py-10 lg:py-14">

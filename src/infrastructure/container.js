@@ -57,6 +57,7 @@ export function createContainer() {
       internshipRepository,
       companyRepository,
       candidateApplicationRepository,
+      studentVerificationRepository,
     }),
     universityUseCases: createUniversityUseCases({
       universityRepository,

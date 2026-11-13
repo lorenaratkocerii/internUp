@@ -84,8 +84,10 @@ export const RepresentativeEmailCheck = Object.freeze({
   UNKNOWN: 'unknown',
 });
 
+const isStudentDomain = (domain) => domain.startsWith('student.');
+
 export const staffDomains = (university) =>
-  university.emailDomains.filter((domain) => !domain.startsWith('student.'));
+  university.emailDomains.some(isStudentDomain) ? university.emailDomains.filter((domain) => !isStudentDomain(domain)) : [];
 
 export function checkRepresentativeEmail(university, email) {
   const domains = staffDomains(university);

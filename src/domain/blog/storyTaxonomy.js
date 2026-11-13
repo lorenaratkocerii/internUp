@@ -9,13 +9,13 @@ export const StoryCategory = Object.freeze({
 });
 
 export const STORY_CATEGORIES = Object.freeze([
-  { id: StoryCategory.FIRST_INTERNSHIP, label: 'My First Internship', description: 'Hapi i parë në tregun e punës.' },
-  { id: StoryCategory.DAY_AT_WORK, label: 'A Day at Work', description: 'Si duket një ditë e zakonshme pune.' },
-  { id: StoryCategory.SKILLS_LEARNED, label: 'Skills I Learned', description: 'Aftësitë që i fitova gjatë praktikës.' },
-  { id: StoryCategory.APPLICATION_DIARIES, label: 'Application Diaries', description: 'Nga CV-ja deri te intervista.' },
-  { id: StoryCategory.LESSONS, label: 'Lessons I Wish I Knew', description: 'Gjërat që do t’i doja t’i dija më herët.' },
-  { id: StoryCategory.INTERN_TO_EMPLOYEE, label: 'From Intern to Employee', description: 'Kur praktika kthehet në punë.' },
-  { id: StoryCategory.VS_EXPECTATIONS, label: 'Internship vs Expectations', description: 'Pritjet kundrejt realitetit.' },
+  { id: StoryCategory.FIRST_INTERNSHIP, label: 'Praktika ime e parë', description: 'Hapi i parë në tregun e punës.' },
+  { id: StoryCategory.DAY_AT_WORK, label: 'Një ditë pune', description: 'Si duket një ditë e zakonshme pune.' },
+  { id: StoryCategory.SKILLS_LEARNED, label: 'Aftësitë që mësova', description: 'Aftësitë që i fitova gjatë praktikës.' },
+  { id: StoryCategory.APPLICATION_DIARIES, label: 'Ditari i aplikimeve', description: 'Nga CV-ja deri te intervista.' },
+  { id: StoryCategory.LESSONS, label: 'Mësime që do t’i doja më herët', description: 'Gjërat që do t’i doja t’i dija më herët.' },
+  { id: StoryCategory.INTERN_TO_EMPLOYEE, label: 'Nga praktikant në punonjës', description: 'Kur praktika kthehet në punë.' },
+  { id: StoryCategory.VS_EXPECTATIONS, label: 'Pritjet kundrejt realitetit', description: 'Çfarë prisja dhe çfarë gjeta.' },
 ]);
 
 export const STORY_FIELDS = Object.freeze([

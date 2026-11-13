@@ -14,7 +14,6 @@ export function CareerFieldsPage({ useCases }) {
   return (
     <>
       <section aria-labelledby="fushat-titull" className="relative isolate overflow-hidden border-b border-cream/10">
-        <div aria-hidden="true" className="absolute -top-40 -right-32 -z-10 size-[34rem] rounded-full bg-terracotta/20 blur-3xl" />
         <Container className="py-14 lg:py-20">
           <div className="mx-auto max-w-2xl text-center motion-safe:animate-fade-up">
             <h1

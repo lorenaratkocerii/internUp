@@ -45,7 +45,7 @@ export function FaqPanel() {
         onClick={() => setIsOpen(true)}
         aria-label="Hap pyetjet e shpeshta"
         aria-expanded={isOpen}
-        className="group fixed right-4 bottom-4 z-[55] grid size-14 place-items-center rounded-full bg-terracotta text-cream shadow-xl shadow-charcoal/30 ring-1 ring-cream/20 transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-burgundy sm:right-6 sm:bottom-6"
+        className="group fixed right-4 bottom-4 z-[55] grid size-12 place-items-center bg-terracotta text-cream transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-burgundy sm:right-6 sm:bottom-6"
       >
         <CircleHelp aria-hidden="true" className="size-6 transition-transform duration-300 group-hover:scale-110" />
       </button>

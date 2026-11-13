@@ -7,21 +7,15 @@ export const SHARE_STORY_PATH = '/blog/shkruaj';
 export function BlogHero({ stats, viewer, highlight }) {
   return (
     <section aria-labelledby="blog-titull" className="relative isolate overflow-hidden border-b border-cream/10">
-      <div
-        aria-hidden="true"
-        className="absolute -top-40 -right-32 -z-10 size-[34rem] rounded-full bg-terracotta/20 blur-3xl"
-      />
-      <div aria-hidden="true" className="absolute -bottom-48 -left-40 -z-10 size-[30rem] rounded-full bg-navy/60 blur-3xl" />
 
       <Container className="grid gap-12 py-14 lg:grid-cols-12 lg:gap-14 lg:py-20">
         <div className="motion-safe:animate-fade-up lg:col-span-7">
-          <p className="text-sm font-semibold tracking-[0.18em] text-cream/70 uppercase">Student Blog · InternUp</p>
           <h1
             id="blog-titull"
-            className="mt-6 font-hero text-5xl leading-[1] font-bold tracking-tight text-cream sm:text-6xl xl:text-7xl"
+            className="font-hero text-5xl leading-[1] font-bold tracking-tight text-cream sm:text-6xl xl:text-7xl"
           >
-            Real Stories.
-            <span className="mt-2 block font-normal text-cream/70">Real Experience.</span>
+            Histori të vërteta.
+            <span className="mt-2 block font-normal text-cream/70">Përvojë e vërtetë.</span>
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-cream/75">
             Përvoja të vërteta nga studentët e Kosovës që kanë bërë praktikë — si aplikuan, çfarë mësuan dhe çfarë do
@@ -30,7 +24,7 @@ export function BlogHero({ stats, viewer, highlight }) {
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <ButtonLink href={SHARE_STORY_PATH} icon={PenLine}>
-              Share Your Story
+              Ndaj historinë tënde
             </ButtonLink>
             <ButtonLink href="#eksploro" variant="ghost" icon={ArrowDown}>
               Eksploro historitë

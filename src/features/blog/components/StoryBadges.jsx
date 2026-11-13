@@ -9,7 +9,7 @@ export function VerifiedBadge({ verified, className = '' }) {
         className={`inline-flex items-center gap-1 rounded-full bg-navy px-2.5 py-1 text-xs font-semibold text-cream ${className}`}
       >
         <BadgeCheck aria-hidden="true" className="size-3.5" />
-        Verified Intern
+        Praktikant i verifikuar
       </span>
     );
   }

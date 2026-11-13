@@ -32,7 +32,7 @@ function StoryGridSkeleton() {
 }
 
 export function BlogPage({ useCases }) {
-  useDocumentTitle('Student Blog');
+  useDocumentTitle('Blogu i Studentëve');
   const viewer = useViewer();
 
   const load = useCallback(() => useCases.listStories(), [useCases]);
@@ -77,7 +77,7 @@ export function BlogPage({ useCases }) {
     resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [page]);
 
-  const highlight = featured[0] ?? stories[0];
+  const highlight = stories.find((story) => !featured.some((item) => item.id === story.id)) ?? featured[0] ?? stories[0];
 
   const openCategory = (category) => {
     setCategory(category);
@@ -100,7 +100,7 @@ export function BlogPage({ useCases }) {
             <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
               <SectionHeading
                 id="te-vecanta"
-                eyebrow="Featured Stories"
+                eyebrow="Të zgjedhura"
                 title="Historitë që po lexohen më shumë."
                 description="Të zgjedhura nga ekipi i InternUp për sinqeritetin dhe këshillat praktike."
               />
@@ -114,7 +114,6 @@ export function BlogPage({ useCases }) {
         <Container>
           <SectionHeading
             id="kategorite"
-            eyebrow="Kategoritë"
             title="Gjej historinë që të duhet."
             className="mb-10"
           />
@@ -126,7 +125,6 @@ export function BlogPage({ useCases }) {
         <Container>
           <SectionHeading
             id="eksploro-titull"
-            eyebrow="Explore Stories"
             title={browse.category ? categoryLabel(browse.category) : 'Eksploro të gjitha përvojat.'}
             className="mb-8"
           />
@@ -221,10 +219,6 @@ export function BlogPage({ useCases }) {
       <section aria-labelledby="ndaj-historine" className="pb-20">
         <Container>
           <Reveal className="relative isolate overflow-hidden bg-cream px-6 py-12 text-charcoal sm:px-12 lg:flex lg:items-center lg:justify-between lg:gap-10">
-            <div
-              aria-hidden="true"
-              className="absolute -right-16 -bottom-24 -z-10 size-72 rounded-full bg-terracotta/25 blur-2xl"
-            />
             <div className="max-w-2xl">
               <p className="text-sm font-semibold tracking-[0.18em] text-burgundy uppercase">Vetëm për studentë</p>
               <h2 id="ndaj-historine" className="mt-3 font-display text-3xl leading-tight font-medium sm:text-4xl">
@@ -235,7 +229,7 @@ export function BlogPage({ useCases }) {
               </p>
             </div>
             <ButtonLink href={SHARE_STORY_PATH} variant="charcoal" icon={PenLine} className="mt-7 shrink-0 lg:mt-0">
-              Share Your Story
+              Ndaj historinë tënde
             </ButtonLink>
           </Reveal>
         </Container>

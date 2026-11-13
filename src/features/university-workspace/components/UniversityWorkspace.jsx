@@ -32,16 +32,13 @@ export function UniversityWorkspace({ children, title, university, pendingCount 
           </span>
         )}
         <div className="min-w-0">
-          <p className="truncate text-xs font-semibold tracking-[0.16em] text-cream/55 uppercase">
-            Hapësira e universitetit{university ? ` · ${university.shortName}` : ''}
-          </p>
+          <p className="truncate text-sm text-cream/60">{university ? university.shortName : "Universiteti"}</p>
           <h1 className="font-display text-2xl">{title}</h1>
         </div>
       </div>
       <div className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-8">
         <div className="self-start lg:sticky lg:top-24">
           <aside className="rounded-2xl border border-cream/15 bg-charcoal/50 p-3">
-            <p className="px-3 py-3 text-xs font-semibold tracking-[0.14em] text-cream/45 uppercase">Menuja</p>
             <nav aria-label="Navigimi i universitetit" className="grid grid-cols-2 gap-1 lg:grid-cols-1">
               {links.map(({ to, label, icon: Icon, end }) => (
                 <NavLink
@@ -64,12 +61,6 @@ export function UniversityWorkspace({ children, title, university, pendingCount 
                 </NavLink>
               ))}
             </nav>
-            <div className="mt-4 hidden rounded-xl bg-navy/65 p-4 text-cream lg:block">
-              <p className="text-sm font-semibold">Para se të verifikosh</p>
-              <p className="mt-1 text-xs leading-relaxed text-cream/65">
-                Kontrollo numrin e indeksit në regjistrin e universitetit. Email-i universitar ndihmon, por nuk mjafton vetëm ai.
-              </p>
-            </div>
           </aside>
           <button
             type="button"
@@ -82,9 +73,8 @@ export function UniversityWorkspace({ children, title, university, pendingCount 
         <section className="min-w-0" aria-label={title}>
           {isPendingRepresentative(actor) && (
             <p role="status" className="mb-6 rounded-2xl border border-cream/20 bg-navy/60 px-5 py-4 text-sm leading-relaxed text-cream/85">
-              <span className="font-semibold text-cream">Llogaria jote pret konfirmimin.</span> Email-i yt nuk mund të
-              lidhej automatikisht me universitetin, prandaj InternUp do ta konfirmojë. Deri atëherë mund t'i shohësh
-              kërkesat, por nuk mund të verifikosh studentë apo të ndryshosh profilin.
+              <span className="font-semibold text-cream">Llogaria jote pret konfirmimin.</span> InternUp duhet ta konfirmojë që
+              përfaqëson këtë universitet. Deri atëherë nuk i sheh kërkesat e studentëve dhe nuk mund ta ndryshosh profilin.
             </p>
           )}
           {children}

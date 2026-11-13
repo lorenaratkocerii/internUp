@@ -1,11 +1,9 @@
-const dateFormatter = new Intl.DateTimeFormat('sq-AL', { day: 'numeric', month: 'long', year: 'numeric' });
+const MONTHS = ['janar', 'shkurt', 'mars', 'prill', 'maj', 'qershor', 'korrik', 'gusht', 'shtator', 'tetor', 'nëntor', 'dhjetor'];
 
 export function formatDate(iso) {
-  try {
-    return dateFormatter.format(new Date(iso));
-  } catch {
-    return String(iso).slice(0, 10);
-  }
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return String(iso).slice(0, 10);
+  return `${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 }
 
 export const readingTimeLabel = (minutes) => `${minutes} min lexim`;

@@ -53,16 +53,16 @@ export function CompaniesPage({ useCases }) {
     <>
       <header className="relative isolate overflow-hidden border-b border-cream/10 pt-14 pb-12 lg:pt-20 lg:pb-16">
         <img
-          src="/images/companies/header.jpg"
+          src="/images/companies/kreu-kompanite.jpg"
           alt=""
-          className="absolute inset-0 -z-20 size-full object-cover object-[center_30%]"
+          className="absolute inset-0 -z-20 size-full object-cover object-[center_30%] grayscale"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-charcoal/80"
+          className="absolute inset-0 -z-10 bg-linear-to-r from-charcoal via-charcoal/85 to-charcoal/60"
         />
         <Container className="text-center">
-          <h1 className="mx-auto max-w-3xl font-display text-4xl leading-[1.05] font-medium tracking-tight sm:text-6xl">
+          <h1 className="mx-auto max-w-3xl font-hero text-5xl leading-[1] font-bold tracking-tight sm:text-6xl">
             Gjej kompaninë ku do të fillosh.
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-cream/75">

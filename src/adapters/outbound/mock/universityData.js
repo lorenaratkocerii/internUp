@@ -1,7 +1,7 @@
 import { UniversityType } from '../../../domain/university/University';
 import { VerificationStatus } from '../../../domain/university/studentVerification';
 
-const logo = (file) => `/images/universities/${file}`;
+const logo = (file) => `/images/universities/logos/${file.replace(/\.\w+$/, '')}.png`;
 
 const PHOTOS = {
   up: 'UniversitetiIPrishtinesFoto.jpg',
@@ -311,27 +311,27 @@ const verified = (days) => ({ status: VerificationStatus.VERIFIED, decidedAt: da
 export const verificationRecords = [
   {
     id: 'ver-2001', universityId: 'up', student: { email: 'blend.morina@uni-pr.edu', name: 'Blend Morina' },
-    studentNumber: '170923041', universityEmail: 'blend.morina@uni-pr.edu', faculty: 'Fakulteti i Inxhinierisë Elektrike dhe Kompjuterike',
+    studentNumber: '170923041', universityEmail: 'blend.morina@student.uni-pr.edu', faculty: 'Fakulteti i Inxhinierisë Elektrike dhe Kompjuterike',
     program: 'Inxhinieri Kompjuterike', studyYear: 'Viti i katërt', submittedAt: daysAgo(64), ...verified(61),
   },
   {
     id: 'ver-2002', universityId: 'up', student: { email: 'vesa.bytyqi@uni-pr.edu', name: 'Vesa Bytyqi' },
-    studentNumber: '200411208', universityEmail: 'vesa.bytyqi@uni-pr.edu', faculty: 'Fakulteti i Shkencave Matematike-Natyrore',
+    studentNumber: '200411208', universityEmail: 'vesa.bytyqi@student.uni-pr.edu', faculty: 'Fakulteti i Shkencave Matematike-Natyrore',
     program: 'Matematikë dhe Informatikë', studyYear: 'Viti i tretë', submittedAt: daysAgo(40), ...verified(38),
   },
   {
     id: 'ver-2003', universityId: 'up', student: { email: 'albulena.mustafa@uni-pr.edu', name: 'Albulena Mustafa' },
-    studentNumber: '190307115', universityEmail: 'albulena.mustafa@uni-pr.edu', faculty: 'Fakulteti Ekonomik',
+    studentNumber: '190307115', universityEmail: 'albulena.mustafa@student.uni-pr.edu', faculty: 'Fakulteti Ekonomik',
     program: 'Banka dhe Financa', studyYear: 'Master', submittedAt: daysAgo(29), ...verified(27),
   },
   {
     id: 'ver-2004', universityId: 'up', student: { email: 'arton.krasniqi@uni-pr.edu', name: 'Arton Krasniqi' },
-    studentNumber: '210923077', universityEmail: 'arton.krasniqi@uni-pr.edu', faculty: 'Fakulteti i Inxhinierisë Elektrike dhe Kompjuterike',
+    studentNumber: '210923077', universityEmail: 'arton.krasniqi@student.uni-pr.edu', faculty: 'Fakulteti i Inxhinierisë Elektrike dhe Kompjuterike',
     program: 'Inxhinieri Kompjuterike', studyYear: 'Viti i dytë', submittedAt: daysAgo(15), ...verified(14),
   },
   {
     id: 'ver-2005', universityId: 'up', student: { email: 'drita.hoxha@uni-pr.edu', name: 'Drita Hoxha' },
-    studentNumber: '220518019', universityEmail: 'drita.hoxha@uni-pr.edu', faculty: 'Fakulteti i Inxhinierisë Mekanike',
+    studentNumber: '220518019', universityEmail: 'drita.hoxha@student.uni-pr.edu', faculty: 'Fakulteti i Inxhinierisë Mekanike',
     program: 'Mekatronikë', studyYear: 'Viti i dytë', submittedAt: daysAgo(2),
   },
   {
@@ -341,7 +341,7 @@ export const verificationRecords = [
   },
   {
     id: 'ver-2007', universityId: 'up', student: { email: 'njomza.ahmeti@uni-pr.edu', name: 'Njomza Ahmeti' },
-    studentNumber: '210201054', universityEmail: 'njomza.ahmeti@uni-pr.edu', faculty: 'Fakulteti Juridik',
+    studentNumber: '210201054', universityEmail: 'njomza.ahmeti@student.uni-pr.edu', faculty: 'Fakulteti Juridik',
     program: 'Juridik i Përgjithshëm', studyYear: 'Viti i tretë', submittedAt: daysAgo(4),
   },
   {

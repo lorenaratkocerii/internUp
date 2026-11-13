@@ -45,7 +45,7 @@ export function LoginRolePage() {
     }
     const user = loginWithDemoAccount(role, email, password);
     if (!user) {
-      setErrors({ form: 'Emaili ose fjalekalimi nuk eshte i sakte per kete lloj llogarie.' });
+      setErrors({ form: 'Emaili ose fjalëkalimi nuk është i saktë për këtë lloj llogarie.' });
       return;
     }
     setErrors({});
@@ -54,8 +54,8 @@ export function LoginRolePage() {
   };
 
   return (
-    <Container className="pt-8 pb-16 lg:pt-10 lg:pb-24">
-      <div className={`mx-auto max-w-lg rounded-3xl border border-cream/20 p-7 shadow-2xl shadow-black/20 sm:p-10 ${selectedRole.colorClass}`}>
+    <Container className="grid min-h-[calc(100svh-4.5rem)] place-items-center py-12 lg:py-16">
+      <div className={`w-full max-w-lg border border-cream/20 p-7 sm:p-10 ${selectedRole.colorClass}`}>
         <div className="flex items-center gap-4">
           <span className={`grid size-14 place-items-center text-cream ${selectedRole.colorClass}`}>
             <Icon aria-hidden="true" className="size-7" strokeWidth={1.5} />
@@ -69,7 +69,7 @@ export function LoginRolePage() {
         <form className="mt-9 space-y-5" onSubmit={handleSubmit} noValidate>
           <label className="block">
             <span className="mb-2 block font-semibold">Email</span>
-            <span className="flex items-center rounded-2xl border border-cream/35 bg-charcoal/35 shadow-inner transition focus-within:border-cream focus-within:ring-2 focus-within:ring-cream/15">
+            <span className="flex items-center rounded-2xl border border-cream/35 bg-charcoal/35 transition focus-within:border-cream focus-within:ring-2 focus-within:ring-cream/15">
               <Mail aria-hidden="true" className="ml-4 size-5 text-cream/70" />
               <input className="min-w-0 flex-1 bg-transparent px-3 py-3.5 outline-none placeholder:text-cream/45" type="email" name="email" autoComplete="email" placeholder="example@email.com" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? 'hyr-email-gabim' : undefined} />
             </span>
@@ -77,7 +77,7 @@ export function LoginRolePage() {
           </label>
           <label className="block">
             <span className="mb-2 block font-semibold">Fjalëkalimi</span>
-            <span className="flex items-center rounded-2xl border border-cream/35 bg-charcoal/35 shadow-inner transition focus-within:border-cream focus-within:ring-2 focus-within:ring-cream/15">
+            <span className="flex items-center rounded-2xl border border-cream/35 bg-charcoal/35 transition focus-within:border-cream focus-within:ring-2 focus-within:ring-cream/15">
               <LockKeyhole aria-hidden="true" className="ml-4 size-5 text-cream/70" />
               <input className="min-w-0 flex-1 bg-transparent px-3 py-3.5 outline-none placeholder:text-cream/45" type={showPassword ? 'text' : 'password'} name="password" autoComplete="current-password" placeholder="Shkruani fjalëkalimin" aria-invalid={Boolean(errors.password)} aria-describedby={errors.password ? 'hyr-password-gabim' : undefined} />
               <button type="button" onClick={() => setShowPassword((visible) => !visible)} className="grid size-12 place-items-center text-cream/75 hover:text-cream" aria-label={showPassword ? 'Fshih fjalëkalimin' : 'Shfaq fjalëkalimin'}>
@@ -87,7 +87,7 @@ export function LoginRolePage() {
             {errors.password && <span id="hyr-password-gabim" role="alert" className="mt-2 block text-sm font-semibold text-cream">{errors.password}</span>}
           </label>
           {errors.form && <p role="alert" className="text-sm font-semibold text-cream">{errors.form}</p>}
-          <button type="submit" className="min-h-12 w-full rounded-2xl bg-cream px-6 py-3 font-semibold text-charcoal shadow-lg shadow-black/15 transition hover:-translate-y-0.5 hover:bg-cream/85">
+          <button type="submit" className="min-h-12 w-full rounded-2xl bg-cream px-6 py-3 font-semibold text-charcoal transition-colors duration-300 hover:bg-cream/85">
             Kyçu
           </button>
         </form>

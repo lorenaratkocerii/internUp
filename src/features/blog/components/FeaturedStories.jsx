@@ -83,7 +83,7 @@ export function FeaturedStories({ stories }) {
         <Reveal delay={360} className="border-l-2 border-terracotta pl-5">
           <p className="text-sm font-semibold tracking-[0.14em] text-cream/60 uppercase">Pse lexojnë studentët</p>
           <p className="mt-2 text-cream/80">
-            Çdo histori me shenjën <span className="font-semibold text-cream">Verified Intern</span> është shkruar nga një
+            Çdo histori me shenjën <span className="font-semibold text-cream">Praktikant i verifikuar</span> është shkruar nga një
             student praktika e të cilit është konfirmuar nga kompania.
           </p>
         </Reveal>

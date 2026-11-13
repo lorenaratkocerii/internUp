@@ -174,8 +174,8 @@ export function UniversityVerificationCard({ useCases, actor, profile }) {
             </div>
           ) : (
             <p className="mt-1 max-w-2xl text-sm text-charcoal/65">
-              Universiteti yt konfirmon që studion aty. Pas verifikimit shfaqesh në faqen e universitetit dhe kompanitë e dinë që
-              profili yt është i vërtetë.
+              Universiteti yt konfirmon që studion aty. Kompanitë e shohin që je i verifikuar kur aplikon; emri yt nuk del në
+              faqen publike të universitetit.
             </p>
           )}
           {verification && !retrying ? (

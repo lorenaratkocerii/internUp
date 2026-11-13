@@ -1,12 +1,10 @@
-import { ArrowUpRight } from 'lucide-react';
 import { useCallback } from 'react';
 import { Link } from 'react-router';
 import { categoryLabel } from '../../../domain/blog/storyTaxonomy';
 import { useAsyncData } from '../hooks/useAsyncData';
-import { ButtonLink } from './ui/Button';
 import { Container } from './ui/Container';
 import { Reveal } from './ui/Reveal';
-import { SectionHeading } from './ui/SectionHeading';
+import { TextLink } from './ui/TextLink';
 
 const NO_STORIES = [];
 const STORIES_ON_HOME = 3;
@@ -19,44 +17,37 @@ export function StudentExperiences({ useCases }) {
   if (!featured.length) return null;
 
   return (
-    <section id="eksperiencat-e-studenteve" aria-labelledby="eksperiencat-titull" className="py-20 lg:py-28">
+    <section id="eksperiencat-e-studenteve" aria-labelledby="eksperiencat-titull" className="bg-navy py-20 lg:py-28">
       <Container>
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+          <h2
             id="eksperiencat-titull"
-            eyebrow="Student Blog"
-            title="Eksperiencat e studentëve."
-          />
-          <ButtonLink href="/blog" variant="ghost" icon={ArrowUpRight}>
-            Të gjitha eksperiencat
-          </ButtonLink>
+            className="font-display text-4xl leading-[1.08] font-medium tracking-tight text-cream sm:text-5xl"
+          >
+            Eksperiencat e studentëve.
+          </h2>
+          <TextLink href="/blog">Lexo të gjitha në blog</TextLink>
         </div>
 
-        <ul className="mt-14 grid gap-px bg-cream/15 p-px md:grid-cols-3">
+        <ol className="mt-12 border-t border-cream/20">
           {featured.map((story, index) => (
-            <Reveal as="li" key={story.id} delay={index * 60} className="bg-charcoal">
-              <Link
-                to={`/blog/${story.id}`}
-                className="group flex h-full min-h-64 flex-col p-6 transition-colors duration-300 hover:bg-navy"
-              >
-                <span className="text-xs font-semibold tracking-[0.14em] text-cream/55 uppercase">
-                  {categoryLabel(story.category)}
-                </span>
-                <h3 className="mt-4 font-display text-2xl leading-tight font-medium transition-colors group-hover:text-cream">
-                  {story.title}
-                </h3>
-                <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-cream/70">{story.excerpt}</p>
-                <div className="mt-auto flex items-end justify-between gap-4 pt-6">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold">{story.author.name}</p>
-                    <p className="mt-1 truncate text-xs text-cream/55">{story.author.university || 'Student InternUp'}</p>
-                  </div>
-                  <ArrowUpRight aria-hidden="true" className="size-5 shrink-0 text-cream/60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cream" />
+            <Reveal as="li" key={story.id} delay={index * 60} className="border-b border-cream/20">
+              <Link to={`/blog/${story.id}`} className="group grid gap-x-10 gap-y-3 py-8 lg:grid-cols-12 lg:py-10">
+                <div className="text-sm lg:col-span-3">
+                  <p className="font-semibold">{story.author.name}</p>
+                  <p className="mt-1 text-cream/65">{story.author.university || 'Student në InternUp'}</p>
+                </div>
+                <div className="lg:col-span-9">
+                  <h3 className="max-w-3xl font-display text-2xl leading-tight font-medium decoration-cream/40 decoration-1 underline-offset-[6px] group-hover:underline sm:text-3xl">
+                    {story.title}
+                  </h3>
+                  <p className="mt-3 line-clamp-2 max-w-2xl leading-relaxed text-cream/75">{story.excerpt}</p>
+                  <p className="mt-4 text-sm text-cream/60">{categoryLabel(story.category)}</p>
                 </div>
               </Link>
             </Reveal>
           ))}
-        </ul>
+        </ol>
       </Container>
     </section>
   );

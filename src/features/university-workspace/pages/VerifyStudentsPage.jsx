@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BadgeCheck, CircleAlert, CircleCheck, Hash, Mail, ShieldCheck } from 'lucide-react';
+import { CircleAlert, CircleCheck } from 'lucide-react';
 import { isPendingRepresentative } from '../../../domain/auth/accessControl';
 import { VerificationStatus } from '../../../domain/university/studentVerification';
 import { setStudentApproval } from '../../login/demoAuth';
@@ -21,7 +21,7 @@ const DIALOGS = {
   verify: (request) => ({
     status: VerificationStatus.VERIFIED,
     title: `Ta verifikosh ${request.student.name}?`,
-    description: `Duke verifikuar, konfirmon që ${request.student.name} studion "${request.program}" me indeksin ${request.studentNumber}. Studenti do të shfaqet në listën publike të universitetit.`,
+    description: `Konfirmon që ${request.student.name} studion "${request.program}" me indeksin ${request.studentNumber}. Kompanitë do ta shohin si student të verifikuar.`,
     confirmLabel: 'Po, verifiko',
     tone: 'success',
   }),
@@ -36,28 +36,26 @@ const DIALOGS = {
   revoke: (request) => ({
     status: VerificationStatus.REJECTED,
     title: `Ta heqësh verifikimin e ${request.student.name}?`,
-    description: 'Studenti do të hiqet nga lista publike e universitetit.',
+    revokes: true,
+    description: 'Kompanitë nuk do ta shohin më si student të verifikuar dhe llogaria e tij kufizohet derisa të verifikohet sërish.',
     confirmLabel: 'Hiq verifikimin',
     tone: 'danger',
     needsNote: true,
   }),
 };
 
-function Detail({ icon: Icon, label, children }) {
+function Detail({ label, children }) {
   return (
-    <div className="flex items-start gap-2">
-      <Icon aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-charcoal/50" />
-      <div className="min-w-0">
-        <p className="text-xs text-charcoal/55">{label}</p>
-        <p className="text-sm font-medium break-words">{children}</p>
-      </div>
+    <div className="min-w-0">
+      <dt className="text-xs text-charcoal/55">{label}</dt>
+      <dd className="text-sm font-medium break-words">{children}</dd>
     </div>
   );
 }
 
 function RequestCard({ request, onAction, readOnly }) {
   return (
-    <article className="rounded-2xl border border-cream/15 bg-cream p-5 text-charcoal shadow-lg sm:p-6">
+    <article className="rounded-2xl border border-cream/15 bg-cream p-5 text-charcoal sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="font-display text-2xl">{request.student.name}</h3>
@@ -68,10 +66,16 @@ function RequestCard({ request, onAction, readOnly }) {
         <VerificationBadge status={request.status} />
       </div>
 
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <Detail icon={Hash} label="Numri i indeksit">{request.studentNumber}</Detail>
-        <Detail icon={Mail} label="Email-i universitar">{request.universityEmail}</Detail>
-      </div>
+      <dl className="mt-4 grid gap-3 sm:grid-cols-2">
+        <Detail label="Numri i indeksit">{request.studentNumber}</Detail>
+        <Detail label="Email-i universitar">{request.universityEmail}</Detail>
+      </dl>
+
+      {request.sharedIndexWith?.length > 0 && request.status !== VerificationStatus.REJECTED && (
+        <p className="mt-4 bg-burgundy/10 px-3 py-2.5 text-sm text-burgundy">
+          Të njëjtin numër indeksi e ka dhënë edhe {request.sharedIndexWith.join(', ')}. Vetëm njëri mund të verifikohet.
+        </p>
+      )}
 
       {request.status === VerificationStatus.PENDING && (
         <p
@@ -132,7 +136,7 @@ function RequestCard({ request, onAction, readOnly }) {
                   onClick={() => onAction('verify', request)}
                   className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-olive px-4 text-sm font-semibold text-cream hover:bg-olive/90"
                 >
-                  <BadgeCheck aria-hidden="true" className="size-4" /> Verifiko
+                  Verifiko
                 </button>
               </>
             )}
@@ -192,8 +196,10 @@ export function VerifyStudentsPage({ useCases }) {
       setFlash({
         message:
           updated.status === VerificationStatus.VERIFIED
-            ? `${updated.student.name} u verifikua dhe tani shfaqet si student i ${data.university.shortName}.`
-            : `Kërkesa e ${updated.student.name} u refuzua. Studenti e sheh arsyen në panelin e vet.`,
+            ? `${updated.student.name} u verifikua si student i ${data.university.shortName}.`
+            : pending.revokes
+              ? `Verifikimi i ${updated.student.name} u hoq. Studenti e sheh arsyen në panelin e vet.`
+              : `Kërkesa e ${updated.student.name} u refuzua. Studenti e sheh arsyen në panelin e vet.`,
       });
       setPending(null);
     } catch (applyError) {
@@ -209,14 +215,10 @@ export function VerifyStudentsPage({ useCases }) {
         <div>
           <h2 className="font-display text-4xl text-cream">Verifiko studentët</h2>
           <p className="mt-2 max-w-2xl text-cream/65">
-            Konfirmo që këta studentë studiojnë te {data?.university.shortName ?? 'universiteti juaj'}. Vetëm studentët e
-            verifikuar shfaqen në listën publike dhe te kompanitë.
+            Kontrollo numrin e indeksit në regjistër para se të vendosësh. Email-i universitar ndihmon, por nuk mjafton
+            vetëm ai.
           </p>
         </div>
-        <span className="inline-flex items-center gap-2 rounded-xl border border-cream/15 bg-charcoal/60 px-4 py-3 text-sm text-cream/75">
-          <ShieldCheck aria-hidden="true" className="size-4" />
-          {data?.counts.pending ?? 0} në pritje
-        </span>
       </div>
       <Flash message={flash?.message} tone={flash?.tone} />
 
@@ -247,15 +249,15 @@ export function VerifyStudentsPage({ useCases }) {
               <RequestCard key={request.id} request={request} onAction={openDialog} readOnly={readOnly} />
             ))}
             {visible.length === 0 && (
-              <div className="rounded-2xl border border-dashed border-cream/20 bg-charcoal/30 px-6 py-12 text-center text-cream">
-                <ShieldCheck aria-hidden="true" className="mx-auto size-7 text-cream/55" />
-                <h3 className="mt-4 font-display text-2xl">
-                  {tab === VerificationStatus.PENDING ? 'Nuk ka kërkesa në pritje' : 'Asgjë në këtë grup'}
-                </h3>
-                <p className="mt-2 text-sm text-cream/60">
-                  Kur një student zgjedh universitetin tuaj dhe kërkon verifikim, kërkesa shfaqet këtu.
-                </p>
-              </div>
+              <p className="border-t border-cream/15 pt-5 text-cream/65">
+                {readOnly
+                  ? 'Kërkesat e studentëve shfaqen pasi InternUp ta konfirmojë llogarinë tënde.'
+                  : tab === VerificationStatus.PENDING
+                    ? 'Nuk ka kërkesa në pritje.'
+                    : tab === VerificationStatus.VERIFIED
+                      ? 'Ende nuk ke verifikuar asnjë student.'
+                      : 'Asnjë kërkesë e refuzuar.'}
+              </p>
             )}
           </div>
         </>

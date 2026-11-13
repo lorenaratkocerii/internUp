@@ -943,9 +943,9 @@ export const companyRecords = [
     foundedYear: 2021,
     location: 'Prishtinë',
     website: 'mendja-ai.com',
-    coverImage: '/images/companies/mendja-ai.jpg',
-    coverAlt: 'Një zhvillues duke shikuar kod në një ekran, pranë një vizualizimi të një rrjeti të dritës.',
-    coverPosition: 'center 40%',
+    coverImage: '/images/blog/pune-ne-laptop.jpg',
+    coverAlt: 'Katër kolegë duke punuar bashkë në një laptop, para një ekrani me grafikë.',
+    coverPosition: 'center 35%',
     industry: 'Inteligjencë artificiale',
     size: '1–10 punonjës',
     workMode: WorkMode.REMOTE,
@@ -985,9 +985,9 @@ export const companyRecords = [
     foundedYear: 2015,
     location: 'Gjakovë',
     website: 'henacode.com',
-    coverImage: '/images/companies/hena-code.jpg',
-    coverAlt: 'Një zhvillues duke punuar mbrëmjeve para disa monitorëve me kod, në një dhomë me dritë blu.',
-    coverPosition: 'center',
+    coverImage: '/images/blog/festim-ekipi.jpg',
+    coverAlt: 'Kolegë që duartrokasin një kolege me një çmim në duar.',
+    coverPosition: 'center 30%',
     industry: 'Software',
     size: '51–200 punonjës',
     workMode: WorkMode.REMOTE,
@@ -1060,9 +1060,3 @@ export const companyRecords = [
   },
 ];
 
-export const statRecords = [
-  { id: 'internships', value: 120, label: 'Praktika' },
-  { id: 'companies', value: 45, label: 'Kompani' },
-  { id: 'students', value: 300, label: 'Studentë' },
-  { id: 'completed', value: 80, label: 'Praktika të realizuara' },
-];

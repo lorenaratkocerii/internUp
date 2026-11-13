@@ -1,26 +1,27 @@
 import { Link } from 'react-router';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { contact, navLinks } from '../content';
+import { contact, navLinks, socialUrls } from '../content';
 import { Container } from './ui/Container';
 import { Logo } from './ui/Logo';
 
-const socialLinks = [
+const socialIcons = [
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/',
     path: 'M6.5 8.5h-3V20h3V8.5ZM5 3.5a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5ZM20.5 13.4c0-3-1.6-5.1-4.3-5.1-1.5 0-2.6.8-3.1 1.7V8.5h-3V20h3v-6c0-1.6.8-2.9 2.3-2.9s2.1 1.2 2.1 2.9v6h3v-6.6Z',
   },
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com/',
     path: 'M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm4 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm4.5-3.2a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z',
   },
   {
     label: 'Facebook',
-    href: 'https://www.facebook.com/',
     path: 'M14 8.5V6.8c0-.8.5-1.3 1.4-1.3H17V2.6c-.8-.1-1.6-.1-2.4-.1-2.5 0-4.1 1.6-4.1 4.2v1.8H8v3.2h2.5v9.8H14v-9.8h2.6l.4-3.2h-3Z',
   },
 ];
+
+const socialLinks = socialIcons
+  .map((icon) => ({ ...icon, href: socialUrls[icon.label] }))
+  .filter((link) => link.href);
 
 function FooterHeading({ id, children }) {
   return (
@@ -59,7 +60,7 @@ export function Footer() {
           </ul>
         </nav>
 
-        <div className="lg:col-span-4">
+        <div className={socialLinks.length ? 'lg:col-span-4' : 'lg:col-span-4 lg:col-start-9'}>
           <FooterHeading>Kontakt</FooterHeading>
           <address className="mt-5 space-y-3 not-italic">
             <a href={`mailto:${contact.email}`} className={`flex items-center gap-3 ${footerLink}`}>
@@ -80,8 +81,9 @@ export function Footer() {
           </address>
         </div>
 
-        <div className="lg:col-span-2">
-          <FooterHeading>Na ndiq</FooterHeading>
+        {socialLinks.length > 0 && (
+          <div className="lg:col-span-2">
+            <FooterHeading>Na ndiq</FooterHeading>
           <ul className="mt-5 flex gap-2">
             {socialLinks.map(({ label, href, path }) => (
               <li key={label}>
@@ -99,7 +101,8 @@ export function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+          </div>
+        )}
       </Container>
 
       <div className="border-t border-cream/15">

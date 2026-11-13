@@ -1,4 +1,4 @@
-import { assertCan, can, Permission } from '../domain/auth/accessControl';
+import { assertCan, can, isPendingRepresentative, Permission } from '../domain/auth/accessControl';
 import {
   checkRepresentativeEmail,
   emailMatchesUniversity,
@@ -10,6 +10,7 @@ import {
 import { EMPTY_UNIVERSITY_FILTERS, matchesUniversityFilters } from '../domain/university/universityFilters';
 import {
   createVerificationRequest,
+  latestPerStudent,
   shortStudentName,
   validateVerificationDraft,
   VerificationError,
@@ -21,11 +22,6 @@ import { asUniversityRepository } from './ports/UniversityRepository';
 
 export { EMPTY_UNIVERSITY_FILTERS, RepresentativeEmailCheck, UniversityType, VerificationError, VerificationStatus };
 const STORIES_ON_PROFILE = 3;
-function countBy(items, key) {
-  const counts = new Map();
-  for (const item of items) counts.set(item[key], (counts.get(item[key]) ?? 0) + 1);
-  return [...counts].map(([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, 'sq'));
-}
 
 export function createUniversityUseCases({
   universityRepository,
@@ -38,7 +34,9 @@ export function createUniversityUseCases({
   const stories = asStoryRepository(storyRepository);
 
   const verifiedOf = (requests, universityId) =>
-    requests.filter((request) => request.universityId === universityId && request.status === VerificationStatus.VERIFIED);
+    latestPerStudent(requests).filter(
+      (request) => request.universityId === universityId && request.status === VerificationStatus.VERIFIED,
+    );
 
   return Object.freeze({
     listUniversities: async () => {
@@ -57,17 +55,18 @@ export function createUniversityUseCases({
       const university = await universities.findById(universityId);
       if (!university) return null;
 
-      const [requests, allStories] = await Promise.all([verifications.findByUniversity(universityId), stories.findAll()]);
+      const [requests, allStories] = await Promise.all([verifications.findAll(), stories.findAll()]);
       const verified = verifiedOf(requests, universityId);
       const isOwnRepresentative =
-        can(actor, Permission.VIEW_UNIVERSITY_STUDENTS) && actor.universityId === universityId;
+        can(actor, Permission.VIEW_UNIVERSITY_STUDENTS) &&
+        actor.universityId === universityId &&
+        !isPendingRepresentative(actor);
       const visible = isOwnRepresentative ? verified : [];
 
       return {
         university,
         verifiedCount: verified.length,
         canSeeStudents: isOwnRepresentative,
-        programs: countBy(visible, 'program'),
         students: visible.map((request) => ({
           id: request.id,
           name: shortStudentName(request.student.name),

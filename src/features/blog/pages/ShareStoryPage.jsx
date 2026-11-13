@@ -72,7 +72,7 @@ function StudentOnlyGate({ viewer }) {
         <p className="mt-3 text-cream/75">
           {loggedInOtherRole
             ? 'Je kyçur me një llogari që nuk është studentore. Dil dhe hyr si student për të publikuar përvojën tënde.'
-            : 'Hyr me llogarinë tënde studentore që historia të lidhet me profilin tënd dhe të marrë shenjën “Verified Intern” pas konfirmimit.'}
+            : 'Hyr me llogarinë tënde studentore që historia të lidhet me profilin tënd dhe të marrë shenjën “Praktikant i verifikuar” pas konfirmimit.'}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <ButtonLink href={`/hyr/student?next=${encodeURIComponent(SHARE_STORY_PATH)}`} icon={GraduationCap}>
@@ -102,7 +102,7 @@ function Fieldset({ legend, description, children }) {
 }
 
 export function ShareStoryPage({ useCases }) {
-  useDocumentTitle('Share Your Story');
+  useDocumentTitle('Ndaj historinë tënde');
   const viewer = useViewer();
   const navigate = useNavigate();
   const [values, setValues] = useState(() => initialValues(viewer));
@@ -231,9 +231,9 @@ export function ShareStoryPage({ useCases }) {
         <Container className="pt-8 pb-10 lg:pt-12">
           <Link to="/blog" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-cream/75 hover:text-cream">
             <ArrowLeft aria-hidden="true" className="size-4" />
-            Kthehu te Student Blog
+            Kthehu te Blogu i Studentëve
           </Link>
-          <p className="mt-6 text-sm font-semibold tracking-[0.18em] text-cream/70 uppercase">Share Your Story</p>
+          <p className="mt-6 text-sm font-semibold tracking-[0.18em] text-cream/70 uppercase">Ndaj historinë tënde</p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl leading-[1.05] font-medium tracking-tight sm:text-5xl">
             Ndaj përvojën tënde të praktikës.
           </h1>

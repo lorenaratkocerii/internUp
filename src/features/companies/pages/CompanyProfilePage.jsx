@@ -207,10 +207,6 @@ export function CompanyProfilePage({ useCases }) {
                 <li key={benefit}>{benefit}</li>
               ))}
             </ul>
-
-            <p className="mt-7 border-t border-charcoal/20 pt-5 text-xs leading-relaxed text-charcoal/75">
-              Kompani demonstrative. Të dhënat nuk përfaqësojnë një partner real.
-            </p>
           </aside>
         </div>
       </Container>

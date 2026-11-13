@@ -75,7 +75,7 @@ export function CareerFieldPage({ useCases }) {
 
       <section aria-labelledby="aftesite" className="py-16 lg:py-20">
         <Container>
-          <SectionHeading id="aftesite" eyebrow="Aftësitë" title="Çfarë duhet të dish." className="mb-10" />
+          <SectionHeading id="aftesite" title="Çfarë duhet të dish." className="mb-10" />
           <div className="grid gap-5 lg:grid-cols-2">
             <Reveal className="bg-cream p-6 text-charcoal sm:p-8">
               <h3 className="font-display text-xl font-medium">Aftësitë bazë</h3>
@@ -111,7 +111,7 @@ export function CareerFieldPage({ useCases }) {
       {companies.length > 0 && (
         <section aria-labelledby="kompanite" className="py-16 lg:py-20">
           <Container>
-            <SectionHeading id="kompanite" eyebrow="Kompanitë" title="Kush merr praktikantë." className="mb-10" />
+            <SectionHeading id="kompanite" title="Kush merr praktikantë." className="mb-10" />
             <ul className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {companies.map((company) => (
                 <li key={company.id}>
@@ -126,7 +126,7 @@ export function CareerFieldPage({ useCases }) {
       {stories.length > 0 && (
         <section aria-labelledby="historite" className="border-t border-cream/10 py-16 lg:py-20">
           <Container>
-            <SectionHeading id="historite" eyebrow="Nga Student Blog" title="Çfarë thonë studentët." className="mb-10" />
+            <SectionHeading id="historite" eyebrow="Nga Blogu i Studentëve" title="Çfarë thonë studentët." className="mb-10" />
             <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {stories.map((story) => (
                 <li key={story.id}>

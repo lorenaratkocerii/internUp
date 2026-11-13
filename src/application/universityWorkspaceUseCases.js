@@ -12,7 +12,12 @@ import {
   UniversityType,
   validateUniversityProfile,
 } from '../domain/university/University';
-import { decideVerification, VerificationError, VerificationStatus } from '../domain/university/studentVerification';
+import {
+  decideVerification,
+  latestPerStudent,
+  VerificationError,
+  VerificationStatus,
+} from '../domain/university/studentVerification';
 import { asCandidateApplicationRepository } from './ports/CandidateApplicationRepository';
 import { asStudentVerificationRepository } from './ports/StudentVerificationRepository';
 import { asUniversityRepository } from './ports/UniversityRepository';
@@ -47,7 +52,7 @@ export function createUniversityWorkspaceUseCases({
       description: '',
       representative: { name: '', title: '', email: actor.email },
     });
-    await universities.save(created);
+    if (!isPendingRepresentative(actor)) await universities.save(created);
     return created;
   };
   const withActivity = async (university, request) => {
@@ -59,10 +64,22 @@ export function createUniversityWorkspaceUseCases({
       acceptedCount: received.filter((item) => item.status === CandidateStatus.ACCEPTED).length,
     };
   };
+  const sameIndex = (a, b) => a.studentNumber.trim().toLowerCase() === b.studentNumber.trim().toLowerCase();
+
   const listRequests = async (actor) => {
     assertCan(actor, Permission.VERIFY_STUDENTS);
     const university = await getMyUniversity(actor);
-    const requests = await verifications.findByUniversity(university.id);
+    if (isPendingRepresentative(actor)) return { university, requests: [] };
+
+    const requests = latestPerStudent(await verifications.findAll())
+      .filter((request) => request.universityId === university.id)
+      .sort((a, b) => Date.parse(b.submittedAt) - Date.parse(a.submittedAt))
+      .map((request, _, all) => ({
+        ...request,
+        sharedIndexWith: all
+          .filter((other) => other.id !== request.id && sameIndex(other, request) && other.status !== VerificationStatus.REJECTED)
+          .map((other) => other.student.name),
+      }));
     return { university, requests: await Promise.all(requests.map((request) => withActivity(university, request))) };
   };
   return Object.freeze({
@@ -80,7 +97,7 @@ export function createUniversityWorkspaceUseCases({
           verified: verified.length,
           rejected: requests.filter((request) => request.status === VerificationStatus.REJECTED).length,
           applications: verified.reduce((sum, request) => sum + request.applicationCount, 0),
-          inInternship: verified.filter((request) => request.acceptedCount > 0).length,
+          accepted: verified.filter((request) => request.acceptedCount > 0).length,
         },
       };
     },
@@ -90,6 +107,25 @@ export function createUniversityWorkspaceUseCases({
       const request = await verifications.findById(requestId);
       if (!request) throw new VerificationError('Kjo kërkesë nuk ekziston më.');
       assertOwnsUniversity(actor, request.universityId);
+
+      const [latest] = await verifications.findByStudent(request.student.email);
+      if (latest && latest.id !== request.id) {
+        throw new VerificationError('Studenti ka dërguar një kërkesë më të re. Rifresko faqen dhe shqyrto atë.');
+      }
+      if (status === VerificationStatus.VERIFIED) {
+        const holder = latestPerStudent(await verifications.findAll()).find(
+          (other) =>
+            other.id !== request.id &&
+            other.universityId === request.universityId &&
+            other.status === VerificationStatus.VERIFIED &&
+            sameIndex(other, request),
+        );
+        if (holder) {
+          throw new VerificationError(
+            `Indeksi ${request.studentNumber} është verifikuar tashmë për ${holder.student.name}. Një indeks i takon vetëm një studenti.`,
+          );
+        }
+      }
 
       const decided = decideVerification(request, { status, note, decidedBy: actor.email, at: now().toISOString() });
       await verifications.save(decided);

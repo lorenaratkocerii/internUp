@@ -1,4 +1,3 @@
-import { ArrowUpRight } from 'lucide-react';
 import { authLinks } from '../content';
 import { ButtonLink } from './ui/Button';
 import { Container } from './ui/Container';
@@ -22,7 +21,7 @@ export function CallToAction() {
               Krijo llogarinë tënde falas dhe bëhu gati për praktikën që të hap derën e karrierës.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <ButtonLink href={authLinks.signup} icon={ArrowUpRight}>
+              <ButtonLink href={authLinks.signup}>
                 Krijo llogari
               </ButtonLink>
               <ButtonLink href="/kompanite" variant="ghost">

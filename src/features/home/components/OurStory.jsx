@@ -65,14 +65,14 @@ export function OurStory() {
               {chapters.map(({ when, title, text, more, image, alt, position = 'object-center' }, index) => (
                 <li
                   key={title}
-                  className={`grid gap-6 border-t border-charcoal/20 pt-8 transition-opacity duration-500 sm:grid-cols-[16rem_1fr] sm:gap-8 ${index <= reached ? 'opacity-100' : 'opacity-50'}`}
+                  className={`grid gap-6 border-t border-charcoal/20 pt-8 transition-opacity duration-500 sm:grid-cols-2 sm:gap-8 ${index <= reached ? 'opacity-100' : 'opacity-50'}`}
                 >
                   <img
                     src={image}
                     alt={alt}
                     loading="lazy"
                     decoding="async"
-                    className={`aspect-[16/10] w-full object-cover ${position}`}
+                    className={`aspect-[4/3] w-full object-cover ${position}`}
                   />
                   <div>
                     <p className="text-xs font-semibold tracking-[0.18em] text-mauve uppercase">{when}</p>

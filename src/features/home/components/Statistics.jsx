@@ -23,7 +23,6 @@ export function Statistics({ stats }) {
                 <dt className="mt-2 text-sm leading-snug text-cream/75 sm:text-base">{stat.label}</dt>
                 <dd className="font-display text-5xl font-medium tracking-tight text-cream sm:text-6xl xl:text-7xl">
                   {stat.value}
-                  <span className="text-terracotta">+</span>
                 </dd>
               </Reveal>
             ))}

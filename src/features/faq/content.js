@@ -37,7 +37,7 @@ export const faqItems = [
       'Me email-in zyrtar të institucionit (p.sh. @ubt-uni.net). Adresat personale si Gmail nuk pranohen.',
   },
   {
-    question: 'Çfarë është Student Blog?',
+    question: 'Çfarë është Blogu i Studentëve?',
     answer:
       'Vendi ku studentët ndajnë përvojat nga praktikat. Mund t’i lexosh lirshëm, ndërsa për të shkruar duhet të jesh i kyçur si student.',
   },

@@ -98,9 +98,9 @@ function DashboardContent({ data }) {
             </span>
             <span>
               <span className="block font-semibold">
-                {stats.pendingVerifications === 1 ? '1 histori në Student Blog pret verifikimin tuaj' : `${stats.pendingVerifications} histori në Student Blog presin verifikimin tuaj`}
+                {stats.pendingVerifications === 1 ? '1 histori në Blogun e Studentëve pret verifikimin tuaj' : `${stats.pendingVerifications} histori në Blogun e Studentëve presin verifikimin tuaj`}
               </span>
-              <span className="block text-sm text-charcoal/65">Konfirmoni interns tuaj që historitë të marrin shenjën Verified Intern.</span>
+              <span className="block text-sm text-charcoal/65">Konfirmoni praktikantët tuaj që historitë të marrin shenjën Praktikant i verifikuar.</span>
             </span>
           </span>
           <ArrowRight aria-hidden="true" className="size-5 shrink-0" />

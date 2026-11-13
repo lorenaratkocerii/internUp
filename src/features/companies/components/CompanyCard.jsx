@@ -1,6 +1,8 @@
-import { ArrowUpRight, Briefcase, CalendarDays, Factory, Laptop, MapPin, Users } from 'lucide-react';
-import { ButtonLink } from '../../home/components/ui/Button';
+import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router';
 import { CompanyLogo } from './CompanyLogo';
+
+const WORK_MODE_LABELS = { Remote: 'Në distancë', Hybrid: 'Hibrid', 'On-site': 'Në zyrë' };
 
 function activePositionsLabel(count) {
   if (count === 0) return 'Asnjë pozitë aktive';
@@ -8,47 +10,44 @@ function activePositionsLabel(count) {
 }
 
 export function CompanyCard({ company }) {
-  const facts = [
-    { icon: MapPin, label: 'Lokacioni', value: company.location },
-    { icon: Factory, label: 'Industria', value: company.industry },
-    { icon: CalendarDays, label: 'Themeluar', value: company.foundedYear },
-    { icon: Users, label: 'Madhësia', value: company.size },
-    { icon: Laptop, label: 'Mënyra e punës', value: ({ Remote: 'Në distancë', Hybrid: 'Hibrid', 'On-site': 'Në zyrë' })[company.workMode] ?? company.workMode },
-    { icon: Briefcase, label: 'Pozitat', value: activePositionsLabel(company.activePositions) },
-  ];
+  const facts = [company.location, WORK_MODE_LABELS[company.workMode] ?? company.workMode, company.size].filter(Boolean);
 
   return (
-    <article className="flex h-full flex-col bg-cream p-6 text-charcoal">
-      <div className="flex items-center gap-4">
-        <CompanyLogo companyId={company.id} logo={company.logo} name={company.name} />
-        <h2 className="font-display text-2xl leading-tight font-medium tracking-tight">{company.name}</h2>
+    <article className="group relative flex h-full flex-col bg-cream p-6 text-charcoal transition-transform duration-300 ease-out focus-within:-translate-y-1 hover:-translate-y-1 sm:p-7">
+      <div className="flex items-start justify-between gap-4">
+        <CompanyLogo companyId={company.id} logo={company.logo} name={company.name} className="size-14" iconClassName="size-7" />
+        <span className="border border-charcoal/25 px-2.5 py-1 text-xs font-semibold text-charcoal/80">
+          {company.industry}
+        </span>
       </div>
 
-      <p className="mt-4 leading-relaxed text-charcoal/80 md:min-h-[3.25rem]">{company.shortDescription}</p>
-
-      <dl className="mt-6 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-charcoal/20 pt-5">
-        {facts.map(({ icon: Icon, label, value }) => (
-          <div key={label}>
-            <dt className="flex items-center gap-1.5 text-xs font-semibold text-mauve">
-              <Icon aria-hidden="true" className="size-3.5 shrink-0" />
-              {label}
-            </dt>
-            <dd className="mt-1 text-sm font-medium">{value}</dd>
-          </div>
-        ))}
-      </dl>
-
-      <div className="mt-auto pt-6">
-        <ButtonLink
-          href={`/kompanite/${company.id}`}
-          variant="charcoal"
-          icon={ArrowUpRight}
-          aria-label={`Shiko kompaninë ${company.name}`}
-          className="w-full"
+      <h2 className="mt-6 font-display text-3xl leading-tight font-medium tracking-tight">
+        <Link
+          to={`/kompanite/${company.id}`}
+          className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none group-hover:underline group-hover:decoration-terracotta group-hover:decoration-2 group-hover:underline-offset-4"
         >
-          Shiko kompaninë
-        </ButtonLink>
-      </div>
+          {company.name}
+        </Link>
+      </h2>
+      <p className="mt-3 leading-relaxed text-charcoal/75">{company.shortDescription}</p>
+
+      <ul aria-label="Të dhëna" className="mt-5 mb-6 flex flex-wrap gap-x-2 gap-y-1 text-sm text-charcoal/70">
+        {facts.map((fact, index) => (
+          <li key={fact} className="flex items-center gap-2">
+            {index > 0 && <span aria-hidden="true" className="size-1 bg-terracotta" />}
+            {fact}
+          </li>
+        ))}
+      </ul>
+
+      <p className="mt-auto flex items-center justify-between border-t border-charcoal/15 pt-5 text-sm font-semibold">
+        <span className={company.activePositions ? '' : 'font-normal text-charcoal/55'}>
+          {activePositionsLabel(company.activePositions)}
+        </span>
+        <span className="grid size-10 place-items-center bg-charcoal text-cream transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+          <ArrowUpRight aria-hidden="true" className="size-5" />
+        </span>
+      </p>
     </article>
   );
 }

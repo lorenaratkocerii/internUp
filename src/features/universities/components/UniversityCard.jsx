@@ -16,11 +16,23 @@ export function UniversityCard({ university }) {
     <Link
       to={`/universitetet/${university.id}`}
       className={`group grid h-full min-h-72 overflow-hidden rounded-2xl bg-cream text-charcoal shadow-[0_1px_0_rgb(0_0_0/0.25)] transition-shadow duration-300 hover:shadow-[0_18px_40px_-18px_rgb(0_0_0/0.6)] ${
-        hasPhoto ? 'grid-cols-[minmax(0,1fr)_45%]' : ''
+        hasPhoto ? 'sm:grid-cols-[minmax(0,1fr)_45%]' : ''
       }`}
     >
-      <div className="flex flex-col p-6 sm:p-8">
-        <UniversityLogo university={university} className="size-24" bare />
+      {hasPhoto && (
+        <div className="relative m-2 mb-0 h-48 overflow-hidden rounded-xl bg-charcoal/[0.08] sm:col-start-2 sm:row-start-1 sm:mb-2 sm:ml-0 sm:h-auto">
+          <FadeImage
+            src={university.photo}
+            alt=""
+            loading="lazy"
+            onError={() => setHasPhoto(false)}
+            className="absolute inset-0 size-full object-cover group-hover:scale-105"
+          />
+        </div>
+      )}
+
+      <div className="flex flex-col p-6 sm:col-start-1 sm:row-start-1 sm:p-8">
+        <UniversityLogo university={university} className="size-16 sm:size-24" bare />
 
         <h3 className="mt-6 font-display text-2xl leading-snug font-medium tracking-tight">{university.name}</h3>
         <p className="mt-1.5 text-charcoal/60">{university.city}</p>
@@ -34,18 +46,6 @@ export function UniversityCard({ university }) {
           </span>
         </p>
       </div>
-
-      {hasPhoto && (
-        <div className="relative m-2 ml-0 overflow-hidden rounded-xl bg-charcoal/[0.08]">
-          <FadeImage
-            src={university.photo}
-            alt=""
-            loading="lazy"
-            onError={() => setHasPhoto(false)}
-            className="absolute inset-0 size-full object-cover group-hover:scale-105"
-          />
-        </div>
-      )}
     </Link>
   );
 }

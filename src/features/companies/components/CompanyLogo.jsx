@@ -36,6 +36,13 @@ const marks = {
   'rruga-logistics': Truck,
 };
 
+const tones = ['bg-navy', 'bg-burgundy', 'bg-olive', 'bg-mauve', 'bg-terracotta'];
+
+function toneFor(companyId = '') {
+  const index = Object.keys(marks).indexOf(companyId);
+  return tones[(index < 0 ? companyId.length : index) % tones.length];
+}
+
 export function CompanyMark({ companyId, className = '' }) {
   const Mark = marks[companyId] ?? Hexagon;
   return <Mark aria-hidden="true" strokeWidth={1.5} className={className} />;
@@ -50,7 +57,7 @@ export function CompanyLogo({ companyId, logo, name = '', className = 'size-12',
     );
   }
   return (
-    <span className={`grid shrink-0 place-items-center bg-charcoal text-cream ${className}`}>
+    <span className={`grid shrink-0 place-items-center text-cream ${toneFor(companyId)} ${className}`}>
       <CompanyMark companyId={companyId} className={iconClassName} />
     </span>
   );

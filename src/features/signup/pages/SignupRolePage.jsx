@@ -259,7 +259,7 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
 
   return (
     <Container className="pt-8 pb-16 lg:pt-10 lg:pb-24">
-      <section className={`mx-auto max-w-5xl rounded-[2rem] border border-cream/20 p-6 text-cream shadow-2xl shadow-black/20 sm:p-10 ${role === 'student' ? 'bg-charcoal' : selectedRole.colorClass}`}>
+      <section className={`mx-auto max-w-5xl border border-cream/20 p-6 text-cream shadow-2xl shadow-black/20 sm:p-10 ${role === 'student' ? 'bg-charcoal' : selectedRole.colorClass}`}>
         <div className="flex items-center gap-4">
           <span className="grid size-14 place-items-center rounded-2xl bg-cream text-charcoal shadow-lg shadow-black/10">
             {role === 'student' ? <GraduationCap aria-hidden="true" className="size-7" strokeWidth={1.5} /> : <Icon aria-hidden="true" className="size-7" strokeWidth={1.5} />}
@@ -357,7 +357,7 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
                     <p className="mt-1.5 text-sm text-cream/70">
                       {staffDomain
                         ? `Duhet të përfundojë me @${staffDomain}.`
-                        : 'Ky universitet nuk ka domen të regjistruar. Llogaria aktivizohet pasi InternUp ta konfirmojë.'}
+                        : 'Te ky universitet stafi dhe studentët kanë të njëjtin email, prandaj llogarinë e konfirmon InternUp para se të aktivizohet.'}
                     </p>
                   )}
                 </div>

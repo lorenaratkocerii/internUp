@@ -14,7 +14,7 @@ import { asCompanyRepository } from './ports/CompanyRepository';
 import { asInternshipRepository } from './ports/InternshipRepository';
 import { asStoryRepository } from './ports/StoryRepository';
 import { withVerification } from '../domain/blog/Story';
-import { VerificationStatus } from '../domain/university/studentVerification';
+import { latestPerStudent, VerificationStatus } from '../domain/university/studentVerification';
 
 export class WorkspaceValidationError extends Error {
   constructor(fieldErrors, message = 'Kontrollo fushat e shënuara.') {
@@ -23,14 +23,12 @@ export class WorkspaceValidationError extends Error {
     this.fieldErrors = fieldErrors;
   }
 }
-
 export class WorkspaceNotFoundError extends Error {
   constructor(message) {
     super(message);
     this.name = 'WorkspaceNotFoundError';
   }
 }
-
 function slugify(value) {
   return value
     .normalize('NFD')
@@ -40,7 +38,6 @@ function slugify(value) {
     .replace(/^-|-$/g, '')
     .slice(0, 50);
 }
-
 export function createCompanyWorkspaceUseCases({
   companyRepository,
   internshipRepository,
@@ -61,7 +58,7 @@ export function createCompanyWorkspaceUseCases({
       const [requests, all] = await Promise.all([studentVerificationRepository.findAll(), universityRepository.findAll()]);
       const names = new Map(all.map((university) => [university.id, university.shortName]));
       return new Map(
-        requests
+        latestPerStudent(requests)
           .filter((request) => request.status === VerificationStatus.VERIFIED)
           .map((request) => [request.student.email, names.get(request.universityId) ?? '']),
       );
@@ -107,7 +104,7 @@ export function createCompanyWorkspaceUseCases({
       technologies: [],
       culture: '',
       benefits: [],
-      coverImage: '/images/companies/header.jpg',
+      coverImage: '/images/companies/kreu-kompanite.jpg',
       coverAlt: `Kompania ${name}`,
     });
     await companies.save(company);

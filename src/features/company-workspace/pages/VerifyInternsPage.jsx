@@ -40,7 +40,7 @@ export function VerifyInternsPage({ useCases }) {
       await reload();
       setFlash({
         message: updated.verified
-          ? `"${updated.title}" tani ka shenjën Verified Intern në Student Blog.`
+          ? `"${updated.title}" tani ka shenjën Praktikant i verifikuar në Blogun e Studentëve.`
           : `Verifikimi u hoq nga "${updated.title}".`,
       });
     } catch (applyError) {
@@ -55,11 +55,11 @@ export function VerifyInternsPage({ useCases }) {
     <CompanyWorkspace title="Verifiko interns" subtitle="Verifikimi i interns" companyName={data?.company.name}>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Student Blog</p>
+          <p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Blogu i Studentëve</p>
           <h2 className="mt-2 font-display text-4xl text-cream">Verifiko interns</h2>
           <p className="mt-2 max-w-2xl text-cream/65">
             Konfirmoni që studentët që kanë shkruar për praktikën te {data?.company.name ?? 'kompania juaj'} kanë qenë vërtet interns
-            tuaj. Historitë e verifikuara marrin shenjën <span className="font-semibold text-cream">Verified Intern</span>.
+            tuaj. Historitë e verifikuara marrin shenjën <span className="font-semibold text-cream">Praktikant i verifikuar</span>.
           </p>
         </div>
         <span className="inline-flex items-center gap-2 rounded-xl border border-cream/15 bg-charcoal/60 px-4 py-3 text-sm text-cream/75">
@@ -105,7 +105,7 @@ export function VerifyInternsPage({ useCases }) {
                   </div>
                   {story.verified ? (
                     <span className="inline-flex items-center gap-1 rounded-full bg-navy px-2.5 py-1 text-xs font-semibold text-cream">
-                      <BadgeCheck aria-hidden="true" className="size-3.5" /> Verified Intern
+                      <BadgeCheck aria-hidden="true" className="size-3.5" /> Praktikant i verifikuar
                     </span>
                   ) : (
                     <span className="inline-flex rounded-full border border-charcoal/25 px-2.5 py-1 text-xs font-semibold text-charcoal/70">
@@ -169,7 +169,7 @@ export function VerifyInternsPage({ useCases }) {
                   {stories.length ? 'Asgjë në këtë grup' : 'Ende nuk ka histori për kompaninë tuaj'}
                 </h3>
                 <p className="mt-2 text-sm text-cream/60">
-                  Kur një student publikon në Student Blog përvojën e praktikës te ju, historia shfaqet këtu për verifikim.
+                  Kur një student publikon në Blogun e Studentëve përvojën e praktikës te ju, historia shfaqet këtu për verifikim.
                 </p>
               </div>
             )}
@@ -182,8 +182,8 @@ export function VerifyInternsPage({ useCases }) {
           title={pending.verified ? 'Ta verifikosh këtë intern?' : 'Ta heqësh verifikimin?'}
           description={
             pending.verified
-              ? `Duke verifikuar, konfirmoni që autori i "${pending.story.title}" ka bërë praktikë te ju si "${pending.story.position}". Historia do të shfaqet me shenjën Verified Intern.`
-              : `"${pending.story.title}" do të shfaqet sërish si "Në verifikim" në Student Blog.`
+              ? `Duke verifikuar, konfirmoni që autori i "${pending.story.title}" ka bërë praktikë te ju si "${pending.story.position}". Historia do të shfaqet me shenjën Praktikant i verifikuar.`
+              : `"${pending.story.title}" do të shfaqet sërish si "Në verifikim" në Blogun e Studentëve.`
           }
           confirmLabel={pending.verified ? 'Po, verifiko' : 'Po, hiqe'}
           tone={pending.verified ? 'success' : 'danger'}

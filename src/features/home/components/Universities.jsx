@@ -1,11 +1,9 @@
-import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { UniversityLogo } from '../../universities/components/UniversityLogo';
 import { useUniversityDirectory } from '../../universities/hooks/useUniversityDirectory';
-import { ButtonLink } from './ui/Button';
 import { Container } from './ui/Container';
 import { Reveal } from './ui/Reveal';
-import { SectionHeading } from './ui/SectionHeading';
+import { TextLink } from './ui/TextLink';
 
 const ON_HOME = 6;
 
@@ -17,30 +15,33 @@ export function Universities({ useCases }) {
 
   return (
     <section id="universitetet" aria-labelledby="universitetet-titull" className="pb-20 lg:pb-28">
-      <Container>
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading id="universitetet-titull" eyebrow="Universitetet" title="Studentë nga gjithë Kosova." />
-          <ButtonLink href="/universitetet" variant="ghost" icon={ArrowUpRight}>
-            Të gjitha universitetet
-          </ButtonLink>
+      <Container className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-4">
+          <h2
+            id="universitetet-titull"
+            className="font-display text-4xl leading-[1.08] font-medium tracking-tight text-cream sm:text-5xl"
+          >
+            Studentë nga gjithë Kosova.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-cream/75">
+            {universities.length} universitete dhe kolegje i verifikojnë vetë studentët e tyre në InternUp.
+          </p>
+          <TextLink href="/universitetet" className="mt-4">
+            Shiko të gjitha universitetet
+          </TextLink>
         </div>
 
-        <ul className="mt-14 grid grid-cols-2 gap-px bg-cream/15 p-px md:grid-cols-3 xl:grid-cols-6">
+        <ul className="grid self-start border-t border-cream/15 sm:grid-cols-2 sm:gap-x-10 lg:col-span-8">
           {featured.map((university, index) => (
-            <Reveal as="li" key={university.id} delay={index * 60} className="bg-charcoal">
-              <Link
-                to={`/universitetet/${university.id}`}
-                className="group flex h-full flex-col gap-4 p-6 transition-colors duration-300 hover:bg-navy"
-              >
-                <UniversityLogo
-                  university={university}
-                  className="size-12 transition-transform duration-300 group-hover:-translate-y-1"
-                  padding="p-1"
-                />
-                <div>
-                  <p className="font-display text-xl leading-tight font-medium">{university.shortName}</p>
-                  <p className="mt-1 text-sm text-cream/70">{university.city}</p>
-                </div>
+            <Reveal as="li" key={university.id} delay={index * 60} className="border-b border-cream/15">
+              <Link to={`/universitetet/${university.id}`} className="group flex items-center gap-4 py-4">
+                <UniversityLogo university={university} className="size-12 bg-[#fff]" padding="p-1" />
+                <span className="min-w-0">
+                  <span className="block truncate font-display text-xl leading-tight font-medium decoration-cream/40 underline-offset-4 group-hover:underline">
+                    {university.shortName}
+                  </span>
+                  <span className="mt-0.5 block text-sm text-cream/65">{university.city}</span>
+                </span>
               </Link>
             </Reveal>
           ))}

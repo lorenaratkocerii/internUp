@@ -1,7 +1,6 @@
-import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router';
 import { CompanyMark } from '../../companies/components/CompanyLogo';
-import { ButtonLink } from './ui/Button';
+import { TextLink } from './ui/TextLink';
 import { Container } from './ui/Container';
 import { Reveal } from './ui/Reveal';
 import { SectionHeading } from './ui/SectionHeading';
@@ -14,12 +13,9 @@ export function Companies({ companies }) {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             id="kompanite-titull"
-            eyebrow="Kompanitë"
             title="Vende ku fillon përvoja e vërtetë."
           />
-          <ButtonLink href="/kompanite" variant="ghost" icon={ArrowUpRight}>
-            Të gjitha kompanitë
-          </ButtonLink>
+          <TextLink href="/kompanite">Shiko të gjitha kompanitë</TextLink>
         </div>
 
         {companies.status === 'error' && (

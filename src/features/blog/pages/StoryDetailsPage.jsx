@@ -99,14 +99,13 @@ export function StoryDetailsPage({ useCases, universityUseCases }) {
     <>
       <article aria-labelledby="historia-titull">
         <header className="relative isolate overflow-hidden border-b border-cream/10">
-          <div aria-hidden="true" className="absolute -top-32 -right-24 -z-10 size-96 rounded-full bg-terracotta/20 blur-3xl" />
           <Container className="pt-8 pb-10 lg:pt-12">
             <Link
               to="/blog"
               className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-cream/75 transition-colors hover:text-cream"
             >
               <ArrowLeft aria-hidden="true" className="size-4" />
-              Kthehu te Student Blog
+              Kthehu te Blogu i Studentëve
             </Link>
 
             {state?.published && (
@@ -115,7 +114,7 @@ export function StoryDetailsPage({ useCases, universityUseCases }) {
                 <p>
                   <span className="font-semibold">Historia jote u publikua!</span>{' '}
                   <span className="text-cream/80">
-                    Shenja “Verified Intern” shtohet pasi kompania ta konfirmojë praktikën.
+                    Shenja “Praktikant i verifikuar” shtohet pasi kompania ta konfirmojë praktikën.
                   </span>
                 </p>
               </div>

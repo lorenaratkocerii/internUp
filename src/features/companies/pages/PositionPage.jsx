@@ -132,7 +132,14 @@ export function PositionPage({ useCases, applicationUseCases }) {
             <h2 id="apliko-titull" className="mb-5 font-display text-2xl font-medium tracking-tight">
               Apliko për këtë pozitë
             </h2>
-            {position.canApply ? (
+            {position.canApply && user?.role === 'student' && user.profile?.approved === false ? (
+              <p role="status" className="border-l-4 border-terracotta pl-4 leading-relaxed">
+                Për të aplikuar duhet të jesh i verifikuar nga universiteti yt.{' '}
+                <Link to="/student#verifikimi" className="font-semibold underline underline-offset-4">
+                  Kërko verifikimin
+                </Link>
+              </p>
+            ) : position.canApply ? (
               <div><p className="mb-4 text-sm leading-relaxed text-charcoal/70">Dërgo profilin dhe dokumentet mbështetëse te {company.name}.</p><button type="button" onClick={() => user?.role === 'student' ? setIsApplyOpen(true) : setShowStudentAccountPrompt(true)} className="min-h-12 w-full bg-charcoal px-6 py-3 font-semibold text-cream transition-colors hover:bg-navy">Apliko Tani</button></div>
             ) : (
               <p role="status" className="border-l-4 border-terracotta pl-4 leading-relaxed">

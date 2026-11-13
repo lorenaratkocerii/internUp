@@ -154,7 +154,7 @@ export function UniversityProfilePage({ useCases }) {
           {stories.length > 0 && (
             <section aria-labelledby="historite-titull" className="mt-14">
               <h2 id="historite-titull" className="font-display text-3xl font-medium tracking-tight">
-                Nga Student Blog
+                Nga Blogu i Studentëve
               </h2>
               <ul className="mt-6 space-y-6">
                 {stories.map((story) => (
@@ -181,7 +181,9 @@ export function UniversityProfilePage({ useCases }) {
                 <p className="text-sm text-charcoal/55">Përfaqësuesi në InternUp</p>
                 <p className="mt-2 font-display text-2xl">{representative.name}</p>
                 <p className="text-charcoal/70">{representative.title}</p>
-                <p className="mt-4 text-sm break-all text-charcoal/80">{representative.email}</p>
+                {representative.email && !representative.email.endsWith('.test') && (
+                  <p className="mt-4 text-sm break-all text-charcoal/80">{representative.email}</p>
+                )}
               </>
             )}
 

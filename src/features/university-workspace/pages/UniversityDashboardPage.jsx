@@ -1,5 +1,5 @@
-import { ArrowRight, ArrowUpRight, CircleCheck, CircleDashed, MailWarning } from 'lucide-react';
 import { Link } from 'react-router';
+import { isPendingRepresentative } from '../../../domain/auth/accessControl';
 import { VerificationStatus } from '../../../domain/university/studentVerification';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { formatDay } from '../../company-workspace/utils/format';
@@ -9,26 +9,30 @@ import { useUniversityOverview } from '../hooks/useUniversityOverview';
 
 const RECENT_LIMIT = 4;
 
-function Stat({ label, value, hint }) {
-  return (
-    <div className="rounded-2xl border border-cream/15 bg-charcoal/55 p-5 text-cream">
-      <p className="font-display text-4xl">{value}</p>
-      <p className="mt-1 text-sm font-semibold">{label}</p>
-      {hint && <p className="mt-1 text-xs text-cream/55">{hint}</p>}
-    </div>
-  );
+function pendingSentence(count) {
+  if (count === 0) return 'Nuk ka kërkesa në pritje.';
+  return count === 1 ? '1 student pret përgjigjen tënde.' : `${count} studentë presin përgjigjen tënde.`;
 }
 
 export function UniversityDashboardPage({ useCases }) {
   useDocumentTitle('Paneli i universitetit');
-  const { status, data, error } = useUniversityOverview(useCases);
+  const { actor, status, data, error } = useUniversityOverview(useCases);
+  const awaitingConfirmation = isPendingRepresentative(actor);
 
   const pending = data?.requests.filter((request) => request.status === VerificationStatus.PENDING) ?? [];
   const verified = data?.requests.filter((request) => request.status === VerificationStatus.VERIFIED) ?? [];
   const programs = Object.entries(
     verified.reduce((acc, request) => ({ ...acc, [request.program]: (acc[request.program] ?? 0) + 1 }), {}),
-  ).sort((a, b) => b[1] - a[1]);
-  const maxProgram = programs[0]?.[1] ?? 1;
+  ).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'sq'));
+
+  const figures = data
+    ? [
+        { label: 'Në pritje', value: data.counts.pending },
+        { label: 'Të verifikuar', value: data.counts.verified },
+        { label: 'Aplikime të tyre', value: data.counts.applications },
+        { label: 'Të pranuar në praktikë', value: data.counts.accepted },
+      ]
+    : [];
 
   return (
     <UniversityWorkspace title="Paneli kryesor" university={data?.university} pendingCount={data?.counts.pending}>
@@ -39,87 +43,96 @@ export function UniversityDashboardPage({ useCases }) {
         <>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-sm text-cream/55">{new Intl.DateTimeFormat('sq-AL', { dateStyle: 'full' }).format(new Date())}</p>
-              <h2 className="mt-2 font-display text-4xl text-cream">{data.university.shortName}</h2>
-              <p className="mt-2 max-w-2xl text-cream/65">
-                {data.counts.pending
-                  ? `${data.counts.pending} ${data.counts.pending === 1 ? 'student pret' : 'studentë presin'} që t'i verifikosh.`
-                  : 'Nuk ka kërkesa në pritje. Të gjithë studentët janë shqyrtuar.'}
-              </p>
+              <h2 className="font-display text-4xl text-cream">{data.university.shortName}</h2>
+              {!awaitingConfirmation && <p className="mt-2 text-cream/70">{pendingSentence(data.counts.pending)}</p>}
             </div>
             <Link
               to={`/universitetet/${data.university.id}`}
-              className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-cream/25 px-4 py-2.5 font-semibold text-cream hover:bg-cream/10"
+              className="font-semibold text-cream underline decoration-cream/35 underline-offset-[6px] hover:decoration-cream"
             >
-              Shiko profilin publik <ArrowUpRight aria-hidden="true" className="size-4" />
+              Shiko faqen publike
             </Link>
           </div>
 
-          <section aria-label="Përmbledhje" className="mt-7 grid grid-cols-2 gap-3 xl:grid-cols-4">
-            <Stat label="Në pritje" value={data.counts.pending} hint="Kërkesa për t'u shqyrtuar" />
-            <Stat label="Të verifikuar" value={data.counts.verified} hint="Studentë aktivë në InternUp" />
-            <Stat label="Në praktikë" value={data.counts.inInternship} hint="Me të paktën një pranim" />
-            <Stat label="Aplikime" value={data.counts.applications} hint="Nga studentët e verifikuar" />
-          </section>
-
-          <div className="mt-9 grid gap-6 xl:grid-cols-[1.3fr_1fr]">
-            <section aria-labelledby="kerkesat-titull">
-              <div className="flex items-end justify-between gap-3">
-                <h2 id="kerkesat-titull" className="font-display text-3xl text-cream">Kërkesat e reja</h2>
-                <Link to="/universitet/verifikimi" className="inline-flex items-center gap-2 text-sm font-semibold text-cream/75 hover:text-cream">
-                  Të gjitha <ArrowRight aria-hidden="true" className="size-4" />
-                </Link>
-              </div>
-              <div className="mt-4 overflow-hidden rounded-2xl border border-cream/15 bg-charcoal/55">
-                {pending.slice(0, RECENT_LIMIT).map((request, index) => (
-                  <article key={request.id} className={`flex items-center justify-between gap-4 p-4 sm:px-5 ${index ? 'border-t border-cream/10' : ''}`}>
-                    <div className="min-w-0">
-                      <h3 className="truncate font-semibold text-cream">{request.student.name}</h3>
-                      <p className="mt-0.5 truncate text-sm text-cream/55">
-                        {request.program} · {request.studyYear}
-                      </p>
-                    </div>
-                    <div className="flex shrink-0 items-center gap-3 text-xs text-cream/55">
-                      {request.emailMatches ? (
-                        <CircleCheck aria-label="Email-i universitar përputhet" className="size-4 text-cream/80" />
-                      ) : (
-                        <MailWarning aria-label="Email-i nuk është i universitetit" className="size-4 text-cream" />
-                      )}
-                      <span className="hidden sm:inline">{formatDay(request.submittedAt)}</span>
-                    </div>
-                  </article>
-                ))}
-                {pending.length === 0 && (
-                  <div className="p-6 text-center text-cream/65">
-                    <CircleDashed aria-hidden="true" className="mx-auto size-7" />
-                    <p className="mt-2">Kërkesat e reja do të shfaqen këtu.</p>
+          {!awaitingConfirmation && (
+            <>
+              <dl className="mt-8 grid grid-cols-2 border-y border-cream/15 sm:grid-cols-4">
+                {figures.map((figure, index) => (
+                  <div
+                    key={figure.label}
+                    className={`py-5 pr-4 ${index % 2 ? 'pl-5' : ''} ${index ? 'sm:border-l sm:border-cream/15 sm:pl-5' : ''}`}
+                  >
+                    <dd className="font-display text-4xl text-cream tabular-nums">{figure.value}</dd>
+                    <dt className="mt-1 text-sm text-cream/65">{figure.label}</dt>
                   </div>
-                )}
-              </div>
-            </section>
+                ))}
+              </dl>
 
-            <section aria-labelledby="drejtimet-titull" className="rounded-2xl border border-cream/15 bg-cream p-5 text-charcoal sm:p-6">
-              <h2 id="drejtimet-titull" className="font-display text-2xl">Drejtimet e studentëve</h2>
-              <p className="mt-1 text-sm text-charcoal/60">Vetëm studentët e verifikuar.</p>
-              {programs.length ? (
-                <ul className="mt-5 space-y-3.5">
-                  {programs.map(([program, count]) => (
-                    <li key={program}>
-                      <div className="flex justify-between gap-3 text-sm">
-                        <span className="truncate font-medium">{program}</span>
-                        <span className="text-charcoal/60">{count}</span>
-                      </div>
-                      <div className="mt-1.5 h-1.5 bg-charcoal/10">
-                        <div className="h-full bg-navy" style={{ width: `${(count / maxProgram) * 100}%` }} />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="mt-5 text-sm text-charcoal/65">Ende pa studentë të verifikuar.</p>
-              )}
-            </section>
-          </div>
+              <div className="mt-10 grid gap-10 xl:grid-cols-[1.3fr_1fr]">
+                <section aria-labelledby="kerkesat-titull">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h2 id="kerkesat-titull" className="font-display text-2xl text-cream">
+                      Kërkesat në pritje
+                    </h2>
+                    {pending.length > RECENT_LIMIT && (
+                      <Link
+                        to="/universitet/verifikimi"
+                        className="text-sm font-semibold text-cream/75 underline underline-offset-4 hover:text-cream"
+                      >
+                        Shiko të {pending.length}
+                      </Link>
+                    )}
+                  </div>
+
+                  {pending.length === 0 ? (
+                    <p className="mt-4 border-t border-cream/15 pt-4 text-cream/65">
+                      Kur një student kërkon verifikim te {data.university.shortName}, e gjen këtu.
+                    </p>
+                  ) : (
+                    <ul className="mt-4 border-t border-cream/15">
+                      {pending.slice(0, RECENT_LIMIT).map((request) => (
+                        <li key={request.id} className="border-b border-cream/15">
+                          <Link
+                            to="/universitet/verifikimi"
+                            className="flex items-baseline justify-between gap-4 py-3.5 hover:bg-cream/5"
+                          >
+                            <span className="min-w-0">
+                              <span className="block truncate font-semibold text-cream">{request.student.name}</span>
+                              <span className="block truncate text-sm text-cream/60">
+                                {request.program}, {request.studyYear.toLowerCase()}
+                              </span>
+                            </span>
+                            <span className="shrink-0 text-right text-sm text-cream/60">
+                              {formatDay(request.submittedAt)}
+                              {!request.emailMatches && <span className="block text-terracotta">email jo universitar</span>}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+
+                <section aria-labelledby="drejtimet-titull">
+                  <h2 id="drejtimet-titull" className="font-display text-2xl text-cream">
+                    Studentët sipas drejtimit
+                  </h2>
+                  {programs.length ? (
+                    <ul className="mt-4 border-t border-cream/15">
+                      {programs.map(([program, count]) => (
+                        <li key={program} className="flex justify-between gap-4 border-b border-cream/15 py-3 text-sm">
+                          <span className="text-cream/85">{program}</span>
+                          <span className="text-cream tabular-nums">{count}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="mt-4 border-t border-cream/15 pt-4 text-cream/65">Ende pa studentë të verifikuar.</p>
+                  )}
+                </section>
+              </div>
+            </>
+          )}
         </>
       )}
     </UniversityWorkspace>

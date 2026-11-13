@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Search, UsersRound } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { VerificationStatus } from '../../../domain/university/studentVerification';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { WorkspaceError, WorkspaceLoading } from '../../company-workspace/components/WorkspaceStatus';
@@ -27,7 +27,7 @@ export function UniversityStudentsPage({ useCases }) {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 className="font-display text-4xl text-cream">Studentët e verifikuar</h2>
-          <p className="mt-2 max-w-2xl text-cream/65">Studentët që ke konfirmuar dhe si po ecin me aplikimet për praktikë.</p>
+          <p className="mt-2 max-w-2xl text-cream/65">Këtë listë e sheh vetëm universiteti. Aplikimet dhe pranimet janë ato që studenti ka bërë në InternUp.</p>
         </div>
         <div className="relative w-full sm:w-72">
           <label htmlFor="kerko-student" className="sr-only">Kërko student</label>
@@ -82,9 +82,8 @@ export function UniversityStudentsPage({ useCases }) {
             </tbody>
           </table>
           {visible.length === 0 && (
-            <div className="px-6 py-12 text-center">
-              <UsersRound aria-hidden="true" className="mx-auto size-7 text-charcoal/45" />
-              <p className="mt-3 text-charcoal/70">
+            <div className="px-5 py-8">
+              <p className="text-charcoal/70">
                 {students.length ? 'Asnjë student nuk përputhet me kërkimin.' : 'Ende nuk ke verifikuar asnjë student.'}
               </p>
             </div>

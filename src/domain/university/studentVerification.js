@@ -96,6 +96,17 @@ export function decideVerification(request, { status, note = '', decidedBy, at }
   return createVerificationRequest({ ...request, status, note: note.trim(), decidedBy, decidedAt: at });
 }
 
+export function latestPerStudent(requests) {
+  const latest = new Map();
+  for (const request of requests) {
+    const current = latest.get(request.student.email);
+    if (!current || Date.parse(request.submittedAt) > Date.parse(current.submittedAt)) {
+      latest.set(request.student.email, request);
+    }
+  }
+  return [...latest.values()];
+}
+
 export function shortStudentName(name) {
   const [first, ...rest] = String(name ?? '').trim().split(/\s+/);
   if (!first) return 'Student/e';
