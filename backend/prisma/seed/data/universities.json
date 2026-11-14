@@ -1,0 +1,191 @@
+[
+  {
+    "slug": "up",
+    "name": "Universiteti i Prishtinës “Hasan Prishtina”",
+    "shortName": "Universiteti i Prishtinës",
+    "type": "publik",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/UniversitetiiPrishtines.png",
+    "website": "https://www.uni-pr.edu"
+  },
+  {
+    "slug": "uni-prizren",
+    "name": "Universiteti i Prizrenit “Ukshin Hoti”",
+    "shortName": "Universiteti i Prizrenit",
+    "type": "publik",
+    "city": "Prizren",
+    "logo": "/images/universities/logos/UkshinHoti.png",
+    "website": "https://www.uni-prizren.com"
+  },
+  {
+    "slug": "unhz",
+    "name": "Universiteti i Pejës “Haxhi Zeka”",
+    "shortName": "Universiteti i Pejës",
+    "type": "publik",
+    "city": "Pejë",
+    "logo": "/images/universities/logos/HaxhiZeka.png",
+    "website": "https://www.unhz.eu"
+  },
+  {
+    "slug": "uni-gjilan",
+    "name": "Universiteti i Gjilanit “Kadri Zeka”",
+    "shortName": "Universiteti i Gjilanit",
+    "type": "publik",
+    "city": "Gjilan",
+    "logo": "/images/universities/logos/KadriZeka.png",
+    "website": "https://www.uni-gjilan.net"
+  },
+  {
+    "slug": "umib",
+    "name": "Universiteti i Mitrovicës “Isa Boletini”",
+    "shortName": "Universiteti i Mitrovicës",
+    "type": "publik",
+    "city": "Mitrovicë",
+    "logo": "/images/universities/logos/IsaBoletini.png",
+    "website": "https://www.umib.net"
+  },
+  {
+    "slug": "uni-gjakova",
+    "name": "Universiteti i Gjakovës “Fehmi Agani”",
+    "shortName": "Universiteti i Gjakovës",
+    "type": "publik",
+    "city": "Gjakovë",
+    "logo": "/images/universities/logos/FehmiAgani.png",
+    "website": "https://www.uni-gjk.org"
+  },
+  {
+    "slug": "ushaf",
+    "name": "Universiteti i Shkencave të Aplikuara në Ferizaj",
+    "shortName": "Universiteti i Ferizajt",
+    "type": "publik",
+    "city": "Ferizaj",
+    "logo": "/images/universities/logos/UniversitetiFerizaj.png",
+    "website": null
+  },
+  {
+    "slug": "aksp",
+    "name": "Akademia e Kosovës për Siguri Publike",
+    "shortName": "Akademia për Siguri Publike",
+    "type": "publik",
+    "city": "Vushtrri",
+    "logo": "/images/universities/logos/Akademia.png",
+    "website": null
+  },
+  {
+    "slug": "ubt",
+    "name": "Kolegji UBT",
+    "shortName": "UBT",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/ubt.png",
+    "website": "https://www.ubt-uni.net"
+  },
+  {
+    "slug": "aab",
+    "name": "Kolegji AAB",
+    "shortName": "AAB",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/aab.png",
+    "website": "https://universitetiaab.com"
+  },
+  {
+    "slug": "rit-kosovo",
+    "name": "RIT Kosovo (A.U.K)",
+    "shortName": "RIT Kosovo",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/rit.png",
+    "website": "https://www.rit.edu/kosovo"
+  },
+  {
+    "slug": "riinvest",
+    "name": "Kolegji Riinvest",
+    "shortName": "Riinvest",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/riinvest.png",
+    "website": "https://www.riinvest.net"
+  },
+  {
+    "slug": "universum",
+    "name": "Kolegji Universum",
+    "shortName": "Universum",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/universum.png",
+    "website": null
+  },
+  {
+    "slug": "dardania",
+    "name": "Kolegji Dardania",
+    "shortName": "Dardania",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/dardania.png",
+    "website": null
+  },
+  {
+    "slug": "kolegji-biznesi",
+    "name": "Kolegji Biznesi",
+    "shortName": "Kolegji Biznesi",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/kolegjiBiznesi.png",
+    "website": null
+  },
+  {
+    "slug": "iliria",
+    "name": "Kolegji Iliria",
+    "shortName": "Iliria",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/kolegjiIliria.png",
+    "website": null
+  },
+  {
+    "slug": "pjeter-budi",
+    "name": "Kolegji “Pjetër Budi”",
+    "shortName": "Pjetër Budi",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/PjeterBudi.png",
+    "website": null
+  },
+  {
+    "slug": "heimerer",
+    "name": "Kolegji Heimerer",
+    "shortName": "Heimerer",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/heimerer.png",
+    "website": null
+  },
+  {
+    "slug": "kolegji-evropian",
+    "name": "Kolegji Evropian i Kosovës",
+    "shortName": "Kolegji Evropian",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/ueks.png",
+    "website": null
+  },
+  {
+    "slug": "ispe",
+    "name": "Kolegji ISPE",
+    "shortName": "ISPE",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/ispe.png",
+    "website": null
+  },
+  {
+    "slug": "globus",
+    "name": "Kolegji i Menaxhmentit Internacional “Globus”",
+    "shortName": "Globus",
+    "type": "privat",
+    "city": "Prishtinë",
+    "logo": "/images/universities/logos/globus.png",
+    "website": null
+  }
+]

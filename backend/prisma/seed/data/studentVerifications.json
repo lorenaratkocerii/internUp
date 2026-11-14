@@ -1,0 +1,164 @@
+[
+  {
+    "reference": "ver-2001",
+    "university": "up",
+    "studentEmail": "blend.morina@uni-pr.edu",
+    "studentName": "Blend Morina",
+    "status": "verified",
+    "submittedDaysAgo": 64,
+    "decidedDaysAgo": 61
+  },
+  {
+    "reference": "ver-2002",
+    "university": "up",
+    "studentEmail": "vesa.bytyqi@uni-pr.edu",
+    "studentName": "Vesa Bytyqi",
+    "status": "verified",
+    "submittedDaysAgo": 40,
+    "decidedDaysAgo": 38
+  },
+  {
+    "reference": "ver-2003",
+    "university": "up",
+    "studentEmail": "albulena.mustafa@uni-pr.edu",
+    "studentName": "Albulena Mustafa",
+    "status": "verified",
+    "submittedDaysAgo": 29,
+    "decidedDaysAgo": 27
+  },
+  {
+    "reference": "ver-2004",
+    "university": "up",
+    "studentEmail": "arton.krasniqi@uni-pr.edu",
+    "studentName": "Arton Krasniqi",
+    "status": "verified",
+    "submittedDaysAgo": 15,
+    "decidedDaysAgo": 14
+  },
+  {
+    "reference": "ver-2005",
+    "university": "up",
+    "studentEmail": "drita.hoxha@uni-pr.edu",
+    "studentName": "Drita Hoxha",
+    "status": "pending",
+    "submittedDaysAgo": 2,
+    "decidedDaysAgo": null
+  },
+  {
+    "reference": "ver-2006",
+    "university": "up",
+    "studentEmail": "lirim.sylejmani@gmail.com",
+    "studentName": "Lirim Sylejmani",
+    "status": "pending",
+    "submittedDaysAgo": 1,
+    "decidedDaysAgo": null
+  },
+  {
+    "reference": "ver-2007",
+    "university": "up",
+    "studentEmail": "njomza.ahmeti@uni-pr.edu",
+    "studentName": "Njomza Ahmeti",
+    "status": "pending",
+    "submittedDaysAgo": 4,
+    "decidedDaysAgo": null
+  },
+  {
+    "reference": "ver-2008",
+    "university": "up",
+    "studentEmail": "mal.berisha@outlook.com",
+    "studentName": "Mal Berisha",
+    "status": "rejected",
+    "submittedDaysAgo": 20,
+    "decidedDaysAgo": 18
+  },
+  {
+    "reference": "ver-2101",
+    "university": "ubt",
+    "studentEmail": "leart.berisha@student.ubt-uni.net",
+    "studentName": "Leart Berisha",
+    "status": "verified",
+    "submittedDaysAgo": 50,
+    "decidedDaysAgo": 48
+  },
+  {
+    "reference": "ver-2102",
+    "university": "aab",
+    "studentEmail": "elira.gashi@aab-edu.net",
+    "studentName": "Elira Gashi",
+    "status": "verified",
+    "submittedDaysAgo": 44,
+    "decidedDaysAgo": 40
+  },
+  {
+    "reference": "ver-2103",
+    "university": "rit-kosovo",
+    "studentEmail": "dren.hoxha@rit.edu",
+    "studentName": "Dren Hoxha",
+    "status": "verified",
+    "submittedDaysAgo": 70,
+    "decidedDaysAgo": 69
+  },
+  {
+    "reference": "ver-2104",
+    "university": "riinvest",
+    "studentEmail": "rina.shala@riinvest.net",
+    "studentName": "Rina Shala",
+    "status": "verified",
+    "submittedDaysAgo": 33,
+    "decidedDaysAgo": 30
+  },
+  {
+    "reference": "ver-2105",
+    "university": "unhz",
+    "studentEmail": "ardit.kelmendi@unhz.eu",
+    "studentName": "Ardit Kelmendi",
+    "status": "verified",
+    "submittedDaysAgo": 26,
+    "decidedDaysAgo": 25
+  },
+  {
+    "reference": "ver-2106",
+    "university": "unhz",
+    "studentEmail": "erza.thaci@unhz.eu",
+    "studentName": "Erza Thaçi",
+    "status": "verified",
+    "submittedDaysAgo": 12,
+    "decidedDaysAgo": 10
+  },
+  {
+    "reference": "ver-2107",
+    "university": "uni-prizren",
+    "studentEmail": "albion.rexhepi@uni-prizren.com",
+    "studentName": "Albion Rexhepi",
+    "status": "verified",
+    "submittedDaysAgo": 58,
+    "decidedDaysAgo": 57
+  },
+  {
+    "reference": "ver-2108",
+    "university": "uni-gjilan",
+    "studentEmail": "granit.ismaili@uni-gjilan.net",
+    "studentName": "Granit Ismaili",
+    "status": "verified",
+    "submittedDaysAgo": 21,
+    "decidedDaysAgo": 19
+  },
+  {
+    "reference": "ver-2109",
+    "university": "umib",
+    "studentEmail": "donika.hajdari@umib.net",
+    "studentName": "Donika Hajdari",
+    "status": "verified",
+    "submittedDaysAgo": 9,
+    "decidedDaysAgo": 8
+  },
+  {
+    "reference": "ver-2110",
+    "university": "ubt",
+    "studentEmail": "besa.kurti@student.ubt-uni.net",
+    "studentName": "Besa Kurti",
+    "status": "verified",
+    "submittedDaysAgo": 17,
+    "decidedDaysAgo": 16
+  }
+]

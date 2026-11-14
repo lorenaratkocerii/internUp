@@ -1,3 +1,12 @@
+import { createAdminSessionStore } from '../adapters/outbound/http/adminSessionStore';
+import { createHttpAdminGateway, createUnavailableAdminGateway } from '../adapters/outbound/http/HttpAdminGateway';
+import { createHttpClient } from '../adapters/outbound/http/httpClient';
+import {
+  createHttpHomeCompanyRepository,
+  createHttpHomeDirectory,
+  createHttpHomeInternshipRepository,
+  createHttpStatsRepository,
+} from '../adapters/outbound/http/HttpHomeRepositories';
 import { createMockApplicationRepository } from '../adapters/outbound/mock/MockApplicationRepository';
 import { createMockCandidateApplicationRepository } from '../adapters/outbound/mock/MockCandidateApplicationRepository';
 import { createMockCompanyRegistrationRepository } from '../adapters/outbound/mock/MockCompanyRegistrationRepository';
@@ -7,6 +16,7 @@ import { createMockStatsRepository } from '../adapters/outbound/mock/MockStatsRe
 import { createMockStoryRepository } from '../adapters/outbound/mock/MockStoryRepository';
 import { createMockStudentVerificationRepository } from '../adapters/outbound/mock/MockStudentVerificationRepository';
 import { createMockUniversityRepository } from '../adapters/outbound/mock/MockUniversityRepository';
+import { createAdminUseCases } from '../application/adminUseCases';
 import { createBlogUseCases } from '../application/blogUseCases';
 import { createCareerPathUseCases } from '../application/careerPathUseCases';
 import { createCompanyUseCases } from '../application/companyUseCases';

@@ -1,0 +1,178 @@
+[
+  {
+    "slug": "kodra-labs",
+    "name": "Kodra Labs",
+    "shortDescription": "Ndërton produkte softuerike për biznese në rritje në Kosovë dhe në rajon.",
+    "industry": "Software",
+    "foundedYear": 2016,
+    "website": "kodralabs.com",
+    "city": "Lipjan",
+    "isPartner": true,
+    "displayOrder": 1
+  },
+  {
+    "slug": "vala-studio",
+    "name": "Vala Studio",
+    "shortDescription": "Studio dizajni për marka, ueb dhe produkte digjitale.",
+    "industry": "Dizajn",
+    "foundedYear": 2018,
+    "website": "valastudio.com",
+    "city": "Prishtinë",
+    "isPartner": true,
+    "displayOrder": 2
+  },
+  {
+    "slug": "rrjeti-media",
+    "name": "Rrjeti Media",
+    "shortDescription": "Agjenci marketingu digjital me fokus te përmbajtja dhe rezultatet.",
+    "industry": "Marketing",
+    "foundedYear": 2014,
+    "website": "rrjetimedia.com",
+    "city": "Ferizaj",
+    "isPartner": true,
+    "displayOrder": 3
+  },
+  {
+    "slug": "datara",
+    "name": "Datara",
+    "shortDescription": "Ndihmon kompanitë të marrin vendime më të mira me të dhëna.",
+    "industry": "Të dhëna",
+    "foundedYear": 2019,
+    "website": "datara.com",
+    "city": "Prishtinë",
+    "isPartner": true,
+    "displayOrder": 4
+  },
+  {
+    "slug": "ura-systems",
+    "name": "Ura Systems",
+    "shortDescription": "Sisteme të qëndrueshme për kompani me procese të mëdha.",
+    "industry": "Sisteme",
+    "foundedYear": 2011,
+    "website": "urasystems.com",
+    "city": "Prishtinë",
+    "isPartner": true,
+    "displayOrder": 5
+  },
+  {
+    "slug": "malesia-cloud",
+    "name": "Malësia Cloud",
+    "shortDescription": "Shërbime cloud dhe mbështetje teknike për biznese të vogla.",
+    "industry": "Cloud",
+    "foundedYear": 2017,
+    "website": "malesiacloud.com",
+    "city": "Pejë",
+    "isPartner": true,
+    "displayOrder": 6
+  },
+  {
+    "slug": "dardan-pay",
+    "name": "Dardan Pay",
+    "shortDescription": "Produkte për pagesa digjitale të thjeshta dhe të sigurta.",
+    "industry": "Fintech",
+    "foundedYear": 2020,
+    "website": "dardanpay.com",
+    "city": "Prishtinë",
+    "isPartner": false,
+    "displayOrder": 7
+  },
+  {
+    "slug": "gjelber-energy",
+    "name": "Gjelbër Energy",
+    "shortDescription": "Projekte të energjisë së ripërtëritshme për biznese dhe komuna.",
+    "industry": "Energji",
+    "foundedYear": 2015,
+    "website": "gjelberenergy.com",
+    "city": "Prizren",
+    "isPartner": false,
+    "displayOrder": 8
+  },
+  {
+    "slug": "qarku-tech",
+    "name": "Qarku Tech",
+    "shortDescription": "Projekton pajisje elektronike dhe sisteme IoT për industrinë.",
+    "industry": "Elektronikë",
+    "foundedYear": 2013,
+    "website": "qarkutech.com",
+    "city": "Gjilan",
+    "isPartner": false,
+    "displayOrder": 9
+  },
+  {
+    "slug": "dija-soft",
+    "name": "Dija Soft",
+    "shortDescription": "Platforma digjitale për shkolla, mësues dhe nxënës.",
+    "industry": "Edukim",
+    "foundedYear": 2018,
+    "website": "dijasoft.com",
+    "city": "Mitrovicë",
+    "isPartner": false,
+    "displayOrder": 10
+  },
+  {
+    "slug": "mendja-ai",
+    "name": "Mendja AI",
+    "shortDescription": "Zhvillon mjete të inteligjencës artificiale për gjuhën shqipe.",
+    "industry": "Inteligjencë artificiale",
+    "foundedYear": 2021,
+    "website": "mendja-ai.com",
+    "city": "Prishtinë",
+    "isPartner": false,
+    "displayOrder": 11
+  },
+  {
+    "slug": "mburoja-security",
+    "name": "Mburoja Security",
+    "shortDescription": "Mbron kompanitë nga sulmet kibernetike me monitorim të vazhdueshëm.",
+    "industry": "Siguri kibernetike",
+    "foundedYear": 2017,
+    "website": "mburojasecurity.com",
+    "city": "Prishtinë",
+    "isPartner": false,
+    "displayOrder": 12
+  },
+  {
+    "slug": "hena-code",
+    "name": "Hëna Code",
+    "shortDescription": "Ekipe zhvillimi softuerësh për klientë në Europë.",
+    "industry": "Software",
+    "foundedYear": 2015,
+    "website": "henacode.com",
+    "city": "Gjakovë",
+    "isPartner": false,
+    "displayOrder": 13
+  },
+  {
+    "slug": "shporta-commerce",
+    "name": "Shporta Commerce",
+    "shortDescription": "Ndihmon bizneset lokale të shesin në internet.",
+    "industry": "E-commerce",
+    "foundedYear": 2019,
+    "website": "shportacommerce.com",
+    "city": "Pejë",
+    "isPartner": false,
+    "displayOrder": 14
+  },
+  {
+    "slug": "busulla-consulting",
+    "name": "Busulla Consulting",
+    "shortDescription": "Konsulencë biznesi dhe analizë për kompani në rritje.",
+    "industry": "Konsulencë",
+    "foundedYear": 2012,
+    "website": "busullaconsulting.com",
+    "city": "Prishtinë",
+    "isPartner": false,
+    "displayOrder": 15
+  },
+  {
+    "slug": "rruga-logistics",
+    "name": "Rruga Logistics",
+    "shortDescription": "Softuer dhe operacione për dërgesa më të shpejta.",
+    "industry": "Logjistikë",
+    "foundedYear": 2016,
+    "website": "rrugalogistics.com",
+    "city": "Ferizaj",
+    "isPartner": false,
+    "displayOrder": 16
+  }
+]
