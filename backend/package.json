@@ -15,6 +15,7 @@
     "db:deploy": "prisma migrate deploy",
     "db:generate": "prisma generate",
     "db:seed": "node prisma/seed/index.js",
+    "db:seed:admin": "node prisma/seed/admin.js",
     "db:studio": "prisma studio"
   },
   "dependencies": {

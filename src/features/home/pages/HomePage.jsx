@@ -13,7 +13,7 @@ import { useInternshipSearch } from '../hooks/useInternshipSearch';
 
 const NO_OPTIONS = { positions: [], locations: [] };
 
-export function HomePage({ useCases, universityUseCases, blogUseCases }) {
+export function HomePage({ useCases }) {
   const stats = useAsyncData(useCases.getPlatformStats);
   const companies = useAsyncData(useCases.getPartnerCompanies);
   const searchOptions = useAsyncData(useCases.getSearchOptions);
@@ -53,8 +53,8 @@ export function HomePage({ useCases, universityUseCases, blogUseCases }) {
       <HowItWorks />
       <OurStory />
       <Companies companies={companies} />
-      <Universities useCases={universityUseCases} />
-      <StudentExperiences useCases={blogUseCases} />
+      <Universities useCases={useCases} />
+      <StudentExperiences useCases={useCases} />
       <CallToAction />
     </>
   );

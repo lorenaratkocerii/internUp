@@ -53,6 +53,8 @@ function setDemoUser(account) {
   return user;
 }
 
+export const startDemoSession = setDemoUser;
+
 export function getDemoAccount(role) {
   return DEMO_ACCOUNTS.find((account) => account.role === role);
 }

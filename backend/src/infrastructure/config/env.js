@@ -16,6 +16,13 @@ function port(value) {
   return number;
 }
 
+function secret(value) {
+  if (value.length < 32) {
+    throw new Error('JWT_SECRET duhet të ketë të paktën 32 karaktere.');
+  }
+  return value;
+}
+
 const list = (value) =>
   value
     .split(',')
@@ -27,4 +34,6 @@ export const env = Object.freeze({
   port: port(process.env.PORT ?? '4000'),
   corsOrigins: list(process.env.CORS_ORIGIN ?? 'http://localhost:5173'),
   databaseUrl: required('DATABASE_URL'),
+  jwtSecret: secret(required('JWT_SECRET')),
+  jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? '8h',
 });

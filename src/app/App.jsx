@@ -1,5 +1,9 @@
 import { Route, Routes } from 'react-router';
 import { Role } from '../domain/auth/accessControl';
+import { AdminCompaniesPage } from '../features/admin/pages/AdminCompaniesPage';
+import { AdminLayout, AdminWelcome } from '../features/admin/components/AdminLayout';
+import { AdminInternshipsPage } from '../features/admin/pages/AdminInternshipsPage';
+import { AdminStoriesPage } from '../features/admin/pages/AdminStoriesPage';
 import { RequireRole } from '../features/auth/RequireRole';
 import { NotFoundMessage } from '../features/companies/components/NotFoundMessage';
 import { CompaniesPage } from '../features/companies/pages/CompaniesPage';
@@ -35,6 +39,7 @@ import { AppLayout } from './AppLayout';
 export function App({ container }) {
   const {
     homeUseCases,
+    adminUseCases,
     companyUseCases,
     blogUseCases,
     careerPathUseCases,
@@ -47,7 +52,7 @@ export function App({ container }) {
   return (
     <Routes>
       <Route element={<AppLayout />}>
-        <Route index element={<HomePage useCases={homeUseCases} universityUseCases={universityUseCases} blogUseCases={blogUseCases} />} />
+        <Route index element={<HomePage useCases={homeUseCases} />} />
         <Route path="kompanite" element={<CompaniesPage useCases={companyUseCases} />} />
         <Route path="kompanite/:companyId" element={<CompanyProfilePage useCases={companyUseCases} />} />
         <Route
@@ -64,7 +69,7 @@ export function App({ container }) {
         <Route path="regjistrohu" element={<SignupPage />} />
         <Route path="regjistrohu/:role" element={<SignupRolePage universityUseCases={universityUseCases} universityWorkspaceUseCases={universityWorkspaceUseCases} />} />
         <Route path="hyr" element={<LoginPage />} />
-        <Route path="hyr/:role" element={<LoginRolePage />} />
+        <Route path="hyr/:role" element={<LoginRolePage adminUseCases={adminUseCases} />} />
 
         <Route element={<RequireRole role={Role.STUDENT} />}>
           <Route path="profili" element={<StudentProfilePage universityUseCases={universityUseCases} />} />
@@ -103,6 +108,15 @@ export function App({ container }) {
             />
           }
         />
+      </Route>
+
+      <Route element={<RequireRole role={Role.ADMIN} />}>
+        <Route path="admin" element={<AdminLayout useCases={adminUseCases} />}>
+          <Route index element={<AdminWelcome />} />
+          <Route path="kompanite" element={<AdminCompaniesPage useCases={adminUseCases} />} />
+          <Route path="praktikat" element={<AdminInternshipsPage useCases={adminUseCases} />} />
+          <Route path="historite" element={<AdminStoriesPage useCases={adminUseCases} />} />
+        </Route>
       </Route>
     </Routes>
   );

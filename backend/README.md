@@ -17,4 +17,6 @@ Baza: `http://localhost:4000/api`
 | GET | `/home/internships?position=&location=`  | `homeUseCases.searchInternships` |
 | GET | `/home/universities?limit=6` |  | `universityUseCases.listUniversities` |
 | GET | `/home/stories?limit=3` |
-
+ADMIN_EMAIL=admin@internup.test
+ADMIN_PASSWORD=Admin123! 
+munden me u kyq ne cilin do llogari te  ridirekton ne admin panel 

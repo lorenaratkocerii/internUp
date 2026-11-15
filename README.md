@@ -25,17 +25,9 @@ Për backend: krijo p.sh. `HttpStoryRepository` me metodat `findAll`, `findById`
 
 05.11.26 kom punu front 
 me qet e keni http://localhost:5173/ (i boni npm run dev ne terminal)
-### Company Workspace (`/kompani`) dhe RBAC
-| Shtresa | Skedarët |
-| `src/domain/auth/accessControl.js` | Rolet, lejet (RBAC), `assertCan`, `assertOwnsCompany` |
-| `src/domain/internship` | `candidateApplication.js` (statuset + kalimet), `internshipDraft.js`, `companyProfile.js` |
-| `src/application` | `companyWorkspaceUseCases.js`, `studentApplicationUseCases.js`, porti `CandidateApplicationRepository` |
-| `src/adapters/outbound/mock` | `MockCandidateApplicationRepository`, ruajtja në localStorage për pozitat/kompanitë |
-| `src/features/company-workspace` | Paneli, Profili i kompanisë, Manage Internships, Aplikimet |
-| `src/features/auth/RequireRole.jsx` | Mbrojtja e rrugëve sipas rolit |
 
 Llogaria demo e kompanisë: `kompani@internup.test` / `Kompani123!` (menaxhon Kodra Labs).
-Kompanitë e reja krijojnë profilin automatikisht pas regjistrimit. Çdo use case kontrollon rolin dhe pronësinë, jo vetëm UI.
+Kompanitë e reja krijojnë profilin automatikisht pas regjistrimit.
 
 08.11.26 edhe 09.11.26 kom punu te universitetet
 ### Universitetet (`/universitetet`) edhe paneli i universitetit (`/universitet`)

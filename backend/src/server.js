@@ -4,7 +4,7 @@ import { createPrismaClient } from './infrastructure/database/prismaClient.js';
 import { createApp } from './infrastructure/http/createApp.js';
 
 const prisma = createPrismaClient(env);
-const { controllers } = createContainer({ prisma });
+const { controllers } = createContainer({ prisma, jwtSecret: env.jwtSecret, jwtExpiresIn: env.jwtExpiresIn });
 const app = createApp({ controllers, corsOrigins: env.corsOrigins });
 
 const server = app.listen(env.port, () => {

@@ -2,6 +2,7 @@ export const Role = Object.freeze({
   STUDENT: 'student',
   COMPANY: 'kompani',
   UNIVERSITY: 'universitet',
+  ADMIN: 'admin',
 });
 
 export const Permission = Object.freeze({
@@ -16,6 +17,7 @@ export const Permission = Object.freeze({
   MANAGE_UNIVERSITY_PROFILE: 'university:manage-profile',
   VERIFY_STUDENTS: 'students:verify',
   VIEW_UNIVERSITY_STUDENTS: 'students:view-university',
+  MANAGE_HOME_CONTENT: 'home:manage-content',
 });
 
 const ROLE_PERMISSIONS = Object.freeze({
@@ -36,6 +38,7 @@ const ROLE_PERMISSIONS = Object.freeze({
     Permission.VERIFY_STUDENTS,
     Permission.VIEW_UNIVERSITY_STUDENTS,
   ],
+  [Role.ADMIN]: [Permission.MANAGE_HOME_CONTENT],
 });
 
 export class AccessDeniedError extends Error {

@@ -4,10 +4,12 @@ import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import { NotFoundMessage } from '../../companies/components/NotFoundMessage';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { Container } from '../../home/components/ui/Container';
-import { loginWithDemoAccount } from '../demoAuth';
+import { loginWithDemoAccount, startDemoSession } from '../demoAuth';
 import { loginRoles } from '../loginRoles';
 
-export function LoginRolePage() {
+const HOME_BY_ROLE = { student: '/profili', kompani: '/kompani', universitet: '/universitet', admin: '/admin' };
+
+export function LoginRolePage({ adminUseCases }) {
   const { role } = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -15,6 +17,7 @@ export function LoginRolePage() {
   const selectedRole = loginRoles.find((item) => item.id === role);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
   useDocumentTitle(selectedRole ? `Hyr si ${selectedRole.title}` : 'Hyr në llogari');
 
   if (!selectedRole) {
@@ -30,7 +33,17 @@ export function LoginRolePage() {
 
   const Icon = selectedRole.icon;
 
-  const handleSubmit = (event) => {
+  const authenticate = async (email, password) => {
+    const user = loginWithDemoAccount(role, email, password);
+    if (user) return user;
+    try {
+      return startDemoSession(await adminUseCases.login({ email, password }));
+    } catch {
+      return null;
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const email = String(formData.get('email') ?? '').trim();
@@ -43,14 +56,20 @@ export function LoginRolePage() {
     if (Object.keys(nextErrors).length > 0) {
       return;
     }
-    const user = loginWithDemoAccount(role, email, password);
+    setSubmitting(true);
+    const user = await authenticate(email, password);
+    setSubmitting(false);
     if (!user) {
       setErrors({ form: 'Emaili ose fjalëkalimi nuk është i saktë për këtë lloj llogarie.' });
       return;
     }
     setErrors({});
     const safeNext = nextPath?.startsWith('/') && !nextPath.startsWith('//') ? nextPath : null;
-    navigate(user.role === 'student' && user.profile?.approved === false ? '/student' : safeNext ?? ({ student: '/profili', kompani: '/kompani', universitet: '/universitet' }[user.role] ?? '/'));
+    if (user.role === 'admin') {
+      navigate('/admin');
+      return;
+    }
+    navigate(user.role === 'student' && user.profile?.approved === false ? '/student' : safeNext ?? HOME_BY_ROLE[user.role] ?? '/');
   };
 
   return (
@@ -87,8 +106,8 @@ export function LoginRolePage() {
             {errors.password && <span id="hyr-password-gabim" role="alert" className="mt-2 block text-sm font-semibold text-cream">{errors.password}</span>}
           </label>
           {errors.form && <p role="alert" className="text-sm font-semibold text-cream">{errors.form}</p>}
-          <button type="submit" className="min-h-12 w-full rounded-2xl bg-cream px-6 py-3 font-semibold text-charcoal transition-colors duration-300 hover:bg-cream/85">
-            Kyçu
+          <button type="submit" disabled={submitting} className="min-h-12 w-full rounded-2xl bg-cream px-6 py-3 font-semibold text-charcoal transition-colors duration-300 hover:bg-cream/85 disabled:cursor-wait disabled:opacity-70">
+            {submitting ? 'Duke u kyçur…' : 'Kyçu'}
           </button>
         </form>
 

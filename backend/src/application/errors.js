@@ -20,3 +20,17 @@ export class NotFoundError extends ApplicationError {
     this.name = 'NotFoundError';
   }
 }
+
+export class UnauthorizedError extends ApplicationError {
+  constructor(message = 'Duhet të kyçesh si administrator.', code = 'UNAUTHORIZED') {
+    super(message, { code });
+    this.name = 'UnauthorizedError';
+  }
+}
+
+export class TooManyRequestsError extends ApplicationError {
+  constructor(message = 'Shumë përpjekje. Provo përsëri pas pak minutash.') {
+    super(message, { code: 'TOO_MANY_REQUESTS' });
+    this.name = 'TooManyRequestsError';
+  }
+}

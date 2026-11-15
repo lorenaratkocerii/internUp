@@ -1,4 +1,10 @@
-import { ApplicationError, NotFoundError, ValidationError } from '../../../../application/errors.js';
+import {
+  ApplicationError,
+  NotFoundError,
+  TooManyRequestsError,
+  UnauthorizedError,
+  ValidationError,
+} from '../../../../application/errors.js';
 import { sendError } from '../apiResponse.js';
 
 const DATABASE_DOWN = new Set(['PrismaClientInitializationError', 'PrismaClientRustPanicError']);
@@ -10,6 +16,12 @@ function describe(error) {
   }
   if (error instanceof NotFoundError) {
     return { status: 404, code: error.code, message: error.message };
+  }
+  if (error instanceof UnauthorizedError) {
+    return { status: 401, code: error.code, message: error.message };
+  }
+  if (error instanceof TooManyRequestsError) {
+    return { status: 429, code: error.code, message: error.message };
   }
   if (error instanceof ApplicationError) {
     return { status: 422, code: error.code, message: error.message, details: error.details };

@@ -1,32 +1,24 @@
 import { withApplicationStatus } from '../domain/internship/applicationStatus';
-import {
-  createSearchCriteria,
-  filterSearchOptions,
-  isEmptyCriteria,
-  uniqueSorted,
-} from '../domain/internship/internshipSearch';
-import { KOSOVO_CITIES } from '../domain/internship/locations';
+import { createSearchCriteria, filterSearchOptions, isEmptyCriteria } from '../domain/internship/internshipSearch';
 import { asCompanyRepository } from './ports/CompanyRepository';
+import { asHomeDirectory } from './ports/HomeDirectory';
 import { asInternshipRepository } from './ports/InternshipRepository';
 import { asStatsRepository } from './ports/StatsRepository';
 
-export function createHomeUseCases({ internshipRepository, companyRepository, statsRepository }) {
+export function createHomeUseCases({ internshipRepository, companyRepository, statsRepository, homeDirectory }) {
   const internships = asInternshipRepository(internshipRepository);
   const companies = asCompanyRepository(companyRepository);
   const stats = asStatsRepository(statsRepository);
+  const directory = asHomeDirectory(homeDirectory);
 
   return Object.freeze({
     getPlatformStats: () => stats.getPlatformStats(),
     getPartnerCompanies: () => companies.findPartners(),
     filterSearchOptions,
 
-    getSearchOptions: async () => {
-      const all = await internships.findAll();
-      return {
-        positions: uniqueSorted(all.map((internship) => internship.title)),
-        locations: uniqueSorted(KOSOVO_CITIES),
-      };
-    },
+    getSearchOptions: () => directory.getSearchOptions(),
+    listUniversities: () => directory.listUniversities(),
+    listStories: () => directory.listStories(),
 
     searchInternships: async (rawCriteria) => {
       const criteria = createSearchCriteria(rawCriteria);
