@@ -16,6 +16,7 @@ import { CompanyDashboardPage } from '../features/company-workspace/pages/Compan
 import { InternshipEditorPage } from '../features/company-workspace/pages/InternshipEditorPage';
 import { ManageInternshipsPage } from '../features/company-workspace/pages/ManageInternshipsPage';
 import { VerifyInternsPage } from '../features/company-workspace/pages/VerifyInternsPage';
+import { AdminDashboardPage } from '../features/admin/pages/AdminDashboardPage';
 import { HomePage } from '../features/home/pages/HomePage';
 import { LoginPage } from '../features/login/pages/LoginPage';
 import { LoginRolePage } from '../features/login/pages/LoginRolePage';
@@ -103,6 +104,10 @@ export function App({ container }) {
             />
           }
         />
+      </Route>
+
+      <Route element={<RequireRole role={Role.ADMIN} />}>
+        <Route path="admin" element={<AdminDashboardPage />} />
       </Route>
     </Routes>
   );

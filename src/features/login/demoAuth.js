@@ -23,6 +23,14 @@ const DEMO_ACCOUNTS = [
   },
 ];
 
+const ADMIN_ACCOUNT = {
+  role: 'admin',
+  title: 'Admin',
+  email: 'admin@internup.test',
+  password: 'Admin123!',
+  name: 'Administratori',
+};
+
 const SESSION_KEY = 'internup:demo-user';
 const REGISTERED_KEY = 'internup:registered-users';
 const STUDENT_APPROVALS_KEY = 'internup:student-approvals';
@@ -59,6 +67,7 @@ export function getDemoAccount(role) {
 
 export function loginWithDemoAccount(role, email, password) {
   const normalizedEmail = email.trim().toLowerCase();
+  if (normalizedEmail === ADMIN_ACCOUNT.email && password === ADMIN_ACCOUNT.password) return setDemoUser(ADMIN_ACCOUNT);
   const account = [...DEMO_ACCOUNTS, ...getRegisteredAccounts()].find(
     (item) => item.role === role && item.email === normalizedEmail && item.password === password,
   );
@@ -68,7 +77,7 @@ export function loginWithDemoAccount(role, email, password) {
 export function registerDemoAccount({ role, title, email, password, name, profile }) {
   const normalizedEmail = email.trim().toLowerCase();
   const accounts = getRegisteredAccounts();
-  const emailExists = [...DEMO_ACCOUNTS, ...accounts].some((item) => item.email === normalizedEmail);
+  const emailExists = [ADMIN_ACCOUNT, ...DEMO_ACCOUNTS, ...accounts].some((item) => item.email === normalizedEmail);
   if (emailExists) return { error: 'Ky email është regjistruar tashmë.' };
 
   const account = { role, title, email: normalizedEmail, password, name, profile };

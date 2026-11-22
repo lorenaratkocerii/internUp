@@ -23,6 +23,7 @@ export function Navbar() {
     student: [],
     kompani: [{ href: '/kompani', label: 'Paneli' }],
     universitet: [{ href: '/universitet', label: 'Paneli' }],
+    admin: [{ href: '/admin', label: 'Paneli i adminit' }],
   }[user?.role] ?? [];
   const profileLink = {
     student: { href: '/profili', label: 'Profili im' },

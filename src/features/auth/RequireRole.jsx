@@ -10,12 +10,14 @@ const HOME_BY_ROLE = {
   [Role.STUDENT]: { href: '/student', label: 'Shko te paneli i studentit' },
   [Role.COMPANY]: { href: '/kompani', label: 'Shko te paneli i kompanisë' },
   [Role.UNIVERSITY]: { href: '/universitet', label: 'Shko te paneli i universitetit' },
+  [Role.ADMIN]: { href: '/admin', label: 'Shko te paneli i adminit' },
 };
 
 const ROLE_NAMES = {
   [Role.STUDENT]: 'student',
   [Role.COMPANY]: 'kompani',
   [Role.UNIVERSITY]: 'universitet',
+  [Role.ADMIN]: 'admin',
 };
 
 function AccessDenied({ role, actor }) {
@@ -47,7 +49,7 @@ export function RequireRole({ role }) {
 
   if (!actor) {
     const next = encodeURIComponent(`${pathname}${search}`);
-    return <Navigate to={`/hyr/${role}?next=${next}`} replace />;
+    return <Navigate to={role === Role.ADMIN ? '/hyr' : `/hyr/${role}?next=${next}`} replace />;
   }
   if (actor.role !== role) return <AccessDenied role={role} actor={actor} />;
   if (role === Role.STUDENT && actor.profile?.approved === false && !['/profili', '/student'].includes(pathname)) {
