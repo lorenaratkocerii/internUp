@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/InternUp.Api/InternUp.Api.csproj" />
+    <Project Path="src/InternUp.Application/InternUp.Application.csproj" />
+    <Project Path="src/InternUp.Domain/InternUp.Domain.csproj" />
+    <Project Path="src/InternUp.Infrastructure/InternUp.Infrastructure.csproj" />
+  </Folder>
+</Solution>

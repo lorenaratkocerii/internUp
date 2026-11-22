@@ -1,0 +1,26 @@
+@InternUp.Api_HostAddress = http://localhost:5084
+
+GET {{InternUp.Api_HostAddress}}/api/home/stats
+Accept: application/json
+
+###
+
+GET {{InternUp.Api_HostAddress}}/api/home/partner-companies
+Accept: application/json
+
+###
+
+GET {{InternUp.Api_HostAddress}}/api/home/search-options
+Accept: application/json
+
+###
+
+GET {{InternUp.Api_HostAddress}}/api/home/internships
+Accept: application/json
+
+###
+
+GET {{InternUp.Api_HostAddress}}/api/home/internships?position=React&location=Prishtine
+Accept: application/json
+
+###

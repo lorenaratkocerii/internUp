@@ -1,0 +1,903 @@
+{
+  "cities": [
+    "Deçan",
+    "Dragash",
+    "Ferizaj",
+    "Fushë Kosovë",
+    "Gjakovë",
+    "Gjilan",
+    "Istog",
+    "Junik",
+    "Kaçanik",
+    "Kamenicë",
+    "Klinë",
+    "Lipjan",
+    "Malishevë",
+    "Mitrovicë",
+    "Obiliq",
+    "Pejë",
+    "Podujevë",
+    "Prishtinë",
+    "Prizren",
+    "Viti",
+    "Vushtrri"
+  ],
+  "companies": [
+    {
+      "id": "kodra-labs",
+      "name": "Kodra Labs",
+      "industry": "Software",
+      "location": "Lipjan",
+      "shortDescription": "Ndërton produkte softuerike për biznese në rritje në Kosovë dhe në rajon.",
+      "isPartner": true,
+      "displayOrder": 1
+    },
+    {
+      "id": "vala-studio",
+      "name": "Vala Studio",
+      "industry": "Dizajn",
+      "location": "Prishtinë",
+      "shortDescription": "Studio dizajni për marka, ueb dhe produkte digjitale.",
+      "isPartner": true,
+      "displayOrder": 2
+    },
+    {
+      "id": "rrjeti-media",
+      "name": "Rrjeti Media",
+      "industry": "Marketing",
+      "location": "Ferizaj",
+      "shortDescription": "Agjenci marketingu digjital me fokus te përmbajtja dhe rezultatet.",
+      "isPartner": true,
+      "displayOrder": 3
+    },
+    {
+      "id": "datara",
+      "name": "Datara",
+      "industry": "Të dhëna",
+      "location": "Prishtinë",
+      "shortDescription": "Ndihmon kompanitë të marrin vendime më të mira me të dhëna.",
+      "isPartner": true,
+      "displayOrder": 4
+    },
+    {
+      "id": "ura-systems",
+      "name": "Ura Systems",
+      "industry": "Sisteme",
+      "location": "Prishtinë",
+      "shortDescription": "Sisteme të qëndrueshme për kompani me procese të mëdha.",
+      "isPartner": true,
+      "displayOrder": 5
+    },
+    {
+      "id": "malesia-cloud",
+      "name": "Malësia Cloud",
+      "industry": "Cloud",
+      "location": "Pejë",
+      "shortDescription": "Shërbime cloud dhe mbështetje teknike për biznese të vogla.",
+      "isPartner": true,
+      "displayOrder": 6
+    },
+    {
+      "id": "dardan-pay",
+      "name": "Dardan Pay",
+      "industry": "Fintech",
+      "location": "Prishtinë",
+      "shortDescription": "Produkte për pagesa digjitale të thjeshta dhe të sigurta.",
+      "isPartner": false,
+      "displayOrder": 7
+    },
+    {
+      "id": "gjelber-energy",
+      "name": "Gjelbër Energy",
+      "industry": "Energji",
+      "location": "Prizren",
+      "shortDescription": "Projekte të energjisë së ripërtëritshme për biznese dhe komuna.",
+      "isPartner": false,
+      "displayOrder": 8
+    },
+    {
+      "id": "qarku-tech",
+      "name": "Qarku Tech",
+      "industry": "Elektronikë",
+      "location": "Gjilan",
+      "shortDescription": "Projekton pajisje elektronike dhe sisteme IoT për industrinë.",
+      "isPartner": false,
+      "displayOrder": 9
+    },
+    {
+      "id": "dija-soft",
+      "name": "Dija Soft",
+      "industry": "Edukim",
+      "location": "Mitrovicë",
+      "shortDescription": "Platforma digjitale për shkolla, mësues dhe nxënës.",
+      "isPartner": false,
+      "displayOrder": 10
+    },
+    {
+      "id": "mendja-ai",
+      "name": "Mendja AI",
+      "industry": "Inteligjencë artificiale",
+      "location": "Prishtinë",
+      "shortDescription": "Zhvillon mjete të inteligjencës artificiale për gjuhën shqipe.",
+      "isPartner": false,
+      "displayOrder": 11
+    },
+    {
+      "id": "mburoja-security",
+      "name": "Mburoja Security",
+      "industry": "Siguri kibernetike",
+      "location": "Prishtinë",
+      "shortDescription": "Mbron kompanitë nga sulmet kibernetike me monitorim të vazhdueshëm.",
+      "isPartner": false,
+      "displayOrder": 12
+    },
+    {
+      "id": "hena-code",
+      "name": "Hëna Code",
+      "industry": "Software",
+      "location": "Gjakovë",
+      "shortDescription": "Ekipe zhvillimi softuerësh për klientë në Europë.",
+      "isPartner": false,
+      "displayOrder": 13
+    },
+    {
+      "id": "shporta-commerce",
+      "name": "Shporta Commerce",
+      "industry": "E-commerce",
+      "location": "Pejë",
+      "shortDescription": "Ndihmon bizneset lokale të shesin në internet.",
+      "isPartner": false,
+      "displayOrder": 14
+    },
+    {
+      "id": "busulla-consulting",
+      "name": "Busulla Consulting",
+      "industry": "Konsulencë",
+      "location": "Prishtinë",
+      "shortDescription": "Konsulencë biznesi dhe analizë për kompani në rritje.",
+      "isPartner": false,
+      "displayOrder": 15
+    },
+    {
+      "id": "rruga-logistics",
+      "name": "Rruga Logistics",
+      "industry": "Logjistikë",
+      "location": "Ferizaj",
+      "shortDescription": "Softuer dhe operacione për dërgesa më të shpejta.",
+      "isPartner": false,
+      "displayOrder": 16
+    }
+  ],
+  "internships": [
+    {
+      "id": "frontend-developer",
+      "title": "Zhvillues/e Frontend",
+      "companyId": "kodra-labs",
+      "location": "Lipjan",
+      "workMode": "Hybrid",
+      "durationMonths": 3,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": true,
+      "stipend": null,
+      "description": "Bashkohu me ekipin e produktit dhe ndërto ndërfaqe që përdoren nga klientët tanë çdo ditë, me mbështetjen e një mentori.",
+      "skills": [
+        "React",
+        "JavaScript",
+        "Tailwind CSS"
+      ],
+      "opensInDays": -14,
+      "closesInDays": 24,
+      "seats": 2,
+      "featured": true,
+      "displayOrder": 1
+    },
+    {
+      "id": "mobile-developer",
+      "title": "Zhvillues/e për aplikacione mobile",
+      "companyId": "kodra-labs",
+      "location": "Lipjan",
+      "workMode": "Hybrid",
+      "durationMonths": 4,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": true,
+      "stipend": null,
+      "description": "Puno në aplikacionin celular të kompanisë, nga rregullimi i gabimeve deri te funksione të reja.",
+      "skills": [
+        "React Native",
+        "TypeScript",
+        "Git"
+      ],
+      "opensInDays": -50,
+      "closesInDays": -6,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 2
+    },
+    {
+      "id": "ui-ux-designer",
+      "title": "Dizajner/e UI/UX",
+      "companyId": "vala-studio",
+      "location": "Prishtinë",
+      "workMode": "On-site",
+      "durationMonths": 4,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Puno krah dizajnerëve tanë në projekte reale klientësh, nga hulumtimi deri te prototipi final.",
+      "skills": [
+        "Figma",
+        "Prototyping",
+        "User Research"
+      ],
+      "opensInDays": -10,
+      "closesInDays": 30,
+      "seats": 2,
+      "featured": true,
+      "displayOrder": 3
+    },
+    {
+      "id": "graphic-designer",
+      "title": "Dizajner/e grafik/e",
+      "companyId": "vala-studio",
+      "location": "Prizren",
+      "workMode": "On-site",
+      "durationMonths": 3,
+      "schedule": "Part-time, 20 orë në javë, paradite",
+      "paid": false,
+      "stipend": null,
+      "description": "Krijo materiale vizuale për fushata dhe identitete markash nën udhëheqjen e një art drejtori.",
+      "skills": [
+        "Illustrator",
+        "Branding",
+        "Photoshop"
+      ],
+      "opensInDays": -20,
+      "closesInDays": 5,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 4
+    },
+    {
+      "id": "digital-marketing",
+      "title": "Marketing digjital",
+      "companyId": "rrjeti-media",
+      "location": "Ferizaj",
+      "workMode": "Hybrid",
+      "durationMonths": 3,
+      "schedule": "Part-time, 20 orë në javë, paradite",
+      "paid": false,
+      "stipend": null,
+      "description": "Mëso si planifikohen dhe maten fushatat digjitale për klientë nga industri të ndryshme.",
+      "skills": [
+        "SEO",
+        "Social Media",
+        "Copywriting"
+      ],
+      "opensInDays": -7,
+      "closesInDays": 21,
+      "seats": 3,
+      "featured": true,
+      "displayOrder": 5
+    },
+    {
+      "id": "content-marketing",
+      "title": "Marketing i përmbajtjes",
+      "companyId": "rrjeti-media",
+      "location": "Prishtinë",
+      "workMode": "Remote",
+      "durationMonths": 4,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": true,
+      "stipend": null,
+      "description": "Shkruaj artikuj dhe përmbajtje që ndihmojnë klientët tanë të gjenden dhe të kuptohen më mirë.",
+      "skills": [
+        "Copywriting",
+        "SEO",
+        "Analytics"
+      ],
+      "opensInDays": -30,
+      "closesInDays": -2,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 6
+    },
+    {
+      "id": "data-analyst",
+      "title": "Analist/e i/e të dhënave",
+      "companyId": "datara",
+      "location": "Prishtinë",
+      "workMode": "Remote",
+      "durationMonths": 6,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Kthe të dhënat e klientëve në përgjigje të qarta, duke punuar me analistë me përvojë.",
+      "skills": [
+        "SQL",
+        "Python",
+        "Power BI"
+      ],
+      "opensInDays": -5,
+      "closesInDays": 35,
+      "seats": 2,
+      "featured": true,
+      "displayOrder": 7
+    },
+    {
+      "id": "machine-learning-intern",
+      "title": "Praktikant/e në mësimin makinerik",
+      "companyId": "datara",
+      "location": "Prishtinë",
+      "workMode": "Remote",
+      "durationMonths": 6,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": true,
+      "stipend": null,
+      "description": "Ndihmo në përgatitjen e të dhënave dhe në testimin e modeleve për projekte të brendshme.",
+      "skills": [
+        "Python",
+        "pandas",
+        "scikit-learn"
+      ],
+      "opensInDays": -25,
+      "closesInDays": 3,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 8
+    },
+    {
+      "id": "backend-developer",
+      "title": "Zhvillues/e Backend",
+      "companyId": "ura-systems",
+      "location": "Prishtinë",
+      "workMode": "Hybrid",
+      "durationMonths": 6,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Ndërto shërbime të qëndrueshme për sistemet që kompanitë përdorin në punën e përditshme.",
+      "skills": [
+        "Node.js",
+        "PostgreSQL",
+        "REST API"
+      ],
+      "opensInDays": -12,
+      "closesInDays": 28,
+      "seats": 3,
+      "featured": false,
+      "displayOrder": 9
+    },
+    {
+      "id": "devops-intern",
+      "title": "Praktikant/e DevOps",
+      "companyId": "ura-systems",
+      "location": "Prishtinë",
+      "workMode": "Hybrid",
+      "durationMonths": 4,
+      "schedule": "Part-time, 20 orë në javë, paradite",
+      "paid": true,
+      "stipend": null,
+      "description": "Mëso si publikohen dhe monitorohen sistemet në prodhim, me mbështetjen e ekipit të infrastrukturës.",
+      "skills": [
+        "Docker",
+        "Linux",
+        "GitHub Actions"
+      ],
+      "opensInDays": -18,
+      "closesInDays": 6,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 10
+    },
+    {
+      "id": "qa-tester",
+      "title": "Testues/e i/e cilësisë (QA)",
+      "companyId": "malesia-cloud",
+      "location": "Pejë",
+      "workMode": "Remote",
+      "durationMonths": 3,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": false,
+      "stipend": null,
+      "description": "Gjej problemet para përdoruesve dhe ndihmo ekipin të dorëzojë produkte më të besueshme.",
+      "skills": [
+        "Test Cases",
+        "Cypress",
+        "Jira"
+      ],
+      "opensInDays": -9,
+      "closesInDays": 19,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 11
+    },
+    {
+      "id": "cloud-support",
+      "title": "Praktikant/e për mbështetje Cloud",
+      "companyId": "malesia-cloud",
+      "location": "Pejë",
+      "workMode": "Remote",
+      "durationMonths": 4,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Ndihmo klientët të përdorin shërbimet tona në cloud dhe mëso si funksionon infrastruktura nga brenda.",
+      "skills": [
+        "Linux",
+        "Networking",
+        "AWS"
+      ],
+      "opensInDays": -4,
+      "closesInDays": 40,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 12
+    },
+    {
+      "id": "product-analyst",
+      "title": "Analist/e i/e produktit",
+      "companyId": "dardan-pay",
+      "location": "Prishtinë",
+      "workMode": "Hybrid",
+      "durationMonths": 5,
+      "schedule": "Part-time, 20 orë në javë, paradite",
+      "paid": true,
+      "stipend": null,
+      "description": "Kupto si përdoren pagesat digjitale dhe ndihmo ekipin e produktit të marrë vendime me të dhëna.",
+      "skills": [
+        "SQL",
+        "Excel",
+        "Product Thinking"
+      ],
+      "opensInDays": -3,
+      "closesInDays": 32,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 13
+    },
+    {
+      "id": "security-intern",
+      "title": "Praktikant/e i/e sigurisë kibernetike",
+      "companyId": "dardan-pay",
+      "location": "Prishtinë",
+      "workMode": "On-site",
+      "durationMonths": 6,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Mëso si mbrohen sistemet e pagesave dhe ndihmo ekipin e sigurisë në kontrollet e përditshme.",
+      "skills": [
+        "Networking",
+        "OWASP",
+        "Linux"
+      ],
+      "opensInDays": -60,
+      "closesInDays": -12,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 14
+    },
+    {
+      "id": "energy-data",
+      "title": "Praktikant/e për të dhënat e energjisë",
+      "companyId": "gjelber-energy",
+      "location": "Prizren",
+      "workMode": "On-site",
+      "durationMonths": 4,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Analizo prodhimin e energjisë nga panelet diellore dhe ndihmo në përmirësimin e efikasitetit.",
+      "skills": [
+        "Excel",
+        "Python",
+        "Data Visualization"
+      ],
+      "opensInDays": -8,
+      "closesInDays": 26,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 15
+    },
+    {
+      "id": "hr-intern",
+      "title": "Praktikant/e i/e burimeve njerëzore",
+      "companyId": "gjelber-energy",
+      "location": "Prizren",
+      "workMode": "Hybrid",
+      "durationMonths": 3,
+      "schedule": "Part-time, 20 orë në javë, paradite",
+      "paid": false,
+      "stipend": null,
+      "description": "Shih nga afër si rekrutohen dhe mbështeten punonjësit në një kompani në rritje.",
+      "skills": [
+        "Komunikim",
+        "Organizim",
+        "Excel"
+      ],
+      "opensInDays": -22,
+      "closesInDays": 2,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 16
+    },
+    {
+      "id": "embedded-intern",
+      "title": "Praktikant/e për sistemet e integruara",
+      "companyId": "qarku-tech",
+      "location": "Gjilan",
+      "workMode": "On-site",
+      "durationMonths": 6,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Programo pajisje të vërteta në laborator dhe shih si kalon një ide nga skema elektronike te prototipi.",
+      "skills": [
+        "C/C++",
+        "STM32",
+        "Elektronikë"
+      ],
+      "opensInDays": -11,
+      "closesInDays": 27,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 17
+    },
+    {
+      "id": "hardware-testing-intern",
+      "title": "Praktikant/e për testimin e pajisjeve",
+      "companyId": "qarku-tech",
+      "location": "Gjilan",
+      "workMode": "On-site",
+      "durationMonths": 3,
+      "schedule": "Part-time, 20 orë në javë, paradite",
+      "paid": true,
+      "stipend": null,
+      "description": "Ndihmo ekipin të kontrollojë pajisjet para se të dalin te klientët, me instrumente matëse profesionale.",
+      "skills": [
+        "Oshiloskop",
+        "Saldim",
+        "Dokumentim"
+      ],
+      "opensInDays": -21,
+      "closesInDays": 4,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 18
+    },
+    {
+      "id": "fullstack-intern",
+      "title": "Praktikant/e për zhvillim Full-Stack",
+      "companyId": "dija-soft",
+      "location": "Mitrovicë",
+      "workMode": "Hybrid",
+      "durationMonths": 4,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": true,
+      "stipend": null,
+      "description": "Ndërto funksione për platformën që shkollat përdorin për mësime, detyra dhe komunikim me prindërit.",
+      "skills": [
+        "Vue.js",
+        "Laravel",
+        "MySQL"
+      ],
+      "opensInDays": -6,
+      "closesInDays": 29,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 19
+    },
+    {
+      "id": "technical-writer-intern",
+      "title": "Praktikant/e për shkrim teknik",
+      "companyId": "dija-soft",
+      "location": "Mitrovicë",
+      "workMode": "Remote",
+      "durationMonths": 3,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": false,
+      "stipend": null,
+      "description": "Shkruaj udhëzues të qartë që u ndihmojnë mësuesve ta përdorin platformën pa pasur nevojë për ndihmë.",
+      "skills": [
+        "Shkrim teknik",
+        "Komunikim",
+        "Notion"
+      ],
+      "opensInDays": -45,
+      "closesInDays": -4,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 20
+    },
+    {
+      "id": "ai-engineer-intern",
+      "title": "Praktikant/e për inxhinieri të inteligjencës artificiale",
+      "companyId": "mendja-ai",
+      "location": "Prishtinë",
+      "workMode": "Remote",
+      "durationMonths": 6,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": true,
+      "stipend": null,
+      "description": "Ndihmo në ndërtimin e mjeteve që kuptojnë tekstin në shqip, nga përgatitja e të dhënave deri te testimi.",
+      "skills": [
+        "Python",
+        "PyTorch",
+        "NLP"
+      ],
+      "opensInDays": -9,
+      "closesInDays": 33,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 21
+    },
+    {
+      "id": "data-labeling-intern",
+      "title": "Praktikant/e për etiketimin e të dhënave",
+      "companyId": "mendja-ai",
+      "location": "Prishtinë",
+      "workMode": "Remote",
+      "durationMonths": 3,
+      "schedule": "Part-time, 20 orë në javë, paradite",
+      "paid": false,
+      "stipend": null,
+      "description": "Puno me të dhënat që trajnojnë modelet dhe mëso pse cilësia e tyre vendos për rezultatin final.",
+      "skills": [
+        "Gjuhë shqipe",
+        "Excel",
+        "Kujdes për detaje"
+      ],
+      "opensInDays": -19,
+      "closesInDays": 6,
+      "seats": 3,
+      "featured": false,
+      "displayOrder": 22
+    },
+    {
+      "id": "soc-analyst-intern",
+      "title": "Praktikant/e analist/e SOC",
+      "companyId": "mburoja-security",
+      "location": "Prishtinë",
+      "workMode": "On-site",
+      "durationMonths": 6,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Ndiq sinjalet e sigurisë së klientëve bashkë me analistët dhe mëso si dallohet një sulm i vërtetë.",
+      "skills": [
+        "SIEM",
+        "Networking",
+        "Linux"
+      ],
+      "opensInDays": -13,
+      "closesInDays": 25,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 23
+    },
+    {
+      "id": "penetration-testing-intern",
+      "title": "Praktikant/e për testimin e depërtimit",
+      "companyId": "mburoja-security",
+      "location": "Prishtinë",
+      "workMode": "On-site",
+      "durationMonths": 4,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Mëso si testohen aplikacionet për dobësi, me leje të klientit dhe nën mbikëqyrjen e një testuesi.",
+      "skills": [
+        "OWASP",
+        "Burp Suite",
+        "Linux"
+      ],
+      "opensInDays": -55,
+      "closesInDays": -9,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 24
+    },
+    {
+      "id": "java-developer-intern",
+      "title": "Praktikant/e për zhvillim në Java",
+      "companyId": "hena-code",
+      "location": "Gjakovë",
+      "workMode": "Remote",
+      "durationMonths": 6,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Bashkohu me një ekip që zhvillon softuer për klientë europianë dhe mëso si punohet në projekte të mëdha.",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Git"
+      ],
+      "opensInDays": -8,
+      "closesInDays": 36,
+      "seats": 3,
+      "featured": false,
+      "displayOrder": 25
+    },
+    {
+      "id": "database-intern",
+      "title": "Praktikant/e për baza të të dhënave",
+      "companyId": "hena-code",
+      "location": "Gjakovë",
+      "workMode": "Remote",
+      "durationMonths": 4,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": true,
+      "stipend": null,
+      "description": "Kuptoje si ruhen dhe mbrohen të dhënat e klientëve dhe ndihmo që pyetjet të jenë më të shpejta.",
+      "skills": [
+        "SQL",
+        "PostgreSQL",
+        "Oracle"
+      ],
+      "opensInDays": -15,
+      "closesInDays": 18,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 26
+    },
+    {
+      "id": "ecommerce-developer-intern",
+      "title": "Praktikant/e për zhvillim të tregtisë elektronike",
+      "companyId": "shporta-commerce",
+      "location": "Pejë",
+      "workMode": "Hybrid",
+      "durationMonths": 4,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": true,
+      "stipend": null,
+      "description": "Ndërto dyqane online për biznese lokale dhe shih menjëherë si ndikon puna jote te shitjet e tyre.",
+      "skills": [
+        "Shopify",
+        "JavaScript",
+        "HTML/CSS"
+      ],
+      "opensInDays": -4,
+      "closesInDays": 31,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 27
+    },
+    {
+      "id": "ecommerce-specialist-intern",
+      "title": "Praktikant/e specialist/e i/e tregtisë elektronike",
+      "companyId": "shporta-commerce",
+      "location": "Pejë",
+      "workMode": "Hybrid",
+      "durationMonths": 3,
+      "schedule": "Part-time, 20 orë në javë, paradite",
+      "paid": false,
+      "stipend": null,
+      "description": "Ndihmo klientët të menaxhojnë produktet, porositë dhe fushatat në dyqanet e tyre online.",
+      "skills": [
+        "Excel",
+        "Google Analytics",
+        "Komunikim"
+      ],
+      "opensInDays": -24,
+      "closesInDays": 3,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 28
+    },
+    {
+      "id": "business-analyst-intern",
+      "title": "Praktikant/e analist/e biznesi",
+      "companyId": "busulla-consulting",
+      "location": "Prishtinë",
+      "workMode": "On-site",
+      "durationMonths": 5,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Puno krah konsulentëve dhe ndihmo kompanitë të kuptojnë çfarë po funksionon dhe çfarë duhet të ndryshojë.",
+      "skills": [
+        "Excel",
+        "Power BI",
+        "Prezantim"
+      ],
+      "opensInDays": -10,
+      "closesInDays": 22,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 29
+    },
+    {
+      "id": "financial-analyst-intern",
+      "title": "Praktikant/e analist/e financash",
+      "companyId": "busulla-consulting",
+      "location": "Prishtinë",
+      "workMode": "On-site",
+      "durationMonths": 4,
+      "schedule": "Part-time, 20 orë në javë, paradite",
+      "paid": true,
+      "stipend": null,
+      "description": "Mëso si ndërtohen parashikimet financiare dhe si përdoren për vendime të rëndësishme biznesi.",
+      "skills": [
+        "Excel",
+        "Kontabilitet",
+        "Analizë"
+      ],
+      "opensInDays": -26,
+      "closesInDays": 7,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 30
+    },
+    {
+      "id": "logistics-operations-intern",
+      "title": "Praktikant/e për operacione logjistike",
+      "companyId": "rruga-logistics",
+      "location": "Ferizaj",
+      "workMode": "Hybrid",
+      "durationMonths": 3,
+      "schedule": "E hënë – e premte, 09:00–17:00",
+      "paid": true,
+      "stipend": null,
+      "description": "Shih si planifikohen dërgesat çdo ditë dhe ndihmo ekipin t’i bëjë rrugët më të shkurtra dhe më të lira.",
+      "skills": [
+        "Excel",
+        "Organizim",
+        "Komunikim"
+      ],
+      "opensInDays": -7,
+      "closesInDays": 23,
+      "seats": 2,
+      "featured": false,
+      "displayOrder": 31
+    },
+    {
+      "id": "systems-analyst-intern",
+      "title": "Praktikant/e analist/e sistemesh",
+      "companyId": "rruga-logistics",
+      "location": "Ferizaj",
+      "workMode": "Hybrid",
+      "durationMonths": 5,
+      "schedule": "Part-time, 20 orë në javë, orar fleksibël",
+      "paid": true,
+      "stipend": null,
+      "description": "Përkthe nevojat e ekipit të operacioneve në kërkesa të qarta për zhvilluesit e sistemit të dërgesave.",
+      "skills": [
+        "UML",
+        "SQL",
+        "Jira"
+      ],
+      "opensInDays": -40,
+      "closesInDays": -1,
+      "seats": 1,
+      "featured": false,
+      "displayOrder": 32
+    }
+  ],
+  "platformStats": [
+    {
+      "id": "internships",
+      "label": "Praktika",
+      "value": 32,
+      "displayOrder": 1
+    },
+    {
+      "id": "companies",
+      "label": "Kompani",
+      "value": 16,
+      "displayOrder": 2
+    },
+    {
+      "id": "universities",
+      "label": "Universitete dhe kolegje",
+      "value": 21,
+      "displayOrder": 3
+    },
+    {
+      "id": "stories",
+      "label": "Histori nga studentët",
+      "value": 15,
+      "displayOrder": 4
+    }
+  ]
+}
