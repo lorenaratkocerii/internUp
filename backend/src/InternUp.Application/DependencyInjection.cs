@@ -1,3 +1,4 @@
+using InternUp.Application.Admin;
 using InternUp.Application.Home;
 using InternUp.Application.Ports.Inbound;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ public static class DependencyInjection
     {
         services.TryAddSingleton(TimeProvider.System);
         services.AddScoped<IHomeUseCases, HomeService>();
+        services.AddScoped<IAdminHomeUseCases, AdminHomeService>();
         return services;
     }
 }

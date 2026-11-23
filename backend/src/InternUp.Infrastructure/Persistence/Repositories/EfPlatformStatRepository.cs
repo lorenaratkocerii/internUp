@@ -11,4 +11,11 @@ internal sealed class EfPlatformStatRepository(InternUpDbContext context) : IPla
             .AsNoTracking()
             .OrderBy(stat => stat.DisplayOrder)
             .ToListAsync(cancellationToken);
+
+    public Task<PlatformStat?> FindAsync(string id, CancellationToken cancellationToken) =>
+        context.PlatformStats.FirstOrDefaultAsync(stat => stat.Id == id, cancellationToken);
+
+    public void Add(PlatformStat stat) => context.PlatformStats.Add(stat);
+
+    public void Remove(PlatformStat stat) => context.PlatformStats.Remove(stat);
 }

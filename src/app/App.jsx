@@ -36,6 +36,7 @@ import { AppLayout } from './AppLayout';
 export function App({ container }) {
   const {
     homeUseCases,
+    adminHomeUseCases,
     companyUseCases,
     blogUseCases,
     careerPathUseCases,
@@ -107,7 +108,7 @@ export function App({ container }) {
       </Route>
 
       <Route element={<RequireRole role={Role.ADMIN} />}>
-        <Route path="admin" element={<AdminDashboardPage />} />
+        <Route path="admin" element={<AdminDashboardPage useCases={adminHomeUseCases} />} />
       </Route>
     </Routes>
   );

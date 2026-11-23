@@ -11,10 +11,17 @@ public sealed class City
 
     public static City Create(string name)
     {
+        var city = new City();
+        city.Rename(name);
+        return city;
+    }
+
+    public void Rename(string name)
+    {
         if (string.IsNullOrWhiteSpace(name))
         {
             throw new DomainException("Qyteti duhet të ketë emër.");
         }
-        return new City { Name = name.Trim() };
+        Name = name.Trim();
     }
 }

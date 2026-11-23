@@ -27,6 +27,8 @@ public static class DependencyInjection
         services.AddScoped<ICompanyRepository, EfCompanyRepository>();
         services.AddScoped<ICityRepository, EfCityRepository>();
         services.AddScoped<IPlatformStatRepository, EfPlatformStatRepository>();
+        services.AddScoped<IInternshipSkillRepository, EfInternshipSkillRepository>();
+        services.AddScoped<IUnitOfWork, EfUnitOfWork>();
         services.AddScoped<DatabaseSeeder>();
 
         return services;

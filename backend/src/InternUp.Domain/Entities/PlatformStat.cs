@@ -16,7 +16,19 @@ public sealed class PlatformStat
 
     public static PlatformStat Create(string id, string label, int value, int displayOrder)
     {
-        if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(label))
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            throw new DomainException("Një statistikë duhet të ketë id dhe etiketë.");
+        }
+
+        var stat = new PlatformStat { Id = id.Trim() };
+        stat.Update(label, value, displayOrder);
+        return stat;
+    }
+
+    public void Update(string label, int value, int displayOrder)
+    {
+        if (string.IsNullOrWhiteSpace(label))
         {
             throw new DomainException("Një statistikë duhet të ketë id dhe etiketë.");
         }
@@ -24,6 +36,9 @@ public sealed class PlatformStat
         {
             throw new DomainException("Vlera e statistikës nuk mund të jetë negative.");
         }
-        return new PlatformStat { Id = id.Trim(), Label = label.Trim(), Value = value, DisplayOrder = displayOrder };
+
+        Label = label.Trim();
+        Value = value;
+        DisplayOrder = displayOrder;
     }
 }

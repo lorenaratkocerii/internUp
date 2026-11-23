@@ -47,8 +47,54 @@ public sealed class Internship
         bool featured,
         int displayOrder)
     {
-        if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(title)
-            || string.IsNullOrWhiteSpace(companyId) || string.IsNullOrWhiteSpace(location))
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            throw new DomainException("Një praktikë duhet të ketë id, titull, kompani dhe lokacion.");
+        }
+
+        var internship = new Internship { Id = id.Trim() };
+        internship.Update(
+            title,
+            companyId,
+            location,
+            workMode,
+            durationMonths,
+            schedule,
+            paid,
+            stipend,
+            description,
+            opensAt,
+            closesAt,
+            seats,
+            featured,
+            displayOrder);
+
+        var distinctSkills = skills
+            .Select(skill => skill.Trim())
+            .Where(skill => skill.Length > 0)
+            .Distinct(StringComparer.OrdinalIgnoreCase);
+        internship._skills.AddRange(distinctSkills.Select(skill => new InternshipSkill(skill)));
+
+        return internship;
+    }
+
+    public void Update(
+        string title,
+        string companyId,
+        string location,
+        WorkMode workMode,
+        int durationMonths,
+        string? schedule,
+        bool paid,
+        decimal? stipend,
+        string? description,
+        DateOnly opensAt,
+        DateOnly closesAt,
+        int seats,
+        bool featured,
+        int displayOrder)
+    {
+        if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(companyId) || string.IsNullOrWhiteSpace(location))
         {
             throw new DomainException("Një praktikë duhet të ketë id, titull, kompani dhe lokacion.");
         }
@@ -65,32 +111,20 @@ public sealed class Internship
             throw new DomainException("Numri i vendeve të lira duhet të jetë numër i plotë jo negativ.");
         }
 
-        var internship = new Internship
-        {
-            Id = id.Trim(),
-            Title = title.Trim(),
-            CompanyId = companyId.Trim(),
-            Location = location.Trim(),
-            WorkMode = workMode,
-            DurationMonths = durationMonths,
-            Schedule = schedule?.Trim() ?? string.Empty,
-            Paid = paid,
-            Stipend = paid && stipend > 0 ? stipend : null,
-            Description = description?.Trim() ?? string.Empty,
-            OpensAt = opensAt,
-            ClosesAt = closesAt,
-            Seats = seats,
-            Featured = featured,
-            DisplayOrder = displayOrder,
-        };
-
-        var distinctSkills = skills
-            .Select(skill => skill.Trim())
-            .Where(skill => skill.Length > 0)
-            .Distinct(StringComparer.OrdinalIgnoreCase);
-        internship._skills.AddRange(distinctSkills.Select(skill => new InternshipSkill(skill)));
-
-        return internship;
+        Title = title.Trim();
+        CompanyId = companyId.Trim();
+        Location = location.Trim();
+        WorkMode = workMode;
+        DurationMonths = durationMonths;
+        Schedule = schedule?.Trim() ?? string.Empty;
+        Paid = paid;
+        Stipend = paid && stipend > 0 ? stipend : null;
+        Description = description?.Trim() ?? string.Empty;
+        OpensAt = opensAt;
+        ClosesAt = closesAt;
+        Seats = seats;
+        Featured = featured;
+        DisplayOrder = displayOrder;
     }
 
     public ApplicationStatus GetStatus(DateOnly today)

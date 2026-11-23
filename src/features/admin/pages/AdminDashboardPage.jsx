@@ -1,16 +1,31 @@
-import { ExternalLink, LogOut, Menu, X } from 'lucide-react';
+import { ChevronDown, ExternalLink, House, LayoutDashboard, LogOut, Menu, Table2, X } from 'lucide-react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate, useSearchParams } from 'react-router';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { useCurrentActor } from '../../auth/useCurrentActor';
 import { Logo } from '../../home/components/ui/Logo';
 import { logoutDemoUser } from '../../login/demoAuth';
+import { AdminTableView } from '../components/AdminTableView';
+import { findHomeTable, homeTables } from '../homeTables';
 
-export function AdminDashboardPage() {
-  useDocumentTitle('Paneli i adminit');
+const navItemClass = (isActive) =>
+  `flex min-h-10 w-full items-center gap-3 rounded-[10px] px-3 text-sm transition-colors ${
+    isActive ? 'bg-cream text-charcoal' : 'text-cream/70 hover:bg-cream/[0.07] hover:text-cream'
+  }`;
+
+export function AdminDashboardPage({ useCases }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTable = findHomeTable(searchParams.get('tabela'));
+  useDocumentTitle(activeTable ? `${activeTable.label} · Admin` : 'Paneli i adminit');
   const actor = useCurrentActor();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [homeOpen, setHomeOpen] = useState(true);
+
+  const selectTable = (tableId) => {
+    setSearchParams(tableId ? { tabela: tableId } : {});
+    setMenuOpen(false);
+  };
 
   const handleLogout = () => {
     logoutDemoUser();
@@ -27,7 +42,41 @@ export function AdminDashboardPage() {
           <X aria-hidden="true" className="size-5" />
         </button>
       </div>
-      <div className="mt-auto space-y-1 border-t border-cream/10 p-3">
+      <nav aria-label="Navigimi i adminit" className="flex-1 space-y-1 overflow-y-auto p-3">
+        <button type="button" onClick={() => selectTable(null)} className={navItemClass(!activeTable)}>
+          <LayoutDashboard aria-hidden="true" className="size-4" />
+          Paneli kryesor
+        </button>
+        <button
+          type="button"
+          onClick={() => setHomeOpen((open) => !open)}
+          aria-expanded={homeOpen}
+          aria-controls="admin-homepage-tabelat"
+          className={navItemClass(false)}
+        >
+          <House aria-hidden="true" className="size-4" />
+          Homepage
+          <ChevronDown aria-hidden="true" className={`ml-auto size-4 transition-transform ${homeOpen ? 'rotate-180' : ''}`} />
+        </button>
+        {homeOpen && (
+          <ul id="admin-homepage-tabelat" className="ml-5 space-y-1 border-l border-cream/10 pl-2">
+            {homeTables.map((table) => (
+              <li key={table.id}>
+                <button
+                  type="button"
+                  onClick={() => selectTable(table.id)}
+                  aria-current={activeTable?.id === table.id ? 'page' : undefined}
+                  className={navItemClass(activeTable?.id === table.id)}
+                >
+                  <Table2 aria-hidden="true" className="size-4" />
+                  {table.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </nav>
+      <div className="space-y-1 border-t border-cream/10 p-3">
         <Link to="/" className="flex min-h-10 items-center gap-3 rounded-[10px] px-3 text-sm text-cream/70 hover:bg-cream/[0.07] hover:text-cream">
           <ExternalLink aria-hidden="true" className="size-4" />
           Shiko faqen publike
@@ -69,7 +118,32 @@ export function AdminDashboardPage() {
         </header>
 
         <main id="permbajtja" className="mx-auto max-w-[90rem] px-4 py-6 sm:px-6 lg:py-8">
-          <h1 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">Mirë se erdhe, Admin</h1>
+          {activeTable ? (
+            <AdminTableView key={activeTable.id} table={activeTable} useCases={useCases} />
+          ) : (
+            <>
+              <h1 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">Mirë se erdhe, Admin</h1>
+              <h2 className="mt-8 text-xs font-semibold tracking-[0.14em] text-cream/45 uppercase">Tabelat e Homepage</h2>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {homeTables.map((table) => (
+                  <button
+                    key={table.id}
+                    type="button"
+                    onClick={() => selectTable(table.id)}
+                    className="flex items-center gap-3 rounded-[14px] border border-cream/10 bg-cream/[0.03] p-4 text-left transition-colors hover:border-cream/25 hover:bg-cream/[0.06]"
+                  >
+                    <span className="grid size-10 place-items-center rounded-[10px] bg-cream/[0.07]">
+                      <Table2 aria-hidden="true" className="size-5" />
+                    </span>
+                    <span>
+                      <span className="block font-semibold">{table.label}</span>
+                      <span className="block text-xs text-cream/50">{table.id}</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
         </main>
       </div>
     </div>

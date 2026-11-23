@@ -25,4 +25,14 @@ internal sealed class EfInternshipRepository(InternUpDbContext context) : IInter
 
     public Task<int> CountAsync(CancellationToken cancellationToken) =>
         context.Internships.CountAsync(cancellationToken);
+
+    public Task<Internship?> FindAsync(string id, CancellationToken cancellationToken) =>
+        context.Internships.FirstOrDefaultAsync(internship => internship.Id == id, cancellationToken);
+
+    public Task<bool> ExistsAsync(string id, CancellationToken cancellationToken) =>
+        context.Internships.AnyAsync(internship => internship.Id == id, cancellationToken);
+
+    public void Add(Internship internship) => context.Internships.Add(internship);
+
+    public void Remove(Internship internship) => context.Internships.Remove(internship);
 }

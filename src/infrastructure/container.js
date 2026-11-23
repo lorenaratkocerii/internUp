@@ -1,3 +1,4 @@
+import { createHttpAdminHomeRepository } from '../adapters/outbound/http/HttpAdminHomeRepository';
 import { createHttpHomeRepository } from '../adapters/outbound/http/HttpHomeRepository';
 import { createMockApplicationRepository } from '../adapters/outbound/mock/MockApplicationRepository';
 import { createMockCandidateApplicationRepository } from '../adapters/outbound/mock/MockCandidateApplicationRepository';
@@ -7,6 +8,7 @@ import { createMockInternshipRepository } from '../adapters/outbound/mock/MockIn
 import { createMockStoryRepository } from '../adapters/outbound/mock/MockStoryRepository';
 import { createMockStudentVerificationRepository } from '../adapters/outbound/mock/MockStudentVerificationRepository';
 import { createMockUniversityRepository } from '../adapters/outbound/mock/MockUniversityRepository';
+import { createAdminHomeUseCases } from '../application/adminHomeUseCases';
 import { createBlogUseCases } from '../application/blogUseCases';
 import { createCareerPathUseCases } from '../application/careerPathUseCases';
 import { createCompanyUseCases } from '../application/companyUseCases';
@@ -27,6 +29,9 @@ export function createContainer() {
   return {
     homeUseCases: createHomeUseCases({
       homeRepository: createHttpHomeRepository(),
+    }),
+    adminHomeUseCases: createAdminHomeUseCases({
+      adminHomeRepository: createHttpAdminHomeRepository(),
     }),
     companyUseCases: createCompanyUseCases({
       internshipRepository,

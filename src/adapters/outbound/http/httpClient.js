@@ -12,3 +12,18 @@ export async function getJson(path, params = {}) {
   }
   return response.json();
 }
+
+export async function sendJson(method, path, body) {
+  const response = await fetch(`${API_URL}${path}`, {
+    method,
+    headers: { Accept: 'application/json', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }) },
+    body: body === undefined ? undefined : JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    const problem = await response.json().catch(() => null);
+    const firstError = problem?.errors ? Object.values(problem.errors).flat()[0] : null;
+    throw new Error(firstError || problem?.title || `Kërkesa ${path} dështoi me statusin ${response.status}.`);
+  }
+  return response.status === 204 ? null : response.json();
+}
