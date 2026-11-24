@@ -30,6 +30,8 @@ public static class DependencyInjection
         services.AddScoped<IInternshipSkillRepository, EfInternshipSkillRepository>();
         services.AddScoped<IUnitOfWork, EfUnitOfWork>();
         services.AddScoped<DatabaseSeeder>();
+        services.AddScoped<IUniversityRepository, EfUniversityRepository>();
+        services.AddScoped<UniversitySeeder>();
 
         return services;
     }
@@ -40,5 +42,6 @@ public static class DependencyInjection
         var context = scope.ServiceProvider.GetRequiredService<InternUpDbContext>();
         await context.Database.MigrateAsync(cancellationToken);
         await scope.ServiceProvider.GetRequiredService<DatabaseSeeder>().SeedAsync(cancellationToken);
+        await scope.ServiceProvider.GetRequiredService<UniversitySeeder>().SeedAsync(cancellationToken);
     }
 }

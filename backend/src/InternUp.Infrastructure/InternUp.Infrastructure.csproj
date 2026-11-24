@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Persistence\Seed\home-seed.json" />
+    <EmbeddedResource Include="Persistence\Seed\university-seed.json" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,0 +1,481 @@
+{
+  "universities": [
+    {
+      "id": "up",
+      "name": "Universiteti i Prishtinës “Hasan Prishtina”",
+      "shortName": "Universiteti i Prishtinës",
+      "type": "publik",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/UniversitetiiPrishtines.png",
+      "photo": "/images/universities/photos/UniversitetiIPrishtinesFoto.jpg",
+      "website": "https://www.uni-pr.edu",
+      "emailDomains": [
+        "uni-pr.edu",
+        "student.uni-pr.edu"
+      ],
+      "description": "Universiteti më i madh publik në Kosovë, i themeluar më 1970, me fakultete që shtrihen nga inxhinieria dhe shkencat natyrore deri te ekonomia, juridiku, filologjia dhe mjekësia.\n\nNë InternUp vijnë studentë nga pothuajse çdo fushë. Inxhinierët e elektrikës dhe kompjuterikës kërkojnë praktika në kompani teknologjike, ekonomistët në banka dhe auditim, ndërsa juristët në zyra ligjore dhe institucione. Shumica e tyre kanë kaluar nëpër projekte grupore dhe punë laboratorike që në vitet e para.",
+      "aliases": [
+        "UP",
+        "Universiteti i Prishtinës",
+        "Universiteti i Prishtines"
+      ],
+      "representative": {
+        "name": "Mimoza Berisha",
+        "title": "Zyra për Karrierë dhe Alumni",
+        "email": "karriera.up@internup.test"
+      },
+      "displayOrder": 1
+    },
+    {
+      "id": "uni-prizren",
+      "name": "Universiteti i Prizrenit “Ukshin Hoti”",
+      "shortName": "Universiteti i Prizrenit",
+      "type": "publik",
+      "city": "Prizren",
+      "logo": "/images/universities/logos/UkshinHoti.png",
+      "photo": "/images/universities/photos/UkshinHotoPhoto.jpg",
+      "website": "https://www.uni-prizren.com",
+      "emailDomains": [
+        "uni-prizren.com"
+      ],
+      "description": "Universitet publik në Prizren, me fakultete në ekonomi, juridik, edukim, filologji dhe shkenca kompjuterike. Disa programe zhvillohen edhe në gjuhën turke dhe boshnjake, gjë që e bën ambientin e studimit më të larmishëm.\n\nStudentët e Prizrenit shpesh flasin më shumë se dy gjuhë, që është përparësi për kompanitë që punojnë me klientë nga rajoni. Shumë prej tyre kërkojnë praktika në qytet, por gjithnjë e më shumë edhe në Prishtinë dhe në punë në distancë.",
+      "aliases": [
+        "Universiteti “Ukshin Hoti” Prizren",
+        "Universiteti i Prizrenit"
+      ],
+      "representative": {
+        "name": "Arben Krasniqi",
+        "title": "Koordinator për praktika",
+        "email": "praktika.prizren@internup.test"
+      },
+      "displayOrder": 2
+    },
+    {
+      "id": "unhz",
+      "name": "Universiteti i Pejës “Haxhi Zeka”",
+      "shortName": "Universiteti i Pejës",
+      "type": "publik",
+      "city": "Pejë",
+      "logo": "/images/universities/logos/HaxhiZeka.png",
+      "photo": "/images/universities/photos/HaxhiZekaPhoto.jpg",
+      "website": "https://www.unhz.eu",
+      "emailDomains": [
+        "unhz.eu"
+      ],
+      "description": "Universitet publik në Pejë, me programe në biznes, menaxhment të turizmit dhe hotelerisë, agrobiznes dhe shkenca kompjuterike.\n\nPeja dhe Rugova kanë ekonomi të fortë turistike, prandaj studentët e këtij universiteti e njohin nga afër punën në hoteleri, gastronomi dhe organizim udhëtimesh. Studentët e shkencave kompjuterike kërkojnë kryesisht praktika në zhvillim softueri dhe mbështetje teknike.",
+      "aliases": [
+        "Universiteti “Haxhi Zeka” Pejë",
+        "Universiteti Haxhi Zeka"
+      ],
+      "representative": {
+        "name": "Teuta Gashi",
+        "title": "Zyra për Karrierë",
+        "email": "karriera.peje@internup.test"
+      },
+      "displayOrder": 3
+    },
+    {
+      "id": "uni-gjilan",
+      "name": "Universiteti i Gjilanit “Kadri Zeka”",
+      "shortName": "Universiteti i Gjilanit",
+      "type": "publik",
+      "city": "Gjilan",
+      "logo": "/images/universities/logos/KadriZeka.png",
+      "photo": "/images/universities/photos/KadriZekaPhoto.jpg",
+      "website": "https://www.uni-gjilan.net",
+      "emailDomains": [
+        "uni-gjilan.net"
+      ],
+      "description": "Universitet publik në Gjilan, me fakultete në ekonomi, juridik, edukim dhe shkenca kompjuterike, që shërben si qendra kryesore e studimeve për rajonin e Anamoravës.\n\nShumë studentë punojnë që gjatë studimeve në biznese familjare ose lokale, kështu që vijnë në praktikë me përvojë reale me klientët dhe financat e përditshme. Kompanitë e rajonit i kërkojnë sidomos për kontabilitet, shitje dhe administratë.",
+      "aliases": [
+        "Universiteti “Kadri Zeka” Gjilan",
+        "Universiteti i Gjilanit"
+      ],
+      "representative": {
+        "name": "Fitore Rexhepi",
+        "title": "Koordinatore për praktika",
+        "email": "praktika.gjilan@internup.test"
+      },
+      "displayOrder": 4
+    },
+    {
+      "id": "umib",
+      "name": "Universiteti i Mitrovicës “Isa Boletini”",
+      "shortName": "Universiteti i Mitrovicës",
+      "type": "publik",
+      "city": "Mitrovicë",
+      "logo": "/images/universities/logos/IsaBoletini.png",
+      "photo": "/images/universities/photos/isaboletiniphoto.jpg",
+      "website": "https://www.umib.net",
+      "emailDomains": [
+        "umib.net"
+      ],
+      "description": "Universitet publik në Mitrovicë, me tradicion të gjatë në inxhinieri mekanike, gjeoshkenca, minierë dhe metalurgji, të lidhura me historinë industriale të qytetit. Ka edhe fakultete në ekonomi, juridik dhe edukim.\n\nStudentët e inxhinierisë këtu mësojnë shumë në terren dhe në laborator, prandaj përshtaten shpejt në fabrika, kompani ndërtimi dhe energjetikë. Janë ndër kandidatët më të kërkuar për praktika teknike jashtë sektorit të IT-së.",
+      "aliases": [
+        "Universiteti “Isa Boletini” Mitrovicë",
+        "Universiteti i Mitrovicës"
+      ],
+      "representative": {
+        "name": "Driton Hajdari",
+        "title": "Zyra për Karrierë",
+        "email": "karriera.mitrovice@internup.test"
+      },
+      "displayOrder": 5
+    },
+    {
+      "id": "uni-gjakova",
+      "name": "Universiteti i Gjakovës “Fehmi Agani”",
+      "shortName": "Universiteti i Gjakovës",
+      "type": "publik",
+      "city": "Gjakovë",
+      "logo": "/images/universities/logos/FehmiAgani.png",
+      "photo": "/images/universities/photos/fehmiAganiPhoto.jpg",
+      "website": "https://www.uni-gjk.org",
+      "emailDomains": [
+        "uni-gjk.org"
+      ],
+      "description": "Universitet publik në Gjakovë, me programe në edukim, filologji, shkenca shoqërore dhe shëndetësi.\n\nNjë pjesë e madhe e studentëve përgatiten për mësimdhënie dhe punë me njerëz, ndërsa studentët e shëndetësisë bëjnë praktikë klinike gjatë studimeve. Në InternUp kërkojnë praktika në arsim, organizata joqeveritare, përkthim dhe komunikim.",
+      "aliases": [
+        "Universiteti “Fehmi Agani” Gjakovë",
+        "Universiteti i Gjakovës"
+      ],
+      "representative": {
+        "name": "Blerta Kryeziu",
+        "title": "Koordinatore për praktika",
+        "email": "praktika.gjakove@internup.test"
+      },
+      "displayOrder": 6
+    },
+    {
+      "id": "ushaf",
+      "name": "Universiteti i Shkencave të Aplikuara në Ferizaj",
+      "shortName": "Universiteti i Ferizajt",
+      "type": "publik",
+      "city": "Ferizaj",
+      "logo": "/images/universities/logos/UniversitetiFerizaj.png",
+      "photo": "/images/universities/photos/UniversitetiFerizajPhoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Universitet publik në Ferizaj, i ndërtuar rreth shkencave të aplikuara. Programet janë teknike dhe praktike, dhe orët në punëtori e laborator zënë po aq vend sa ligjëratat.\n\nPraktika në industri është pjesë e rregullt e studimeve këtu, jo diçka shtesë. Studentët vijnë të gatshëm për role teknike në prodhim, ndërtim, mirëmbajtje dhe logjistikë, ku mund të punojnë që në javën e parë.",
+      "aliases": [
+        "UShAF"
+      ],
+      "representative": {
+        "name": "Valon Shala",
+        "title": "Zyra për bashkëpunim me industrinë",
+        "email": "industria.ferizaj@internup.test"
+      },
+      "displayOrder": 7
+    },
+    {
+      "id": "aksp",
+      "name": "Akademia e Kosovës për Siguri Publike",
+      "shortName": "Akademia për Siguri Publike",
+      "type": "publik",
+      "city": "Vushtrri",
+      "logo": "/images/universities/logos/Akademia.png",
+      "photo": "/images/universities/photos/AkademiaPhoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Institucion publik i arsimit të lartë në Vushtrri, që përgatit kuadro për policinë, doganat, shërbimin korrektues dhe shërbimet emergjente.\n\nStudentët e Akademisë kalojnë trajnime të rrepta dhe mësojnë të punojnë me procedura, disiplinë dhe në situata me presion. Kjo i bën kandidatë të mirë për praktika në siguri, menaxhim emergjencash dhe institucione publike.",
+      "aliases": [
+        "AKSP"
+      ],
+      "representative": {
+        "name": "Besnik Morina",
+        "title": "Zyra për studime",
+        "email": "studime.aksp@internup.test"
+      },
+      "displayOrder": 8
+    },
+    {
+      "id": "ubt",
+      "name": "Kolegji UBT",
+      "shortName": "UBT",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/ubt.png",
+      "photo": "/images/universities/photos/ubtphoto.jpg",
+      "website": "https://www.ubt-uni.net",
+      "emailDomains": [
+        "ubt-uni.net",
+        "student.ubt-uni.net"
+      ],
+      "description": "Ndër institucionet më të mëdha private në Kosovë, me programe në shkenca kompjuterike, inxhinieri, arkitekturë, media, energji dhe menaxhment.\n\nUBT ka lidhje të ngushta me kompanitë teknologjike dhe shumë studentë punojnë në projekte reale që gjatë studimeve. Në InternUp kërkojnë kryesisht praktika në zhvillim softueri, dizajn, rrjeta dhe inxhinieri ndërtimi.",
+      "aliases": [
+        "UBT",
+        "Kolegji UBT",
+        "UBT College"
+      ],
+      "representative": {
+        "name": "Erëza Hoxha",
+        "title": "Qendra për Karrierë",
+        "email": "karriera.ubt@internup.test"
+      },
+      "displayOrder": 9
+    },
+    {
+      "id": "aab",
+      "name": "Kolegji AAB",
+      "shortName": "AAB",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/aab.png",
+      "photo": "/images/universities/photos/aabphoto.jpg",
+      "website": "https://universitetiaab.com",
+      "emailDomains": [
+        "aab-edu.net",
+        "universitetiaab.com"
+      ],
+      "description": "Një nga institucionet më të mëdha private në Kosovë, me kampus në Prishtinë dhe programe në media, arte, ekonomi, juridik, psikologji dhe shkenca kompjuterike.\n\nStudentët e gazetarisë dhe komunikimit masiv punojnë shpesh me studion dhe mediat e kolegjit, prandaj vijnë me portofol të gatshëm. Kompanitë i kërkojnë sidomos për marketing, prodhim videosh, marrëdhënie me publikun dhe punë juridike.",
+      "aliases": [
+        "AAB",
+        "Kolegji AAB",
+        "Universiteti AAB"
+      ],
+      "representative": {
+        "name": "Lirije Kastrati",
+        "title": "Zyra për Karrierë",
+        "email": "karriera.aab@internup.test"
+      },
+      "displayOrder": 10
+    },
+    {
+      "id": "rit-kosovo",
+      "name": "RIT Kosovo (A.U.K)",
+      "shortName": "RIT Kosovo",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/rit.png",
+      "photo": "/images/universities/photos/ritphoto.jpg",
+      "website": "https://www.rit.edu/kosovo",
+      "emailDomains": [
+        "rit.edu",
+        "auk.org"
+      ],
+      "description": "Kampusi i Rochester Institute of Technology në Kosovë, i njohur më parë si American University in Kosovo. Studentët diplomohen me diplomë amerikane të RIT-it, në programe si teknologjia informative, ekonomia, menaxhmenti dhe politikat publike.\n\nMësimi zhvillohet tërësisht në anglisht dhe praktika profesionale është kusht për diplomim. Prandaj studentët e RIT Kosovo kërkojnë praktika që në vitet e para, shpesh në kompani ndërkombëtare dhe organizata që punojnë në anglisht.",
+      "aliases": [
+        "RIT Kosovo",
+        "A.U.K",
+        "AUK"
+      ],
+      "representative": {
+        "name": "Dardan Sylejmani",
+        "title": "Career Services",
+        "email": "careers.rit@internup.test"
+      },
+      "displayOrder": 11
+    },
+    {
+      "id": "riinvest",
+      "name": "Kolegji Riinvest",
+      "shortName": "Riinvest",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/riinvest.png",
+      "photo": "/images/universities/photos/riinvestphoto.jpg",
+      "website": "https://www.riinvest.net",
+      "emailDomains": [
+        "riinvest.net"
+      ],
+      "description": "Kolegj privat në Prishtinë, i lindur nga Instituti Riinvest për kërkime ekonomike. Njihet për studimet në biznes, menaxhment, bankë e financa dhe informatikë.\n\nLidhja me kërkimin ekonomik ndihet në mësim: studentët punojnë shpesh me të dhëna reale për tregun dhe bizneset e Kosovës. Kërkojnë praktika në banka, kompani konsulence, auditim dhe departamente financiare.",
+      "aliases": [
+        "Riinvest"
+      ],
+      "representative": {
+        "name": "Shpresa Limani",
+        "title": "Zyra për Karrierë",
+        "email": "karriera.riinvest@internup.test"
+      },
+      "displayOrder": 12
+    },
+    {
+      "id": "universum",
+      "name": "Kolegji Universum",
+      "shortName": "Universum",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/universum.png",
+      "photo": "/images/universities/photos/universumphoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Kolegj privat me qendër në Prishtinë, me programe bachelor dhe master në menaxhment, juridik, shkenca kompjuterike dhe fusha të tjera të aplikuara.\n\nShumë studentë të Universum-it studiojnë dhe punojnë njëkohësisht, prandaj kërkojnë praktika me orar fleksibël ose me pjesë në distancë. Vijnë me përvojë pune dhe e dinë si ta organizojnë kohën.",
+      "aliases": [
+        "Universum"
+      ],
+      "representative": {
+        "name": "Granit Bytyqi",
+        "title": "Koordinator për praktika",
+        "email": "praktika.universum@internup.test"
+      },
+      "displayOrder": 13
+    },
+    {
+      "id": "dardania",
+      "name": "Kolegji Dardania",
+      "shortName": "Dardania",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/dardania.png",
+      "photo": "/images/universities/photos/dardaniaphoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Kolegj privat në Prishtinë, me programe në shkenca shoqërore dhe të aplikuara, si menaxhmenti, shkencat politike dhe administrata.\n\nStudentët e Dardanisë kërkojnë praktika në administratë, burime njerëzore dhe organizata të shoqërisë civile, ku mund ta përdorin njohurinë për institucionet dhe për mënyrën si funksionon shteti.",
+      "aliases": [
+        "Dardania"
+      ],
+      "representative": {
+        "name": "Albana Musliu",
+        "title": "Zyra për studentë",
+        "email": "studentet.dardania@internup.test"
+      },
+      "displayOrder": 14
+    },
+    {
+      "id": "kolegji-biznesi",
+      "name": "Kolegji Biznesi",
+      "shortName": "Kolegji Biznesi",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/kolegjiBiznesi.png",
+      "photo": "/images/universities/photos/kolegjibiznesiphoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Kolegj privat në Prishtinë, i specializuar vetëm në biznes. Programet mbulojnë menaxhmentin, financat, kontabilitetin dhe administrimin e biznesit.\n\nMeqë fokusi është i ngushtë, studentët dalin me bazë të fortë në numra dhe raporte financiare. Janë kandidatë të mirë për praktika në kontabilitet, shitje dhe zyra financiare të kompanive të vogla e të mesme.",
+      "aliases": [],
+      "representative": {
+        "name": "Kushtrim Zeqiri",
+        "title": "Koordinator për praktika",
+        "email": "praktika.biznesi@internup.test"
+      },
+      "displayOrder": 15
+    },
+    {
+      "id": "iliria",
+      "name": "Kolegji Iliria",
+      "shortName": "Iliria",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/kolegjiIliria.png",
+      "photo": "/images/universities/photos/kolegjiIliriaPhoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Ndër institucionet e para private të arsimit të lartë në Kosovë, me programe në juridik, biznes, menaxhment dhe teknologji informative.\n\nPas shumë vitesh, Iliria ka një rrjet të gjerë të diplomuarish që punojnë në gjykata, zyra ligjore dhe kompani. Studentët e saj kërkojnë praktika sidomos në fushën juridike dhe në administrimin e biznesit.",
+      "aliases": [
+        "Iliria",
+        "Universiteti Iliria"
+      ],
+      "representative": {
+        "name": "Merita Thaçi",
+        "title": "Zyra për Karrierë",
+        "email": "karriera.iliria@internup.test"
+      },
+      "displayOrder": 16
+    },
+    {
+      "id": "pjeter-budi",
+      "name": "Kolegji “Pjetër Budi”",
+      "shortName": "Pjetër Budi",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/PjeterBudi.png",
+      "photo": "/images/universities/photos/pjeterpudiphoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Kolegj privat në Prishtinë, që mban emrin e shkrimtarit Pjetër Budi, me programe në shkenca juridike dhe shoqërore.\n\nStudentët e tij përgatiten kryesisht për punë në drejtësi, administratë dhe institucione publike. Në InternUp kërkojnë praktika në zyra ligjore, noteri, komuna dhe organizata që merren me të drejtat e njeriut.",
+      "aliases": [
+        "Pjetër Budi",
+        "Kolegji Pjetër Budi"
+      ],
+      "representative": {
+        "name": "Adea Ramadani",
+        "title": "Zyra për studentë",
+        "email": "studentet.pjeterbudi@internup.test"
+      },
+      "displayOrder": 17
+    },
+    {
+      "id": "heimerer",
+      "name": "Kolegji Heimerer",
+      "shortName": "Heimerer",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/heimerer.png",
+      "photo": "/images/universities/photos/heimererphoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Kolegj privat në Prishtinë, i specializuar në shkencat shëndetësore, si infermieria, fizioterapia dhe mamia.\n\nPraktika klinike në spitale dhe qendra shëndetësore është pjesë e çdo programi, prandaj studentët vijnë të mësuar me punën me pacientë dhe me ndërrime të gjata. Kërkojnë praktika në klinika private, qendra rehabilitimi dhe barnatore.",
+      "aliases": [
+        "Heimerer"
+      ],
+      "representative": {
+        "name": "Vjosa Hasani",
+        "title": "Koordinatore e praktikës klinike",
+        "email": "praktika.heimerer@internup.test"
+      },
+      "displayOrder": 18
+    },
+    {
+      "id": "kolegji-evropian",
+      "name": "Kolegji Evropian i Kosovës",
+      "shortName": "Kolegji Evropian",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/ueks.png",
+      "photo": "/images/universities/photos/kolegjiEuropianPhoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Kolegj privat në Prishtinë, me programe të ndërtuara sipas standardeve evropiane të studimit dhe me sistem kreditesh që lehtëson vazhdimin e studimeve jashtë vendit.\n\nShumë studentë synojnë karrierë që lidhet me Evropën, në kompani ndërkombëtare, projekte të financuara nga BE-ja ose studime master jashtë. Praktika në InternUp u jep përvojën e parë profesionale para këtij hapi.",
+      "aliases": [],
+      "representative": {
+        "name": "Ilir Osmani",
+        "title": "Zyra për Karrierë",
+        "email": "karriera.kek@internup.test"
+      },
+      "displayOrder": 19
+    },
+    {
+      "id": "ispe",
+      "name": "Kolegji ISPE",
+      "shortName": "ISPE",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/ispe.png",
+      "photo": "/images/universities/photos/ispephoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Kolegj privat në Prishtinë, me programe në ekonomi, administratë publike dhe shkenca shoqërore.\n\nStudentët e ISPE-së kërkojnë praktika në administratë, ekonomi dhe projekte zhvillimore, ku teoria e auditorit kthehet në punë të përditshme me dokumente, buxhete dhe palë të ndryshme.",
+      "aliases": [
+        "ISPE"
+      ],
+      "representative": {
+        "name": "Rina Bajrami",
+        "title": "Zyra për studentë",
+        "email": "studentet.ispe@internup.test"
+      },
+      "displayOrder": 20
+    },
+    {
+      "id": "globus",
+      "name": "Kolegji i Menaxhmentit Internacional “Globus”",
+      "shortName": "Globus",
+      "type": "privat",
+      "city": "Prishtinë",
+      "logo": "/images/universities/logos/globus.png",
+      "photo": "/images/universities/photos/globusphoto.jpg",
+      "website": "",
+      "emailDomains": [],
+      "description": "Kolegj privat në Prishtinë, i fokusuar te menaxhmenti dhe biznesi ndërkombëtar.\n\nProgramet trajtojnë tregtinë, marketingun dhe menaxhimin e kompanive që punojnë përtej Kosovës. Studentët e Globus-it kërkojnë praktika në import-eksport, marketing dhe kompani me partnerë jashtë vendit.",
+      "aliases": [
+        "Globus",
+        "Kolegji Globus"
+      ],
+      "representative": {
+        "name": "Endrit Gjoka",
+        "title": "Koordinator për praktika",
+        "email": "praktika.globus@internup.test"
+      },
+      "displayOrder": 21
+    }
+  ]
+}

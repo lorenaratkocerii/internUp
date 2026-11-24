@@ -200,6 +200,132 @@ namespace InternUp.Infrastructure.Persistence.Migrations
                     b.ToTable("statistikat", (string)null);
                 });
 
+            modelBuilder.Entity("InternUp.Domain.Entities.University", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Logo")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
+
+                    b.Property<string>("RepresentativeEmail")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("RepresentativeName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("RepresentativeTitle")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("ShortName")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("Website")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DisplayOrder");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("Type", "City");
+
+                    b.ToTable("universitetet", (string)null);
+                });
+
+            modelBuilder.Entity("InternUp.Domain.Entities.UniversityAlias", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("UniversityId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UniversityId");
+
+                    b.ToTable("aliaset_universiteteve", (string)null);
+                });
+
+            modelBuilder.Entity("InternUp.Domain.Entities.UniversityEmailDomain", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Domain")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<string>("UniversityId")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UniversityId", "Domain")
+                        .IsUnique();
+
+                    b.ToTable("domenet_universiteteve", (string)null);
+                });
+
             modelBuilder.Entity("InternUp.Domain.Entities.Internship", b =>
                 {
                     b.HasOne("InternUp.Domain.Entities.Company", "Company")
@@ -220,9 +346,34 @@ namespace InternUp.Infrastructure.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("InternUp.Domain.Entities.UniversityAlias", b =>
+                {
+                    b.HasOne("InternUp.Domain.Entities.University", null)
+                        .WithMany("Aliases")
+                        .HasForeignKey("UniversityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("InternUp.Domain.Entities.UniversityEmailDomain", b =>
+                {
+                    b.HasOne("InternUp.Domain.Entities.University", null)
+                        .WithMany("EmailDomains")
+                        .HasForeignKey("UniversityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("InternUp.Domain.Entities.Internship", b =>
                 {
                     b.Navigation("Skills");
+                });
+
+            modelBuilder.Entity("InternUp.Domain.Entities.University", b =>
+                {
+                    b.Navigation("Aliases");
+
+                    b.Navigation("EmailDomains");
                 });
 #pragma warning restore 612, 618
         }
