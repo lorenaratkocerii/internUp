@@ -1,5 +1,6 @@
 import { createHttpAdminHomeRepository } from '../adapters/outbound/http/HttpAdminHomeRepository';
 import { createHttpHomeRepository } from '../adapters/outbound/http/HttpHomeRepository';
+import { createHttpStudentVerificationRepository } from '../adapters/outbound/http/HttpStudentVerificationRepository';
 import { createHttpUniversityRepository } from '../adapters/outbound/http/HttpUniversityRepository';
 import { createMockApplicationRepository } from '../adapters/outbound/mock/MockApplicationRepository';
 import { createMockCandidateApplicationRepository } from '../adapters/outbound/mock/MockCandidateApplicationRepository';
@@ -7,7 +8,6 @@ import { createMockCompanyRegistrationRepository } from '../adapters/outbound/mo
 import { createMockCompanyRepository } from '../adapters/outbound/mock/MockCompanyRepository';
 import { createMockInternshipRepository } from '../adapters/outbound/mock/MockInternshipRepository';
 import { createMockStoryRepository } from '../adapters/outbound/mock/MockStoryRepository';
-import { createMockStudentVerificationRepository } from '../adapters/outbound/mock/MockStudentVerificationRepository';
 import { createAdminHomeUseCases } from '../application/adminHomeUseCases';
 import { createBlogUseCases } from '../application/blogUseCases';
 import { createCareerPathUseCases } from '../application/careerPathUseCases';
@@ -24,7 +24,7 @@ export function createContainer() {
   const candidateApplicationRepository = createMockCandidateApplicationRepository();
   const storyRepository = createMockStoryRepository();
   const universityRepository = createHttpUniversityRepository();
-  const studentVerificationRepository = createMockStudentVerificationRepository();
+  const studentVerificationRepository = createHttpStudentVerificationRepository();
 
   return {
     homeUseCases: createHomeUseCases({

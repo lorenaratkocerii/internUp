@@ -32,6 +32,8 @@ public static class DependencyInjection
         services.AddScoped<DatabaseSeeder>();
         services.AddScoped<IUniversityRepository, EfUniversityRepository>();
         services.AddScoped<UniversitySeeder>();
+        services.AddScoped<IVerificationRepository, EfVerificationRepository>();
+        services.AddScoped<VerificationSeeder>();
 
         return services;
     }
@@ -43,5 +45,6 @@ public static class DependencyInjection
         await context.Database.MigrateAsync(cancellationToken);
         await scope.ServiceProvider.GetRequiredService<DatabaseSeeder>().SeedAsync(cancellationToken);
         await scope.ServiceProvider.GetRequiredService<UniversitySeeder>().SeedAsync(cancellationToken);
+        await scope.ServiceProvider.GetRequiredService<VerificationSeeder>().SeedAsync(cancellationToken);
     }
 }

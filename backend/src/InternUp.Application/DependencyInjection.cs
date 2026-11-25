@@ -2,6 +2,7 @@ using InternUp.Application.Admin;
 using InternUp.Application.Home;
 using InternUp.Application.Ports.Inbound;
 using InternUp.Application.Universities;
+using InternUp.Application.Verifications;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -15,6 +16,7 @@ public static class DependencyInjection
         services.AddScoped<IHomeUseCases, HomeService>();
         services.AddScoped<IAdminHomeUseCases, AdminHomeService>();
         services.AddScoped<IUniversityUseCases, UniversityService>();
+        services.AddScoped<IVerificationUseCases, VerificationService>();
         return services;
     }
 }
