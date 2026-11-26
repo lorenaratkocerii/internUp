@@ -39,8 +39,16 @@ export function createHttpUniversityRepository() {
 
   return {
     findAll: async () => {
-      const result = await getJson(BASE_PATH, { pageSize: 100 });
-      return result.items.map(toUniversity).filter(Boolean);
+      const items = [];
+      let page = 1;
+      let totalPages = 1;
+      do {
+        const result = await getJson(BASE_PATH, { page, pageSize: 100 });
+        items.push(...result.items);
+        totalPages = result.totalPages;
+        page += 1;
+      } while (page <= totalPages);
+      return items.map(toUniversity).filter(Boolean);
     },
     findById,
     save: async (university) => {
