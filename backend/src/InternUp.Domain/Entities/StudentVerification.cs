@@ -58,7 +58,7 @@ public sealed class StudentVerification
 
         if (!Regex.IsMatch(studentNumber, "^[A-Za-z0-9/-]{4,20}$"))
         {
-            throw new DomainException("Numri i indeksit duhet të ketë 4–20 shifra ose shkronja.");
+            throw new DomainException("Numri i indeksit duhet të ketë 4–20 karaktere (shifra, shkronja, / ose -).");
         }
         if (universityEmail.Length > 150 || !Regex.IsMatch(universityEmail, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
         {
@@ -82,6 +82,10 @@ public sealed class StudentVerification
         if (studentEmail.Length > 150 || studentName.Length > 150)
         {
             throw new DomainException("Emri ose email-i i studentit është shumë i gjatë.");
+        }
+        if (!Regex.IsMatch(studentEmail, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
+        {
+            throw new DomainException("Email-i i studentit nuk është i saktë.");
         }
 
         return new StudentVerification

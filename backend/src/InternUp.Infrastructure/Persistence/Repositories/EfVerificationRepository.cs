@@ -50,6 +50,7 @@ internal sealed class EfVerificationRepository(InternUpDbContext context) : IVer
         return context.Set<StudentVerification>()
             .Where(verification => verification.StudentEmail == email)
             .OrderByDescending(verification => verification.SubmittedAt)
+            .ThenBy(verification => verification.Id)
             .FirstOrDefaultAsync(cancellationToken);
     }
 
