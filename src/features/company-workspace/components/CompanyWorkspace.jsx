@@ -6,10 +6,10 @@ import { logoutDemoUser } from '../../login/demoAuth';
 const links = [
   { to: '/kompani', label: 'Paneli kryesor', icon: LayoutDashboard, end: true },
   { to: '/kompani/profili', label: 'Profili i kompanisë', icon: Building2 },
-  { to: '/kompani/pozitat', label: 'Manage Internships', icon: BriefcaseBusiness, end: true },
+  { to: '/kompani/pozitat', label: 'Menaxho praktikat', icon: BriefcaseBusiness, end: true },
   { to: '/kompani/pozitat/e-re', label: 'Publiko pozitë', icon: PlusCircle },
   { to: '/kompani/aplikimet', label: 'Aplikimet', icon: ClipboardList },
-  { to: '/kompani/verifikimi', label: 'Verifiko interns', icon: BadgeCheck },
+  { to: '/kompani/verifikimi', label: 'Verifiko praktikantët', icon: BadgeCheck },
 ];
 
 export function CompanyWorkspace({ children, title, subtitle, companyName }) {

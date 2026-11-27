@@ -87,7 +87,7 @@ function DashboardContent({ data }) {
         <StatCard icon={BriefcaseBusiness} label="Pozita aktive" value={stats.activePositions} detail={`nga ${stats.totalPositions} gjithsej`} href="/kompani/pozitat" />
         <StatCard icon={ClipboardList} label="Aplikime" value={stats.applications} detail={`${stats.awaitingReview} presin shqyrtim`} href="/kompani/aplikimet" />
         <StatCard icon={Users} label="Kandidatë" value={stats.candidates} detail={`${stats.shortlisted} në listën e ngushtë`} href="/kompani/aplikimet" />
-        <StatCard icon={UserCheck} label="Interns të pranuar" value={stats.accepted} detail="Vendime përfundimtare" />
+        <StatCard icon={UserCheck} label="Praktikantë të pranuar" value={stats.accepted} detail="Vendime përfundimtare" />
       </section>
 
       {stats.pendingVerifications > 0 && (
@@ -132,7 +132,7 @@ function DashboardContent({ data }) {
         <section aria-labelledby="pozitat-titull">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Manage Internships</p>
+              <p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Menaxho praktikat</p>
               <h2 id="pozitat-titull" className="mt-2 font-display text-3xl text-cream">Pozitat tuaja</h2>
             </div>
             <Link to="/kompani/pozitat" className="inline-flex items-center gap-2 text-sm font-semibold text-cream/75 hover:text-cream">

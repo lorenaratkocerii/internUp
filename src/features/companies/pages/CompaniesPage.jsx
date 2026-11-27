@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { EMPTY_COMPANY_FILTERS } from '../../../application/companyUseCases';
 import { useAsyncData } from '../../home/hooks/useAsyncData';
 import { Container } from '../../home/components/ui/Container';
+import { Reveal } from '../../home/components/ui/Reveal';
 import { StatusMessage } from '../../home/components/ui/StatusMessage';
 import { CompanyCard } from '../components/CompanyCard';
 import { CompanyFilters } from '../components/CompanyFilters';
@@ -13,6 +14,7 @@ import { usePagination } from '../hooks/usePagination';
 
 const NO_COMPANIES = [];
 const COMPANIES_PER_PAGE = 6;
+const HEADLINE = 'Gjej kompaninë ku do të fillosh.';
 
 export function CompaniesPage({ useCases }) {
   useDocumentTitle('Kompanitë');
@@ -33,6 +35,13 @@ export function CompaniesPage({ useCases }) {
     resetKey: filters,
     storageKey: 'internup:kompanite-faqja',
   });
+
+  const [heroReady, setHeroReady] = useState(false);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setHeroReady(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   const resultsRef = useRef(null);
   const pageChanged = useRef(false);
@@ -55,24 +64,51 @@ export function CompaniesPage({ useCases }) {
         <img
           src="/images/companies/kreu-kompanite.jpg"
           alt=""
-          className="absolute inset-0 -z-20 size-full object-cover object-[center_30%] grayscale"
+          className={`absolute inset-0 -z-20 size-full object-cover object-[center_30%] grayscale transition-transform duration-[2500ms] ease-out ${
+            heroReady ? 'scale-100' : 'motion-safe:scale-110'
+          }`}
         />
         <div
           aria-hidden="true"
           className="absolute inset-0 -z-10 bg-linear-to-r from-charcoal via-charcoal/85 to-charcoal/60"
         />
         <Container className="text-center">
-          <h1 className="mx-auto max-w-3xl font-hero text-5xl leading-[1] font-bold tracking-tight sm:text-6xl">
-            Gjej kompaninë ku do të fillosh.
+          <h1
+            aria-label={HEADLINE}
+            className="mx-auto max-w-3xl font-hero text-5xl leading-[1] font-bold tracking-tight sm:text-6xl"
+          >
+            {HEADLINE.split(' ').map((word, index) => (
+              <Fragment key={index}>
+                {index > 0 && ' '}
+                <span
+                  aria-hidden="true"
+                  style={{ animationDelay: `${index * 90}ms` }}
+                  className="inline-block motion-safe:animate-fade-up"
+                >
+                  {word}
+                </span>
+              </Fragment>
+            ))}
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-cream/75">
+          <span
+            aria-hidden="true"
+            style={{ animationDelay: '550ms' }}
+            className="mx-auto mt-6 block h-1 w-24 bg-terracotta motion-safe:animate-grow"
+          />
+          <p
+            style={{ animationDelay: '650ms' }}
+            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-cream/75 motion-safe:animate-fade-up"
+          >
             Krahaso kompanitë sipas industrisë, lokacionit dhe mënyrës së punës, pastaj shiko pozitat që kanë të hapura.
           </p>
         </Container>
       </header>
 
       <Container className="grid gap-8 py-10 lg:grid-cols-12 lg:py-14">
-        <aside className="lg:sticky lg:top-24 lg:col-span-3 lg:self-start">
+        <aside
+          style={{ animationDelay: '300ms' }}
+          className="motion-safe:animate-fade-up lg:sticky lg:top-24 lg:col-span-3 lg:self-start"
+        >
           <CompanyFilters
             filters={filters}
             options={options}
@@ -106,9 +142,13 @@ export function CompaniesPage({ useCases }) {
                 </div>
               ) : (
                 <>
-                  <ul className="grid gap-5 md:grid-cols-2">
-                    {visible.map((company) => (
-                      <li key={company.id}>
+                  <ul key={`${page}-${JSON.stringify(filters)}`} className="grid gap-5 md:grid-cols-2">
+                    {visible.map((company, index) => (
+                      <li
+                        key={company.id}
+                        style={{ animationDelay: `${index * 80}ms` }}
+                        className="motion-safe:animate-fade-up"
+                      >
                         <CompanyCard company={company} />
                       </li>
                     ))}
@@ -129,7 +169,9 @@ export function CompaniesPage({ useCases }) {
         </div>
       </Container>
 
-      <CompanySignup />
+      <Reveal>
+        <CompanySignup />
+      </Reveal>
     </>
   );
 }

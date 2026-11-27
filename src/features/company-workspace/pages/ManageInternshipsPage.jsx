@@ -18,7 +18,7 @@ const TABS = [
 ];
 
 export function ManageInternshipsPage({ useCases }) {
-  useDocumentTitle('Manage Internships');
+  useDocumentTitle('Menaxho praktikat');
   const actor = useCurrentActor();
   const { state } = useLocation();
   const load = useCallback(async () => {
@@ -50,11 +50,11 @@ export function ManageInternshipsPage({ useCases }) {
   };
 
   return (
-    <CompanyWorkspace title="Manage Internships" subtitle="Pozitat" companyName={data?.company.name}>
+    <CompanyWorkspace title="Menaxho praktikat" subtitle="Pozitat" companyName={data?.company.name}>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Pozitat e praktikës</p>
-          <h2 className="mt-2 font-display text-4xl text-cream">Manage Internships</h2>
+          <h2 className="mt-2 font-display text-4xl text-cream">Menaxho praktikat</h2>
           <p className="mt-2 text-cream/65">Publikoni, ndryshoni ose fshini pozitat dhe ndiqni sa vende janë plotësuar.</p>
         </div>
         <Link to="/kompani/pozitat/e-re" className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-cream px-4 py-2.5 font-semibold text-charcoal hover:bg-cream/90">
@@ -110,7 +110,7 @@ export function ManageInternshipsPage({ useCases }) {
                     <dd className="mt-0.5 font-display text-2xl tabular-nums">{position.applicationCount}</dd>
                   </div>
                   <div className="rounded-xl bg-white/50 p-3">
-                    <dt className="text-xs text-charcoal/55">Interns të pranuar</dt>
+                    <dt className="text-xs text-charcoal/55">Praktikantë të pranuar</dt>
                     <dd className="mt-0.5 font-display text-2xl tabular-nums">{position.acceptedCount}/{position.seats}</dd>
                   </div>
                   <div className="col-span-2 rounded-xl bg-white/50 p-3 sm:col-span-1">

@@ -17,7 +17,7 @@ const TABS = [
 ];
 
 export function VerifyInternsPage({ useCases }) {
-  useDocumentTitle('Verifiko interns');
+  useDocumentTitle('Verifiko praktikantët');
   const actor = useCurrentActor();
   const load = useCallback(async () => {
     const [company, stories] = await Promise.all([useCases.getMyCompany(actor), useCases.listInternStories(actor)]);
@@ -52,13 +52,13 @@ export function VerifyInternsPage({ useCases }) {
   };
 
   return (
-    <CompanyWorkspace title="Verifiko interns" subtitle="Verifikimi i interns" companyName={data?.company.name}>
+    <CompanyWorkspace title="Verifiko praktikantët" subtitle="Verifikimi i praktikantëve" companyName={data?.company.name}>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Blogu i Studentëve</p>
-          <h2 className="mt-2 font-display text-4xl text-cream">Verifiko interns</h2>
+          <h2 className="mt-2 font-display text-4xl text-cream">Verifiko praktikantët</h2>
           <p className="mt-2 max-w-2xl text-cream/65">
-            Konfirmoni që studentët që kanë shkruar për praktikën te {data?.company.name ?? 'kompania juaj'} kanë qenë vërtet interns
+            Konfirmoni që studentët që kanë shkruar për praktikën te {data?.company.name ?? 'kompania juaj'} kanë qenë vërtet praktikantë
             tuaj. Historitë e verifikuara marrin shenjën <span className="font-semibold text-cream">Praktikant i verifikuar</span>.
           </p>
         </div>
@@ -155,7 +155,7 @@ export function VerifyInternsPage({ useCases }) {
                     </>
                   ) : (
                     <button type="button" onClick={() => setPending({ story, verified: true })} className="ml-auto inline-flex min-h-10 items-center gap-2 rounded-lg bg-olive px-4 text-sm font-semibold text-cream hover:bg-olive/90">
-                      <BadgeCheck aria-hidden="true" className="size-4" /> Verifiko intern
+                      <BadgeCheck aria-hidden="true" className="size-4" /> Verifiko praktikantin
                     </button>
                   )}
                 </div>
@@ -179,7 +179,7 @@ export function VerifyInternsPage({ useCases }) {
 
       {pending && (
         <ConfirmDialog
-          title={pending.verified ? 'Ta verifikosh këtë intern?' : 'Ta heqësh verifikimin?'}
+          title={pending.verified ? 'Ta verifikosh këtë praktikant?' : 'Ta heqësh verifikimin?'}
           description={
             pending.verified
               ? `Duke verifikuar, konfirmoni që autori i "${pending.story.title}" ka bërë praktikë te ju si "${pending.story.position}". Historia do të shfaqet me shenjën Praktikant i verifikuar.`

@@ -35,10 +35,10 @@ export function InternshipEditorPage({ useCases }) {
   return (
     <CompanyWorkspace title={isEdit ? 'Ndrysho pozitën' : 'Publiko pozitë'} subtitle="Formulari i pozitës" companyName={data?.company.name}>
       <Link to="/kompani/pozitat" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-cream/75 hover:text-cream">
-        <ArrowLeft aria-hidden="true" className="size-4" /> Kthehu te Manage Internships
+        <ArrowLeft aria-hidden="true" className="size-4" /> Kthehu te Menaxho praktikat
       </Link>
       <div className="mt-2 mb-6">
-        <p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Manage Internships</p>
+        <p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Menaxho praktikat</p>
         <h2 className="mt-2 font-display text-4xl text-cream">{isEdit ? 'Ndrysho pozitën' : 'Publiko një pozitë të re'}</h2>
         <p className="mt-2 text-cream/65">
           {isEdit ? 'Ndryshimet shfaqen menjëherë te faqja publike e pozitës.' : 'Pozita shfaqet te profili publik i kompanisë sapo të publikohet.'}

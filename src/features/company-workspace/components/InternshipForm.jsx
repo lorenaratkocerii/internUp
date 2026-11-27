@@ -117,7 +117,7 @@ export function InternshipForm({ initialValues, validate, onSubmit, submitLabel,
           <Field id="pozita-durationMonths" label="Kohëzgjatja (muaj)" required error={errors.durationMonths}>
             <input {...control('durationMonths')} type="number" min={1} max={24} inputMode="numeric" />
           </Field>
-          <Field id="pozita-seats" label="Vende të lira" required error={errors.seats} hint="Sa interns mund të pranoni.">
+          <Field id="pozita-seats" label="Vende të lira" required error={errors.seats} hint="Sa praktikantë mund të pranoni.">
             <input {...control('seats', { hint: true })} type="number" min={1} max={50} inputMode="numeric" />
           </Field>
           <Field id="pozita-schedule" label="Orari" wide error={errors.schedule} hint="Opsionale.">

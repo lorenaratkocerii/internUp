@@ -32,7 +32,7 @@ function UniversityVerifiedBadge({ university }) {
 const ACTION_LABELS = {
   [CandidateStatus.UNDER_REVIEW]: 'Shëno në shqyrtim',
   [CandidateStatus.SHORTLISTED]: 'Listë e ngushtë',
-  [CandidateStatus.ACCEPTED]: 'Prano intern',
+  [CandidateStatus.ACCEPTED]: 'Prano praktikantin',
   [CandidateStatus.REJECTED]: 'Refuzo',
 };
 
@@ -125,7 +125,7 @@ export function CompanyApplicationsPage({ useCases }) {
       setFlash({
         message:
           nextStatus === CandidateStatus.ACCEPTED
-            ? `${application.student.name} u pranua si intern për "${application.positionTitle}".`
+            ? `${application.student.name} u pranua si praktikant për "${application.positionTitle}".`
             : `Statusi i ${application.student.name} u ndryshua në "${CANDIDATE_STATUS_LABELS[nextStatus]}".`,
       });
     } catch (changeError) {
@@ -161,7 +161,7 @@ export function CompanyApplicationsPage({ useCases }) {
         <div>
           <p className="text-xs font-semibold tracking-[0.16em] text-cream/50 uppercase">Kandidatët</p>
           <h2 className="mt-2 font-display text-4xl text-cream">Aplikimet e studentëve</h2>
-          <p className="mt-2 text-cream/65">Shqyrtoni kandidatët, vendosini në listën e ngushtë dhe pranoni interns.</p>
+          <p className="mt-2 text-cream/65">Shqyrtoni kandidatët, vendosini në listën e ngushtë dhe pranoni praktikantë.</p>
         </div>
         <span className="rounded-xl border border-cream/15 bg-charcoal/60 px-4 py-3 text-sm text-cream/75">{applications.length} gjithsej</span>
       </div>
@@ -309,13 +309,13 @@ export function CompanyApplicationsPage({ useCases }) {
 
       {pendingChange && (
         <ConfirmDialog
-          title={pendingChange.status === CandidateStatus.ACCEPTED ? `Ta pranosh ${pendingChange.application.student.name} si intern?` : `Ta refuzosh ${pendingChange.application.student.name}?`}
+          title={pendingChange.status === CandidateStatus.ACCEPTED ? `Ta pranosh ${pendingChange.application.student.name} si praktikant?` : `Ta refuzosh ${pendingChange.application.student.name}?`}
           description={
             pendingChange.status === CandidateStatus.ACCEPTED
               ? `Studenti do të shohë statusin "Pranuar" për "${pendingChange.application.positionTitle}". Ky vendim është përfundimtar dhe zë një nga vendet e lira.`
               : 'Studenti do të shohë statusin "Refuzuar". Mund ta rishqyrtoni më vonë nëse ndërroni mendje.'
           }
-          confirmLabel={pendingChange.status === CandidateStatus.ACCEPTED ? 'Po, prano intern' : 'Po, refuzo'}
+          confirmLabel={pendingChange.status === CandidateStatus.ACCEPTED ? 'Po, prano praktikantin' : 'Po, refuzo'}
           tone={pendingChange.status === CandidateStatus.ACCEPTED ? 'success' : 'danger'}
           busy={busyId === pendingChange.application.id}
           onConfirm={() => applyChange(pendingChange.application, pendingChange.status)}
