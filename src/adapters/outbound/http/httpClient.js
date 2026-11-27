@@ -6,7 +6,8 @@ export async function getJson(path, params = {}) {
     if (value) url.searchParams.set(key, value);
   }
 
-  const response = await fetch(url, { headers: { Accept: 'application/json' } });
+  const token = window.localStorage.getItem('internup:jwt');
+  const response = await fetch(url, { headers: { Accept: 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) } });
   if (!response.ok) {
     throw new Error(`Kërkesa ${path} dështoi me statusin ${response.status}.`);
   }
@@ -14,9 +15,10 @@ export async function getJson(path, params = {}) {
 }
 
 export async function sendJson(method, path, body) {
+  const token = window.localStorage.getItem('internup:jwt');
   const response = await fetch(`${API_URL}${path}`, {
     method,
-    headers: { Accept: 'application/json', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }) },
+    headers: { Accept: 'application/json', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }), ...(token ? { Authorization: `Bearer ${token}` } : {}) },
     body: body === undefined ? undefined : JSON.stringify(body),
   });
 

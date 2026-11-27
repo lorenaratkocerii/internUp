@@ -6,7 +6,7 @@ import { CandidateStatusBadge } from '../../applications/components/CandidateSta
 import { useCurrentActor } from '../../auth/useCurrentActor';
 import { formatDay } from '../../company-workspace/utils/format';
 import { useWorkspaceData } from '../../company-workspace/hooks/useWorkspaceData';
-import { getDemoUser } from '../../login/demoAuth';
+import { getCurrentUser } from '../../login/authSession';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { ApplicationModal } from '../components/ApplicationModal';
 import { StudentWorkspace } from '../components/StudentWorkspace';
@@ -21,7 +21,7 @@ function Status({ status }) {
 
 export function StudentDashboardPage({ useCases, verificationUseCases }) {
   useDocumentTitle('Paneli i studentit');
-  const user = getDemoUser();
+  const user = getCurrentUser();
   const actor = useCurrentActor();
   const [profile] = useState(() => readStudentProfile(user));
   const load = useCallback(() => useCases.listMyApplications(actor), [useCases, actor]);

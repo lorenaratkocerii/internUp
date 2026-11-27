@@ -4,7 +4,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { useCurrentActor } from '../../auth/useCurrentActor';
 import { Logo } from '../../home/components/ui/Logo';
-import { logoutDemoUser } from '../../login/demoAuth';
+import { logoutUser } from '../../login/authSession';
 import { AdminTableView } from '../components/AdminTableView';
 import { findHomeTable, homeTables } from '../homeTables';
 
@@ -28,7 +28,7 @@ export function AdminDashboardPage({ useCases }) {
   };
 
   const handleLogout = () => {
-    logoutDemoUser();
+    logoutUser();
     navigate('/');
   };
 

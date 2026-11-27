@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { authLinks, navLinks } from '../content';
-import { getDemoUser } from '../../login/demoAuth';
+import { getCurrentUser } from '../../login/authSession';
 import { ButtonLink } from './ui/Button';
 import { Container } from './ui/Container';
 import { Logo } from './ui/Logo';
@@ -12,7 +12,7 @@ const linkClasses =
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState(() => getDemoUser());
+  const [user, setUser] = useState(() => getCurrentUser());
   const toggleRef = useRef(null);
   const { pathname } = useLocation();
 
@@ -32,7 +32,7 @@ export function Navbar() {
   }[user?.role];
 
   useEffect(() => {
-    const syncUser = () => setUser(getDemoUser());
+    const syncUser = () => setUser(getCurrentUser());
     window.addEventListener('internup:auth-change', syncUser);
     window.addEventListener('storage', syncUser);
     return () => {

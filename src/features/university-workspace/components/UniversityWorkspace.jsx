@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router';
 import { isPendingRepresentative } from '../../../domain/auth/accessControl';
 import { useCurrentActor } from '../../auth/useCurrentActor';
 import { Container } from '../../home/components/ui/Container';
-import { logoutDemoUser } from '../../login/demoAuth';
+import { logoutUser } from '../../login/authSession';
 import { UniversityLogo } from '../../universities/components/UniversityLogo';
 
 const links = [
@@ -17,7 +17,7 @@ export function UniversityWorkspace({ children, title, university, pendingCount 
   const navigate = useNavigate();
   const actor = useCurrentActor();
   const handleLogout = () => {
-    logoutDemoUser();
+    logoutUser();
     navigate('/');
   };
 

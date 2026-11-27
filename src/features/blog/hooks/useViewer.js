@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { GUEST_VIEWER } from '../../../application/blogUseCases';
-import { getDemoUser } from '../../login/demoAuth';
+import { getCurrentUser } from '../../login/authSession';
 
 export function useViewer() {
-  const [user, setUser] = useState(() => getDemoUser());
+  const [user, setUser] = useState(() => getCurrentUser());
 
   useEffect(() => {
-    const sync = () => setUser(getDemoUser());
+    const sync = () => setUser(getCurrentUser());
     window.addEventListener('internup:auth-change', sync);
     window.addEventListener('storage', sync);
     return () => {

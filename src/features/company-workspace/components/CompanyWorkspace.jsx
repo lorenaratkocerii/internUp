@@ -1,7 +1,7 @@
 import { BadgeCheck, Building2, ClipboardList, LayoutDashboard, PlusCircle, BriefcaseBusiness } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router';
 import { Container } from '../../home/components/ui/Container';
-import { logoutDemoUser } from '../../login/demoAuth';
+import { logoutUser } from '../../login/authSession';
 
 const links = [
   { to: '/kompani', label: 'Paneli kryesor', icon: LayoutDashboard, end: true },
@@ -15,7 +15,7 @@ const links = [
 export function CompanyWorkspace({ children, title, subtitle, companyName }) {
   const navigate = useNavigate();
   const handleLogout = () => {
-    logoutDemoUser();
+    logoutUser();
     navigate('/');
   };
 

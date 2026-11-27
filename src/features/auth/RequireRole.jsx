@@ -49,7 +49,7 @@ export function RequireRole({ role }) {
 
   if (!actor) {
     const next = encodeURIComponent(`${pathname}${search}`);
-    return <Navigate to={role === Role.ADMIN ? '/hyr' : `/hyr/${role}?next=${next}`} replace />;
+    return <Navigate to={`/hyr/${role}?next=${next}`} replace />;
   }
   if (actor.role !== role) return <AccessDenied role={role} actor={actor} />;
   if (role === Role.STUDENT && actor.profile?.approved === false && !['/profili', '/student'].includes(pathname)) {

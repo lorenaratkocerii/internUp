@@ -1,7 +1,7 @@
 import { BriefcaseBusiness, ClipboardList, GraduationCap, LayoutDashboard, UserRound } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router';
 import { Container } from '../../home/components/ui/Container';
-import { getDemoUser, logoutDemoUser } from '../../login/demoAuth';
+import { getCurrentUser, logoutUser } from '../../login/authSession';
 
 const links = [
   { to: '/student', label: 'Paneli kryesor', icon: LayoutDashboard, end: true },
@@ -12,10 +12,10 @@ const links = [
 
 export function StudentWorkspace({ children, title, subtitle }) {
   const navigate = useNavigate();
-  const pending = getDemoUser()?.profile?.approved === false;
+  const pending = getCurrentUser()?.profile?.approved === false;
   const visibleLinks = pending ? links.filter((link) => link.to === '/profili') : links;
   const handleLogout = () => {
-    logoutDemoUser();
+    logoutUser();
     navigate('/');
   };
 

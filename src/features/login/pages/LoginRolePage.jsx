@@ -1,10 +1,10 @@
-import { Eye, EyeOff, LockKeyhole, Mail } from 'lucide-react';
+import { Eye, EyeOff, LockKeyhole, Mail, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router';
 import { NotFoundMessage } from '../../companies/components/NotFoundMessage';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { Container } from '../../home/components/ui/Container';
-import { loginWithDemoAccount } from '../demoAuth';
+import { loginWithAccount } from '../authSession';
 import { loginRoles } from '../loginRoles';
 
 export function LoginRolePage() {
@@ -12,7 +12,9 @@ export function LoginRolePage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const nextPath = searchParams.get('next');
-  const selectedRole = loginRoles.find((item) => item.id === role);
+  const selectedRole = role === 'admin'
+    ? { id: 'admin', title: 'Admin', icon: ShieldCheck, colorClass: 'bg-charcoal' }
+    : loginRoles.find((item) => item.id === role);
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   useDocumentTitle(selectedRole ? `Hyr si ${selectedRole.title}` : 'Hyr në llogari');
@@ -30,7 +32,7 @@ export function LoginRolePage() {
 
   const Icon = selectedRole.icon;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const email = String(formData.get('email') ?? '').trim();
@@ -43,7 +45,9 @@ export function LoginRolePage() {
     if (Object.keys(nextErrors).length > 0) {
       return;
     }
-    const user = loginWithDemoAccount(role, email, password);
+    let user;
+    try { user = await loginWithAccount(role, email, password); }
+    catch (error) { setErrors({ form: error.message }); return; }
     if (!user) {
       setErrors({ form: 'Emaili ose fjalëkalimi nuk është i saktë për këtë lloj llogarie.' });
       return;

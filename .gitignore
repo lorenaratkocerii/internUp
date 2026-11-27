@@ -1,4 +1,5 @@
 node_modules
 dist
 *.local
+backend/src/InternUp.Api/admin-bootstrap.local.json
 .DS_Store

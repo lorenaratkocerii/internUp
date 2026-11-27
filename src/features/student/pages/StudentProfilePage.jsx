@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { FileText, Pencil, Plus, Save, Trash2, Upload, UserRound } from 'lucide-react';
-import { getDemoUser } from '../../login/demoAuth';
+import { getCurrentUser } from '../../login/authSession';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { useUniversityOptions } from '../../universities/hooks/useUniversityDirectory';
 import { StudentWorkspace } from '../components/StudentWorkspace';
@@ -30,7 +30,7 @@ const FALLBACK_UNIVERSITIES = ['Universiteti i Prishtinës', 'Universiteti i Pri
 
 export function StudentProfilePage({ universityUseCases }) {
   useDocumentTitle('Profili im');
-  const user = getDemoUser();
+  const user = getCurrentUser();
   const pendingVerification = user?.profile?.approved === false;
   const [profile, setProfile] = useState(() => readStudentProfile(user));
   const universityOptions = useUniversityOptions(universityUseCases, FALLBACK_UNIVERSITIES, profile.university);

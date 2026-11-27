@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { NotFoundMessage } from '../../companies/components/NotFoundMessage';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { Container } from '../../home/components/ui/Container';
-import { registerDemoAccount } from '../../login/demoAuth';
+import { registerAccount } from '../../login/authSession';
 import { RepresentativeEmailCheck } from '../../../application/universityUseCases';
 import { createActor } from '../../../domain/auth/accessControl';
 import { UniversityLogo } from '../../universities/components/UniversityLogo';
@@ -167,7 +167,7 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
     setSubmitError('');
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const nextErrors = validate(fields, values);
     const emailCheck =
@@ -200,22 +200,17 @@ export function SignupRolePage({ universityUseCases, universityWorkspaceUseCases
       profile.approved = emailCheck === RepresentativeEmailCheck.MATCH;
     }
 
-    const result = registerDemoAccount({
-      role,
-      title: selectedRole.title,
-      email: values.email,
-      password: values.password,
-      name: studentName,
-      profile,
-    });
-    if (result.error) {
-      setSubmitError(result.error);
+    let user;
+    try {
+      user = await registerAccount({ role, email: values.email, password: values.password, name: studentName, profile });
+    } catch (error) {
+      setSubmitError(error.message || 'Regjistrimi dështoi. Provo përsëri.');
       return;
     }
     const destination = { student: '/profili', kompani: '/kompani', universitet: '/universitet' }[role] ?? '/';
     if (role === 'universitet' && chosenUniversity && universityWorkspaceUseCases) {
       universityWorkspaceUseCases
-        .registerRepresentative(createActor(result.user))
+        .registerRepresentative(createActor(user))
         .catch(() => null)
         .finally(() => navigate(destination));
       return;

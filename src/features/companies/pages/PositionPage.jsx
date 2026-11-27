@@ -10,14 +10,14 @@ import { PositionFacts } from '../components/PositionFacts';
 import { StatusBadge } from '../components/StatusBadge';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { ApplicationModal } from '../../student/components/ApplicationModal';
-import { getDemoUser } from '../../login/demoAuth';
+import { getCurrentUser } from '../../login/authSession';
 import { applicantDetails, readStudentProfile } from '../../student/studentData';
 import { useCurrentActor } from '../../auth/useCurrentActor';
 
 export function PositionPage({ useCases, applicationUseCases }) {
   const [isApplyOpen, setIsApplyOpen] = useState(false);
   const [showStudentAccountPrompt, setShowStudentAccountPrompt] = useState(false);
-  const user = getDemoUser();
+  const user = getCurrentUser();
   const actor = useCurrentActor();
   const { companyId, positionId } = useParams();
   const load = useCallback(() => useCases.getPosition(companyId, positionId), [useCases, companyId, positionId]);

@@ -5,6 +5,7 @@ using InternUp.Infrastructure;
 const string FrontendCorsPolicy = "Frontend";
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("admin-bootstrap.local.json", optional: true, reloadOnChange: false);
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -25,6 +26,11 @@ var app = builder.Build();
 if (builder.Configuration.GetValue<bool>("Database:InitializeOnStartup"))
 {
     await app.Services.InitializeDatabaseAsync();
+}
+
+if (app.Environment.IsDevelopment())
+{
+    await app.Services.SeedDevelopmentAdminAsync(app.Configuration);
 }
 
 app.UseExceptionHandler();

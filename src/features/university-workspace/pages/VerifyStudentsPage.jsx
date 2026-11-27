@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { CircleAlert, CircleCheck } from 'lucide-react';
 import { isPendingRepresentative } from '../../../domain/auth/accessControl';
 import { VerificationStatus } from '../../../domain/university/studentVerification';
-import { setStudentApproval } from '../../login/demoAuth';
+import { setStudentApproval } from '../../login/authSession';
 import { useDocumentTitle } from '../../companies/hooks/useDocumentTitle';
 import { Flash, WorkspaceError, WorkspaceLoading } from '../../company-workspace/components/WorkspaceStatus';
 import { formatDay } from '../../company-workspace/utils/format';
